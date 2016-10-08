@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 
-class EntryInput extends React.Component {
+export default class EntryInputContainer extends React.Component {
 
   static propTypes = {
     label: React.PropTypes.string,
@@ -61,7 +61,6 @@ class EntryInput extends React.Component {
 
 }
 
-export default EntryInput;
 
 const Labels = ({entries, onCloseClick}) =>
   <div className="ui labels">

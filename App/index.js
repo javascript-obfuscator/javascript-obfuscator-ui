@@ -12,8 +12,8 @@ import { Form, Grid, Segment, Divider } from 'semantic-ui-react';
 import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
 
-import Editor from './containers/Editor';
-import Options from './containers/Options';
+import EditorContainer from './containers/EditorContainer';
+import OptionsContainer from './containers/OptionsContainer';
 
 
 const middleware = [thunk];
@@ -111,7 +111,7 @@ class App extends React.Component {
           <Title active={this.state.selectedTabIndex == 2} onClick={() => this.onTabClick(2)}>Output</Title>
         </div>
         <Pane active={this.state.selectedTabIndex == 0}>
-          <Editor onChange={this.onEditorChange} value={this.state.code} />
+          <EditorContainer onChange={this.onEditorChange} value={this.state.code} />
         </Pane>
         <Pane active={this.state.selectedTabIndex == 1}>
           <Dropzone onDrop={this.onDrop} multiple={false}>
@@ -127,7 +127,7 @@ class App extends React.Component {
 
         <div className="ui grid">
           <div className="column">
-            <Options />
+            <OptionsContainer />
           </div>
         </div>
 

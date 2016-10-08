@@ -5,12 +5,12 @@ import {render} from 'react-dom';
 import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
 
-import { Form } from 'stardust';
-import { Grid, Segment, Divider } from 'semantic-ui-react';
+import { Form, Grid, Segment, Divider } from 'semantic-ui-react';
+
+import EntryInputContainer from '../containers/EntryInputContainer';
 
 import * as types from '../constants/ActionTypes';
-
-import EntryInput from '../containers/EntryInput';
+import * as actions from '../actions/';
 
 
 export const SOURCEMAP_OFF = 'off'
@@ -24,72 +24,46 @@ const SOURCEMAP_OPTIONS = [
 ];
 
 
-class Options extends React.Component {
+export default class OptionsContainer extends React.Component {
 
   componentWillMount() {
     this.store = this.context.store;
   }
 
   toggleOption(optionType) {
-    this.store.dispatch({
-      'type': optionType,
-    });
+    this.store.dispatch(actions.toggleOption(optionType));
   }
 
   addDomainLock(domain) {
-    this.store.dispatch({
-      'type': types.ADD_DOMAIN_LOCK,
-      domain,
-    });
+    this.store.dispatch(actions.addDomainLock(domain));
   }
 
   removeDomainLock(domain) {
-    this.store.dispatch({
-      'type': types.REMOVE_DOMAIN_LOCK,
-      domain,
-    });
+    this.store.dispatch(actions.removeDomainLock(domain));
   }
 
   addReservedName(name) {
-    this.store.dispatch({
-      'type': types.ADD_RESERVED_NAME,
-      name,
-    });
+    this.store.dispatch(actions.addReservedName(name));
   }
 
   removeReservedName(name) {
-    this.store.dispatch({
-      'type': types.REMOVE_RESERVED_NAME,
-      name,
-    });
+    this.store.dispatch(actions.removeReservedName(name));
   }
 
   handleUnicodeThreshold(threshold) {
-    this.store.dispatch({
-      'type': types.SET_UNICODE_ARRAY_THRESHOLD,
-      threshold,
-    });
+    this.store.dispatch(actions.setUnicodeArrayThreshold(threshold));
   }
 
   handleSourceMapMode(mode) {
-    this.store.dispatch({
-      'type': types.SET_SOURCEMAP_MODE,
-      mode,
-    });
+    this.store.dispatch(actions.setSourceMapMode(mode));
   }
 
   handleSourceMapBaseUrl(baseUrl) {
-    this.store.dispatch({
-      'type': types.SET_SOURCEMAP_BASE_URL,
-      baseUrl,
-    });
+    this.store.dispatch(actions.setSourceMapBaseUrl(baseUrl));
   }
 
   handleSourceMapFileName(fileName) {
-    this.store.dispatch({
-      'type': types.SET_SOURCEMAP_FILE_NAME,
-      fileName,
-    });
+    this.store.dispatch(actions.setSourceMapFileName(fileName));
   }
 
   render() {
@@ -183,7 +157,7 @@ class Options extends React.Component {
               <Form.Select
                 label='Sourcemaps'
                 value={state.sourceMapMode}
-                onChange={(event, value) => this.handleSourceMapMode(value) }
+                onChange={(event, {value}) => this.handleSourceMapMode(value) }
                 options={SOURCEMAP_OPTIONS} />
 
               <Form.Input
@@ -196,8 +170,8 @@ class Options extends React.Component {
               <Form.Input
                 label='Source Map File Name'
                 disabled={!state.sourceMapSeparate}
-                onChange={(event) => this.handleSourceMapFileName(event.target.value) }
-                value={state.sourMapFileName}
+                onBlur={(event) => this.handleSourceMapFileName(event.target.value) }
+                defaultValue={state.sourMapFileName}
                 placeholder='example' />
 
             </Segment>
@@ -207,7 +181,7 @@ class Options extends React.Component {
           <Grid.Column>
             <Segment basic>
 
-              <EntryInput
+              <EntryInputContainer
                 label='Add a domain lock'
                 actionAddEntryToState={::this.addDomainLock}
                 actionRemoveEntryFromState={::this.removeDomainLock}
@@ -215,7 +189,7 @@ class Options extends React.Component {
                 entries={state.domainLock}
                 buttonIcon="plus" />
 
-              <EntryInput
+              <EntryInputContainer
                 label='Reserved Names'
                 actionAddEntryToState={::this.addReservedName}
                 actionRemoveEntryFromState={::this.removeReservedName}
@@ -235,8 +209,6 @@ class Options extends React.Component {
 
 }
 
-Options.contextTypes = {
+OptionsContainer.contextTypes = {
   store: React.PropTypes.object
 };
-
-export default Options;

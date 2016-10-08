@@ -1,5 +1,6 @@
 import * as types from '../constants/ActionTypes';
-import {SOURCEMAP_SEPARATE} from '../containers/Options'
+
+import {SOURCEMAP_SEPARATE} from '../containers/OptionsContainer'
 
 const initialState = {
   compactCode: true,
@@ -24,7 +25,7 @@ const initialState = {
   encodeUnicodeLiteralsEnabled: true,
 
   sourceMapMode: 'off',
-  sourceMapBaseUrl: 'http://',
+  sourceMapBaseUrl: '',
   sourceMapFileName: '',
   sourceMapSeparate: false,
 
