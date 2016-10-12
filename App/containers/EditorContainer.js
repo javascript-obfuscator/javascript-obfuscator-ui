@@ -17,7 +17,7 @@ export default class EditorContainer extends Component {
   
   static propTypes = {
     value: React.PropTypes.string.isRequired,
-    onBlur: React.PropTypes.function.isRequired,
+    onBlur: React.PropTypes.func.isRequired,
   }
 
   componentDidMount () {

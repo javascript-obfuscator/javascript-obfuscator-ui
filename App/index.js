@@ -147,7 +147,7 @@ const Pane = (props) => {
 
 Pane.propTypes = {
   active: React.PropTypes.bool.isRequired,
-  children: React.PropTypes.children.isRequired,
+  children: React.PropTypes.node.isRequired,
 }
 
 
@@ -162,7 +162,7 @@ const Title = (props) => {
 
 Title.propTypes = {
   active: React.PropTypes.bool.isRequired,
-  children: React.PropTypes.children.isRequired,
+  children: React.PropTypes.node.isRequired,
   onClick: React.PropTypes.func.isRequired,
 }
 
