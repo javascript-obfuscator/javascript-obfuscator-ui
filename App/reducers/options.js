@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-import {SOURCEMAP_SEPARATE} from '../containers/OptionsContainer'
+import { SOURCEMAP_SEPARATE } from '../containers/OptionsContainer'
 
 const initialState = {
   compactCode: true,
@@ -71,12 +71,6 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         debugProtectionInterval: !state.debugProtectionInterval,
-      }
-
-    case types.TOGGLE_COMPACT_CODE:
-      return {
-        ...state,
-        compactCode: !state.compactCode
       }
 
     case types.TOGGLE_UNICODE_ARRAY:

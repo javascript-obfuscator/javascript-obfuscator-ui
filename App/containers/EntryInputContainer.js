@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 
-export default class EntryInputContainer extends React.Component {
+export default class EntryInputContainer extends Component {
 
   static propTypes = {
     label: React.PropTypes.string,

@@ -7,12 +7,17 @@ require('codemirror/mode/javascript/javascript');
 
 
 export default class EditorContainer extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
       code: props.value,
     }
-    this.updateCode = this.updateCode.bind(this);
+  }
+  
+  static propTypes = {
+    value: React.PropTypes.string.isRequired,
+    onBlur: React.PropTypes.function.isRequired,
   }
 
   componentDidMount () {
@@ -20,27 +25,36 @@ export default class EditorContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    // console.log (nextProps);
     this.setState({
       code: nextProps.value
     });
   }
 
-  updateCode (newCode) {
+  handleOnChange (newCode) {
     this.setState({
       code: newCode
     });
-    this.props.onChange(newCode);
+  }
+
+  handleFocusChange (focused) {
+    if (!focused) {
+      this.props.onBlur(this.state.code);
+    }
   }
 
   render () {
     var options = {
+      autofocus:  true,
       lineNumbers: true,
       mode: 'javascript',
-      autofocus:  true,
     };
     return (
-      <Codemirror ref='editor' value={this.state.code} onChange={this.updateCode} options={options} />
+      <Codemirror
+        ref='editor'
+        value={this.state.code}
+        onChange={::this.handleOnChange}
+        onFocusChange={::this.handleFocusChange}
+        options={options} />
     )
   }
 

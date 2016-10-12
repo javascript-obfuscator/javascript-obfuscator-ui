@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
 
-import { Form, Grid, Segment, Divider } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 
 import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
@@ -22,36 +22,25 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 
-const DEFAULT_CODE = [
-  '// Paste your Javascript code here',
-  'function hi() {',
-  ' console.log("Hello World!");',
-  '}',
-  'hi();',
-].join('\n');
+class App extends Component {
 
-
-class App extends React.Component {
+  static contextTypes = {
+    store: React.PropTypes.object
+  };
 
   constructor(props) {
     super(props);
     this.state = {
       selectedTabIndex: 0,
-      code: DEFAULT_CODE,
-      obfuscatedCode: '',
     }
 
-    this.onTabClick = this.onTabClick.bind(this);
-    this.onDrop = this.onDrop.bind(this);
-    this.onEditorChange = this.onEditorChange.bind(this);
-
-    this.obfuscate = this.obfuscate.bind(this);
   }
 
-  setCode(newCode) {
-    this.setState({
-      code: newCode,
-    });
+  setCode(code) {
+    this.context.store.dispatch({
+      type: 'UPDATE_CODE',
+      code,
+    })
   }
 
   onTabClick(index) {
@@ -60,8 +49,8 @@ class App extends React.Component {
     });
   }
 
-  onEditorChange(newCode) {
-    this.setCode(newCode);
+  handleEditorBlur(code) {
+    this.setCode(code);
   }
 
   onDrop(files) {
@@ -77,7 +66,7 @@ class App extends React.Component {
   }
 
   obfuscate() {
-    const code = this.state.code;
+    const code = this.context.store.getState().code.code;
 
     const body = { code, };
 
@@ -103,34 +92,42 @@ class App extends React.Component {
   }
 
   render() {
+    const tabIndex = this.state.selectedTabIndex;
+
+    const code = this.context.store.getState().code.code;
+
     return (
       <div>
+
         <div className="ui top attached tabular menu">
-          <Title active={this.state.selectedTabIndex == 0} onClick={() => this.onTabClick(0)}>Copy & Paste Javascript Code</Title>
-          <Title active={this.state.selectedTabIndex == 1} onClick={() => this.onTabClick(1)}>Upload Javascript Files</Title>
-          <Title active={this.state.selectedTabIndex == 2} onClick={() => this.onTabClick(2)}>Output</Title>
+          <Title active={tabIndex == 0} onClick={() => this.onTabClick(0)}>Copy & Paste Javascript Code</Title>
+          <Title active={tabIndex == 1} onClick={() => this.onTabClick(1)}>Upload Javascript Files</Title>
+          <Title active={tabIndex == 2} onClick={() => this.onTabClick(2)}>Output</Title>
         </div>
-        <Pane active={this.state.selectedTabIndex == 0}>
-          <EditorContainer onChange={this.onEditorChange} value={this.state.code} />
+
+        <Pane active={tabIndex == 0}>
+          <EditorContainer onBlur={::this.handleEditorBlur} value={code} />
         </Pane>
-        <Pane active={this.state.selectedTabIndex == 1}>
-          <Dropzone onDrop={this.onDrop} multiple={false}>
+
+        <Pane active={tabIndex == 1}>
+          <Dropzone onDrop={::this.onDrop} multiple={false}>
             <div>Try dropping some files here, or click to select files to upload.</div>
           </Dropzone>
         </Pane>
-        <Pane active={this.state.selectedTabIndex == 2}>
+
+        <Pane active={tabIndex == 2}>
           <Form>
             <Form.TextArea value={this.state.obfuscatedCode}></Form.TextArea>
           </Form>
         </Pane>
-        <Form.Button color='green' onClick={this.obfuscate}>Obfuscate</Form.Button>
+
+        <Form.Button color='green' onClick={::this.obfuscate}>Obfuscate</Form.Button>
 
         <div className="ui grid">
           <div className="column">
             <OptionsContainer />
           </div>
         </div>
-
 
       </div>
     );
@@ -148,6 +145,11 @@ const Pane = (props) => {
   )
 }
 
+Pane.propTypes = {
+  active: React.PropTypes.bool.isRequired,
+  children: React.PropTypes.children.isRequired,
+}
+
 
 const Title = (props) => {
   const className = classNames('item', {'active': props.active})
@@ -158,11 +160,18 @@ const Title = (props) => {
   )
 }
 
+Title.propTypes = {
+  active: React.PropTypes.bool.isRequired,
+  children: React.PropTypes.children.isRequired,
+  onClick: React.PropTypes.func.isRequired,
+}
 
-import {options} from './reducers/options';
+import { options } from './reducers/options';
+import { code } from './reducers/code';
 
 const store = createStore(combineReducers({
     options,
+    code,
   }),
   applyMiddleware(...middleware)
 );
@@ -179,4 +188,4 @@ const _render = () => {
 
 _render();
 
-const unsubscribe = store.subscribe(_render);
+store.subscribe(_render);

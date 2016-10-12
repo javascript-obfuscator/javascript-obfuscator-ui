@@ -1,16 +1,12 @@
 
 import React, { Component } from 'react';
-import {render} from 'react-dom';
-
-import classNames from 'classnames';
-import Dropzone from 'react-dropzone';
 
 import { Form, Grid, Segment, Divider } from 'semantic-ui-react';
 
 import EntryInputContainer from '../containers/EntryInputContainer';
 
 import * as types from '../constants/ActionTypes';
-import * as actions from '../actions/';
+import * as actions from '../actions';
 
 
 export const SOURCEMAP_OFF = 'off'
@@ -24,7 +20,11 @@ const SOURCEMAP_OPTIONS = [
 ];
 
 
-export default class OptionsContainer extends React.Component {
+export default class OptionsContainer extends Component {
+
+  static contextTypes = {
+    store: React.PropTypes.object
+  };
 
   componentWillMount() {
     this.store = this.context.store;
@@ -208,7 +208,3 @@ export default class OptionsContainer extends React.Component {
   }
 
 }
-
-OptionsContainer.contextTypes = {
-  store: React.PropTypes.object
-};

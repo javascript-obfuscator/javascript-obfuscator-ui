@@ -1,5 +1,9 @@
 import * as types from '../constants/ActionTypes';
 
+export const updateCode = (code) => ({
+  'type': types.UPDATE_CODE,
+  code
+});
 
 export const toggleOption = (optionType) => ({
   'type': optionType
