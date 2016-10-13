@@ -1,5 +1,7 @@
 
-import React, { Component } from 'react';
+import React from 'react';
+
+import { connect } from 'react-redux';
 
 import { Form, Grid, Segment, Divider } from 'semantic-ui-react';
 
@@ -20,186 +22,145 @@ const SOURCEMAP_OPTIONS = [
 ];
 
 
-export default class OptionsContainer extends Component {
+const Options = ({dispatch, options}) => 
+  <Form>
+    <Grid columns={4} relaxed>
+      <Grid.Column>
+        <Segment basic>
 
-  static contextTypes = {
-    store: React.PropTypes.object
-  };
+          <Form.Checkbox
+            label='Compact code'
+            checked={options.compactCode}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE)) } />
 
-  componentWillMount() {
-    this.store = this.context.store;
-  }
+          <Form.Checkbox
+            label='Self Defending'
+            checked={options.selfDefending}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING)) } />
 
-  toggleOption(optionType) {
-    this.store.dispatch(actions.toggleOption(optionType));
-  }
+          <Divider />
 
-  addDomainLock(domain) {
-    this.store.dispatch(actions.addDomainLock(domain));
-  }
+          <Form.Checkbox
+            label='Disable Console Output'
+            checked={options.disableConsoleOutput}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT)) } />
 
-  removeDomainLock(domain) {
-    this.store.dispatch(actions.removeDomainLock(domain));
-  }
+          <Divider />
 
-  addReservedName(name) {
-    this.store.dispatch(actions.addReservedName(name));
-  }
+          <Form.Checkbox
+            label='Debug Protection'
+            checked={options.debugProtection}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION)) } />
 
-  removeReservedName(name) {
-    this.store.dispatch(actions.removeReservedName(name));
-  }
+          <Form.Checkbox
+            label='Debug Protection Interval'
+            checked={options.debugProtectionInterval}
+            disabled={!options.debugProtection}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL)) } />
 
-  handleUnicodeThreshold(threshold) {
-    this.store.dispatch(actions.setUnicodeArrayThreshold(threshold));
-  }
+        </Segment>
+      </Grid.Column>
 
-  handleSourceMapMode(mode) {
-    this.store.dispatch(actions.setSourceMapMode(mode));
-  }
+      <Grid.Column>
+        <Segment basic>
 
-  handleSourceMapBaseUrl(baseUrl) {
-    this.store.dispatch(actions.setSourceMapBaseUrl(baseUrl));
-  }
+          <Form.Checkbox
+            label='Unicode Array'
+            checked={options.unicodeArray}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ARRAY)) } />
 
-  handleSourceMapFileName(fileName) {
-    this.store.dispatch(actions.setSourceMapFileName(fileName));
-  }
+          <Form.Checkbox
+            label='Rotate Unicode Array'
+            checked={options.rotateUnicodeArray}
+            disabled={!options.rotateUnicodeArrayEnabled}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ROTATE_UNICODE_ARRAY)) } />
 
-  render() {
-    const state = this.store.getState().options;
+          <Form.Checkbox
+            label='Wrap Unicode Array Calls'
+            checked={options.wrapUnicodeArrayCalls}
+            disabled={!options.wrapUnicodeArrayCallsEnabled}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_WRAP_UNICODE_ARRAY_CALLS)) } />
 
-    return (
-      <Form>
-        <Grid columns={4} relaxed>
-          <Grid.Column>
-            <Segment basic>
+          <Form.Checkbox
+            label='Encode Unicode Array Calls'
+            checked={options.encodeUnicodeLiterals}
+            disabled={!options.encodeUnicodeLiteralsEnabled}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ENCODE_UNICODE_LITERALS)) } />
 
-              <Form.Checkbox
-                label='Compact code'
-                checked={state.compactCode}
-                onChange={() => this.toggleOption(types.TOGGLE_COMPACT_CODE) } />
+          <Form.Input
+            type='number'
+            label='Unicode Array Threshold'
+            defaultValue={options.unicodeArrayThreshold}
+            min="0"
+            max="1"
+            step="0.1"
+            onChange={(event) => dispatch(actions.setUnicodeArrayThreshold(event.target.value)) }
+            disabled={!options.unicodeArrayThresholdEnabled} />
 
-              <Form.Checkbox
-                label='Self Defending'
-                checked={state.selfDefending}
-                onChange={() => this.toggleOption(types.TOGGLE_SELF_DEFENDING) } />
+        </Segment>
+      </Grid.Column>
 
-              <Divider />
+      <Grid.Column>
+        <Segment basic>
 
-              <Form.Checkbox
-                label='Disable Console Output'
-                checked={state.disableConsoleOutput}
-                onChange={() => this.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT) } />
+          <Form.Select
+            label='Sourcemaps'
+            value={options.sourceMapMode}
+            onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value)) }
+            options={SOURCEMAP_OPTIONS} />
 
-              <Divider />
+          <Form.Input
+            label='Source Map Base URL'
+            disabled={!options.sourceMapSeparate}
+            onBlur={(event) => dispatch(actions.setSourceMapBaseUrl(event.target.value)) }
+            defaultValue={options.sourceMapBaseUrl}
+            placeholder='http://localhost:3000' />
 
-              <Form.Checkbox
-                label='Debug Protection'
-                checked={state.debugProtection}
-                onChange={() => this.toggleOption(types.TOGGLE_DEBUG_PROTECTION) } />
+          <Form.Input
+            label='Source Map File Name'
+            disabled={!options.sourceMapSeparate}
+            onBlur={(event) => dispatch(actions.setSourceMapFileName(event.target.value)) }
+            defaultValue={options.sourceMapFileName}
+            placeholder='example' />
 
-              <Form.Checkbox
-                label='Debug Protection Interval'
-                checked={state.debugProtectionInterval}
-                disabled={!state.debugProtection}
-                onChange={() => this.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL) } />
+        </Segment>
+      </Grid.Column>
 
-            </Segment>
-          </Grid.Column>
+      <Grid.Column>
+        <Segment basic>
 
-          <Grid.Column>
-            <Segment basic>
+          <EntryInputContainer
+            label='Add a domain lock'
+            actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain)) }
+            actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain)) }
+            placeholder="domain.com"
+            entries={options.domainLock}
+            buttonIcon="plus" />
 
-              <Form.Checkbox
-                label='Unicode Array'
-                checked={state.unicodeArray}
-                onChange={() => this.toggleOption(types.TOGGLE_UNICODE_ARRAY) } />
+          <EntryInputContainer
+            label='Reserved Names'
+            actionAddEntryToState={(name) => dispatch(actions.addReservedName(name)) }
+            actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name)) }
+            placeholder="^someVariable"
+            entries={options.reservedNames}
+            buttonIcon="plus" />
 
-              <Form.Checkbox
-                label='Rotate Unicode Array'
-                checked={state.rotateUnicodeArray}
-                disabled={!state.rotateUnicodeArrayEnabled}
-                onChange={() => this.toggleOption(types.TOGGLE_ROTATE_UNICODE_ARRAY) } />
+        </Segment>
+      </Grid.Column>
 
-              <Form.Checkbox
-                label='Wrap Unicode Array Calls'
-                checked={state.wrapUnicodeArrayCalls}
-                disabled={!state.wrapUnicodeArrayCallsEnabled}
-                onChange={() => this.toggleOption(types.TOGGLE_WRAP_UNICODE_ARRAY_CALLS) } />
+    </Grid>
+  </Form>
 
-              <Form.Checkbox
-                label='Encode Unicode Array Calls'
-                checked={state.encodeUnicodeLiterals}
-                disabled={!state.encodeUnicodeLiteralsEnabled}
-                onChange={() => this.toggleOption(types.TOGGLE_ENCODE_UNICODE_LITERALS) } />
 
-              <Form.Input
-                type='number'
-                label='Unicode Array Threshold'
-                defaultValue={state.unicodeArrayThreshold}
-                min="0"
-                max="1"
-                step="0.1"
-                onChange={(event) => this.handleUnicodeThreshold(event.target.value) }
-                disabled={!state.unicodeArrayThresholdEnabled} />
-
-            </Segment>
-          </Grid.Column>
-
-          <Grid.Column>
-            <Segment basic>
-
-              <Form.Select
-                label='Sourcemaps'
-                value={state.sourceMapMode}
-                onChange={(event, {value}) => this.handleSourceMapMode(value) }
-                options={SOURCEMAP_OPTIONS} />
-
-              <Form.Input
-                label='Source Map Base URL'
-                disabled={!state.sourceMapSeparate}
-                onBlur={(event) => this.handleSourceMapBaseUrl(event.target.value) }
-                defaultValue={state.sourceMapBaseUrl}
-                placeholder='http://localhost:3000' />
-
-              <Form.Input
-                label='Source Map File Name'
-                disabled={!state.sourceMapSeparate}
-                onBlur={(event) => this.handleSourceMapFileName(event.target.value) }
-                defaultValue={state.sourMapFileName}
-                placeholder='example' />
-
-            </Segment>
-          </Grid.Column>
-
-          <Grid.Column>
-            <Segment basic>
-
-              <EntryInputContainer
-                label='Add a domain lock'
-                actionAddEntryToState={::this.addDomainLock}
-                actionRemoveEntryFromState={::this.removeDomainLock}
-                placeholder="domain.com"
-                entries={state.domainLock}
-                buttonIcon="plus" />
-
-              <EntryInputContainer
-                label='Reserved Names'
-                actionAddEntryToState={::this.addReservedName}
-                actionRemoveEntryFromState={::this.removeReservedName}
-                placeholder="^someVariable"
-                entries={state.reservedNames}
-                buttonIcon="plus" />
-
-            </Segment>
-          </Grid.Column>
-
-        </Grid>
-      </Form>
-
-    );
-
-  }
-
+Options.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  options: React.PropTypes.object,
 }
+
+const mapStateToProps = (state) => {
+  return {
+    options: state.options,
+  }
+}
+
+export default connect(mapStateToProps)(Options);
