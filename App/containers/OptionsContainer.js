@@ -108,8 +108,6 @@ export default class OptionsContainer extends Component {
             </Segment>
           </Grid.Column>
 
-          <Divider vertical />
-
           <Grid.Column>
             <Segment basic>
 
@@ -149,8 +147,6 @@ export default class OptionsContainer extends Component {
             </Segment>
           </Grid.Column>
 
-          <Divider vertical />
-
           <Grid.Column>
             <Segment basic>
 
@@ -177,7 +173,6 @@ export default class OptionsContainer extends Component {
             </Segment>
           </Grid.Column>
 
-          <Divider vertical />
           <Grid.Column>
             <Segment basic>
 
