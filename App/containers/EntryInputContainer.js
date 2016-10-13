@@ -71,3 +71,8 @@ const Labels = ({entries, onCloseClick}) =>
         </span>
     )}
   </div>
+
+Labels.propTypes = {
+  entries: React.PropTypes.array,
+  onCloseClick: React.PropTypes.func.isRequired,
+}
