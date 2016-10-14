@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { createStore, combineReducers, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
@@ -166,15 +166,10 @@ Title.propTypes = {
   onClick: React.PropTypes.func.isRequired,
 }
 
-import { options } from './reducers/options';
-import { code } from './reducers/code';
 
-const store = createStore(combineReducers({
-    options,
-    code,
-  }),
-  applyMiddleware(...middleware)
-);
+import reducer from './reducers'
+
+const store = createStore(reducer, applyMiddleware(...middleware));
 
 const _render = () => {
   render(
