@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { createStore, applyMiddleware } from 'redux'
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -24,24 +24,26 @@ import reducer from './reducers'
 const store = createStore(reducer, applyMiddleware(...middleware));
 
 
-class App extends Component {
+class _App extends Component {
 
-  static contextTypes = {
-    store: React.PropTypes.object
-  };
+  static propTypes = {
+    dispatch: React.PropTypes.func,
+    code: React.PropTypes.string,
+    obfuscatedCode: React.PropTypes.string,
+    obfuscating: React.PropTypes.bool,
+    obfuscated: React.PropTypes.bool,
+    error: React.PropTypes.bool,
+  }
 
   obfuscate() {
-    const code = this.context.store.getState().code.code;
-
-    const { dispatch } = this.context.store;
-
+    const { dispatch } = this.props;
+    const { code } = this.props;
     dispatch(actions.obfuscateCode(code));
-
   }
 
   render() {
 
-    const { dispatch } = this.context.store;
+    const { dispatch } = this.props;
 
     const {
       code,
@@ -49,7 +51,7 @@ class App extends Component {
       obfuscating,
       obfuscated,
       error,
-    } = this.context.store.getState().code;
+    } = this.props;
 
     return (
       <div>
@@ -75,6 +77,18 @@ class App extends Component {
 
 }
 
+const mapStateToProps = (state) => {
+  const code = state.code;
+  return {
+    code: code.code,
+    obfuscatedCode: code.obfuscateCode,
+    obfuscating: code.obfuscating,
+    obfuscated: code.obfuscated,
+    error: code.error,
+  }
+}
+
+const App = connect(mapStateToProps)(_App);
 
 const _render = () => {
   render(
@@ -87,5 +101,3 @@ const _render = () => {
 }
 
 _render();
-
-store.subscribe(_render);

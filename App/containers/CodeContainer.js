@@ -27,7 +27,7 @@ class CodeContainer extends Component {
       selectedTabIndex: 0,
     }
   }
-  
+
   componentWillReceiveProps(nextProps) {
     if (this.props.pending && nextProps.hasResults) {
       this.setState({
@@ -51,14 +51,14 @@ class CodeContainer extends Component {
     }
 
     reader.readAsText(file);
-    
+
   }
 
   render() {
     const tabIndex = this.state.selectedTabIndex;
-    
-    const { 
-      code, 
+
+    const {
+      code,
       obfuscatedCode,
       pending,
       onCodeChange,
@@ -77,7 +77,7 @@ class CodeContainer extends Component {
         <Pane active={tabIndex == 0}>
           <EditorContainer onBlur={onCodeChange} value={code} />
           <Segment basic>
-            <Button 
+            <Button
               loading={pending}
               disabled={pending}
               primary
