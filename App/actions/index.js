@@ -5,6 +5,27 @@ export const updateCode = (code) => ({
   code
 });
 
+export const obfuscateCode = (code) => {
+
+  const body = { code, };
+
+  const request = new Request('/obfuscate', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body),
+  });
+
+  return {
+    type: types.OBFUSCATE,
+    payload: fetch(request).then((response) => response.json()),
+  }
+
+}
+
 export const toggleOption = (optionType) => ({
   'type': optionType
 });
