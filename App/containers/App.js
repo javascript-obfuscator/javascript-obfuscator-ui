@@ -17,12 +17,13 @@ class App extends Component {
     obfuscating: React.PropTypes.bool,
     obfuscated: React.PropTypes.bool,
     error: React.PropTypes.bool,
+    options: React.PropTypes.object,
   }
 
   obfuscate() {
     const { dispatch } = this.props;
-    const { code } = this.props;
-    dispatch(actions.obfuscateCode(code));
+    const { code, options } = this.props;
+    dispatch(actions.obfuscateCode(code, options));
   }
 
   render() {
@@ -69,6 +70,7 @@ const mapStateToProps = (state) => {
     obfuscating: code.obfuscating,
     obfuscated: code.obfuscated,
     error: code.error,
+    options: state.options,
   }
 }
 

@@ -24,9 +24,13 @@ app.get('/', function (req, res) {
 app.post('/obfuscate', function (req, res) {
   const body = req.body;
 
-  const {code} = body;
+  const { code, options } = body;
 
-  const result = JavaScriptObfuscator.obfuscate(code);
+  if (!options.sourceMap) {
+    delete options.sourceMapMode
+  }
+  console.log(options);
+  const result = JavaScriptObfuscator.obfuscate(code, options);
 
   // sleep(2000);
 

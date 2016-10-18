@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-import { SOURCEMAP_SEPARATE } from '../containers/OptionsContainer'
+import { SOURCEMAP_SEPARATE, SOURCEMAP_OFF } from '../containers/OptionsContainer'
 
 const initialState = {
   compactCode: true,
@@ -24,6 +24,7 @@ const initialState = {
   encodeUnicodeLiterals: false,
   encodeUnicodeLiteralsEnabled: true,
 
+  sourceMap: false,
   sourceMapMode: 'off',
   sourceMapBaseUrl: '',
   sourceMapFileName: '',
@@ -112,6 +113,7 @@ export const options = (state = initialState, action) => {
       const mode = action.mode;
       return {
         ...state,
+        sourceMap: mode !== SOURCEMAP_OFF,
         sourceMapMode: mode,
         sourceMapSeparate: mode === SOURCEMAP_SEPARATE
       }

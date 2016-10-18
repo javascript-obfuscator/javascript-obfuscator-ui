@@ -5,9 +5,12 @@ export const updateCode = (code) => ({
   code
 });
 
-export const obfuscateCode = (code) => {
+export const obfuscateCode = (code, options) => {
 
-  const body = { code, };
+  const body = {
+    code,
+    options
+  };
 
   const request = new Request('/obfuscate', {
     method: 'POST',
