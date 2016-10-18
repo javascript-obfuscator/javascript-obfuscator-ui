@@ -12,7 +12,7 @@ const DEFAULT_CODE = [
 
 const initialState = {
   code: DEFAULT_CODE,
-  ofbuscatedCode: '',
+  obfuscatedCode: '',
   obfuscating: false,
   obfuscated: false,
   error: false,
@@ -28,7 +28,7 @@ export const code = (state = initialState, action) => {
         ...state,
         obfuscated: false,
         error: false,
-        ofbuscatedCode: '',
+        obfuscatedCode: '',
         code: action.code
       }
 
@@ -38,7 +38,7 @@ export const code = (state = initialState, action) => {
         obfuscating: true,
         obfuscated: false,
         error: false,
-        ofbuscatedCode: '',
+        obfuscatedCode: '',
       }
 
     case types.OBFUSCATE_REJECTED:
@@ -47,6 +47,7 @@ export const code = (state = initialState, action) => {
         obfuscating: false,
         obfuscated: false,
         error: true,
+        obfuscatedCode: '',
       }
 
     case types.OBFUSCATE_FULFILLED:
