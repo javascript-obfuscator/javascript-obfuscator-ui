@@ -36,6 +36,7 @@ app.post('/obfuscate', function (req, res) {
 
   const response = {
     code: result.getObfuscatedCode(),
+    sourceMap: result.getSourceMap(),
   }
 
   res.send(JSON.stringify(response));

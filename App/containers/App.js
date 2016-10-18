@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
+import { downloadFile } from '../util/downloadFile';
+
 import * as actions from '../actions';
 
 import CodeContainer from './CodeContainer';
@@ -14,6 +16,7 @@ class App extends Component {
     dispatch: React.PropTypes.func,
     code: React.PropTypes.string,
     obfuscatedCode: React.PropTypes.string,
+    sourceMap: React.PropTypes.string,
     obfuscating: React.PropTypes.bool,
     obfuscated: React.PropTypes.bool,
     error: React.PropTypes.bool,
@@ -24,6 +27,24 @@ class App extends Component {
     const { dispatch } = this.props;
     const { code, options } = this.props;
     dispatch(actions.obfuscateCode(code, options));
+  }
+
+  downloadCode() {
+    const data = {
+      mime: 'application/javascript',
+      filename: 'obfuscated.js',
+      contents: this.props.obfuscatedCode,
+    }
+    downloadFile(data);
+  }
+
+  downloadSourceMap() {
+    const data = {
+      mime: 'application/octet-stream',
+      filename: 'obfuscated.js.map',
+      contents: this.props.sourceMap,
+    }
+    downloadFile(data);
   }
 
   render() {
@@ -38,6 +59,9 @@ class App extends Component {
       error,
     } = this.props;
 
+    const hasSourceMap = this.props.sourceMap.length > 0;
+    const hasObfuscatedCode = obfuscatedCode.length !== 0;
+
     return (
       <div>
 
@@ -47,7 +71,11 @@ class App extends Component {
           pending={obfuscating}
           hasResults={obfuscated || error }
           onCodeChange={(code) => dispatch(actions.updateCode(code))}
-          onObfuscateClick={() => this.obfuscate()}
+          onObfuscateClick={::this.obfuscate}
+          onDownloadCodeClick={::this.downloadCode}
+          onDownloadSourceMapClick={::this.downloadSourceMap}
+          hasSourceMap={hasSourceMap}
+          hasObfuscatedCode={hasObfuscatedCode}
          />
 
         <div className="ui grid">
@@ -66,7 +94,8 @@ const mapStateToProps = (state) => {
   const code = state.code;
   return {
     code: code.code,
-    obfuscatedCode: code.obfuscateCode,
+    obfuscatedCode: code.obfuscatedCode,
+    sourceMap: code.sourceMap,
     obfuscating: code.obfuscating,
     obfuscated: code.obfuscated,
     error: code.error,

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { Form, Segment, Button } from 'semantic-ui-react';
+import { Form, Segment, Button, Icon } from 'semantic-ui-react';
 
 import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
@@ -23,6 +23,10 @@ class CodeContainer extends Component {
     hasResults: React.PropTypes.bool,
     onCodeChange: React.PropTypes.func,
     onObfuscateClick: React.PropTypes.func,
+    onDownloadCodeClick: React.PropTypes.func,
+    onDownloadSourceMapClick: React.PropTypes.func,
+    hasSourceMap: React.PropTypes.bool,
+    hasObfuscatedCode: React.PropTypes.bool,
   };
 
   constructor(props) {
@@ -67,6 +71,10 @@ class CodeContainer extends Component {
       pending,
       onCodeChange,
       onObfuscateClick,
+      onDownloadCodeClick,
+      onDownloadSourceMapClick,
+      hasSourceMap,
+      hasObfuscatedCode,
     } = this.props;
 
     return (
@@ -100,8 +108,26 @@ class CodeContainer extends Component {
 
         <Pane active={tabIndex === TAB_RESULTS}>
           <Form>
-            <Form.TextArea value={obfuscatedCode}></Form.TextArea>
+            <Form.TextArea
+              value={obfuscatedCode}
+              onFocus={(event) => event.target.select()}
+              ></Form.TextArea>
           </Form>
+          <Segment basic>
+            <Button
+              disabled={!hasObfuscatedCode}
+              onClick={onDownloadCodeClick}
+              >
+                <Icon name='download' /> Download obfuscated code
+            </Button>
+            { hasSourceMap &&
+            <Button
+              onClick={onDownloadSourceMapClick}
+              >
+                <Icon name='download' /> Download source map file
+            </Button>
+            }
+          </Segment>
         </Pane>
 
       </div>
