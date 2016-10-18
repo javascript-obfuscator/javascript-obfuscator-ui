@@ -9,6 +9,10 @@ import Dropzone from 'react-dropzone';
 
 import EditorContainer from '../containers/EditorContainer';
 
+const TAB_CODE = 0;
+const TAB_UPLOAD = 1;
+const TAB_RESULTS = 2;
+
 
 class CodeContainer extends Component {
 
@@ -24,14 +28,14 @@ class CodeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTabIndex: 0,
+      selectedTabIndex: TAB_CODE,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.pending && nextProps.hasResults) {
       this.setState({
-        selectedTabIndex: 2,
+        selectedTabIndex: TAB_RESULTS,
       })
     }
   }
@@ -69,12 +73,12 @@ class CodeContainer extends Component {
       <div>
 
         <div className="ui top attached tabular menu">
-          <Title active={tabIndex == 0} onClick={() => this.onTabClick(0)}>Copy & Paste Javascript Code</Title>
-          <Title active={tabIndex == 1} onClick={() => this.onTabClick(1)}>Upload Javascript Files</Title>
-          <Title active={tabIndex == 2} onClick={() => this.onTabClick(2)}>Output</Title>
+          <Title active={tabIndex === TAB_CODE} onClick={() => this.onTabClick(TAB_CODE)}>Copy & Paste Javascript Code</Title>
+          <Title active={tabIndex === TAB_UPLOAD} onClick={() => this.onTabClick(TAB_UPLOAD)}>Upload Javascript Files</Title>
+          <Title active={tabIndex === TAB_RESULTS} onClick={() => this.onTabClick(TAB_RESULTS)}>Output</Title>
         </div>
 
-        <Pane active={tabIndex == 0}>
+        <Pane active={tabIndex === TAB_CODE}>
           <EditorContainer onBlur={onCodeChange} value={code} />
           <Segment basic>
             <Button
@@ -88,13 +92,13 @@ class CodeContainer extends Component {
           </Segment>
         </Pane>
 
-        <Pane active={tabIndex == 1}>
+        <Pane active={tabIndex === TAB_UPLOAD}>
           <Dropzone onDrop={::this.onDrop} multiple={false}>
             <div>Try dropping some files here, or click to select files to upload.</div>
           </Dropzone>
         </Pane>
 
-        <Pane active={tabIndex == 2}>
+        <Pane active={tabIndex === TAB_RESULTS}>
           <Form>
             <Form.TextArea value={obfuscatedCode}></Form.TextArea>
           </Form>
