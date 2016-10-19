@@ -3,17 +3,146 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title></title>
+    <title>Javascript Obfuscator Tool</title>
     <link rel="stylesheet" href="/static/semantic/semantic.min.css" media="screen" title="no title">
 
+    <style>
+      code {
+        padding: 0.2em;
+        background-color: rgba(0,0,0,0.04);
+        border-radius: 3px;
+      }
+    </style>
   </head>
   <body>
 
-    <div class="ui container">
-      <h1>Javascript Obfuscator Tool</h1>
-    </div>
+    <div class="ui container grid">
 
-    <div class="ui container" id="root">
+      <div class="row">
+        <div class="column">
+          <h1>Javascript Obfuscator Tool</h1>
+          <p>
+            Use this tool to effectively obfuscate your Javascript (ES6) code with tons of options. This is just a Web UI to the excellent (and open source) <a href="https://github.com/sanex3339/javascript-obfuscator/">Javascript Obfuscator</a> created by Timofey Kachalov.
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <div class="" id="root">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+
+          <table class="ui definition table">
+            <tbody>
+
+              <tr>
+                <td class="collapsing">Compact Code</td>
+                <td>
+                  Removes line breaks from the output obfuscated code.
+                </td>
+              </tr>
+
+              <tr>
+                <td class="collapsing">Self Defending</td>
+                <td>
+                  This option makes the output code resilient against formating. If one tries to use a javascript beautifier on the obfuscated code, the code won't work. <p><small>requires the <strong>Compact Code</strong> setting.</small></p>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="collapsing">Disable Console Output</td>
+                <td>
+                  Disables the use of <code>console.log</code>, <code>console.info</code>, <code>console.error</code> and <code>console.warn</code> by replacing them with empty functions. This makes the use of the debugger harder.
+                </td>
+              </tr>
+
+              <tr>
+                <td class="collapsing">Debug Protection</td>
+                <td>
+                  <div class="ui tiny message">
+                    <p><i class="warning sign icon"></i> Can freeze your browser if you open the Developer Tools.</p>
+                  </div>
+                  <p>This option makes it almost impossible to use the <strong>Console</strong> tab of the Developer Tools (both on Google Chrome and Mozilla Firefox).</p>
+
+                  <table class="ui definition table">
+                    <tbody>
+
+                      <tr>
+                        <td class="collapsing">Debug Protection Interval</td>
+                        <td>
+                          <p>If checked, an interval is used to force the debug mode on the <strong>Console</strong> tab, making it harder to use other features of the Developer Tools.</p>
+                          <p>How does it works? A special code that calls <code>debugger;</code> repeatedly is inserted throughout the obfuscated source code.</p>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td class="collapsing">Unicode Array</td>
+                <td>
+                  <p>
+                    Removes string literals and place them in a special array. For instance the string "Hello World" in <code>var m = "Hello World";</code> will be replaced with something like <code>var m = _0x12c456[0x1];</code>
+                  </p>
+
+                  <p>See the options bellow on how to configure this feature be more or less resilient.</p>
+
+                  <table class="ui definition table">
+                    <tbody>
+
+                      <tr>
+                        <td class="collapsing">Wrap Unicode Array Calls</td>
+                        <td>
+                          Replaces the direct array indexing <code>var m = _0x12c456[0x1];</code> with a call to a special function <code>var m = _0x23c123('0x1');</code>. Some Javascript beautifiers (such as the Google Closure Compiler) can replace direct array indexing with the indexed string, and this option mitigates that.
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="collapsing">Rotate Unicode Array</td>
+                        <td>
+                          <p>Shift the <code>unicodeArray</code> array by a fixed and random (generated at the code obfuscation) places. This makes it harder to match the order of the removed strings to their original place.</p>
+                          <p>This option is recommended if your original source code isn't small, as the helper function can attract attention.</p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="collapsing">Encode Unicode Literals</td>
+                        <td>
+                          <div class="ui tiny message">
+                            <p><i class="warning sign icon"></i> This option can slightly slow down your script.</p>
+                          </div>
+                          <p>Encode all string literals of the <code>unicodeArray</code> using base64 and inserts a special function that it's used to decode it back at runtime.</p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td class="collapsing">Unicode Array Threshold</td>
+                        <td>
+                          <p>You can use this setting to adjust the probability (from 0 to 1) that a string literal will be inserted into the <code>unicodeArray</code>.</p>
+                          <p>This setting is useful in large codebases as repeatdely calls to the Unicode Array function can slow down your code.</p>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
     </div>
 
     <script src="/static/dist/bundle.js"></script>
