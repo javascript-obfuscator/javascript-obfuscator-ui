@@ -3,8 +3,10 @@ var bodyParser = require("body-parser");
 
 var JavaScriptObfuscator = require('javascript-obfuscator');
 
-
 var app = express();
+
+
+app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json({limit: '5mb'}));
 
@@ -44,5 +46,5 @@ app.post('/obfuscate', function (req, res) {
 
 });
 
-app.listen(3000, function () {
+app.listen(app.get('port'), function () {
 });
