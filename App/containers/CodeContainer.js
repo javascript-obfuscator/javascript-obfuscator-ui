@@ -101,7 +101,7 @@ class CodeContainer extends Component {
         </Pane>
 
         <Pane active={tabIndex === TAB_UPLOAD}>
-          <Dropzone onDrop={::this.onDrop} multiple={false}>
+          <Dropzone onDrop={::this.onDrop} multiple={false} className="DropZone">
             <div>Try dropping some files here, or click to select files to upload.</div>
           </Dropzone>
         </Pane>

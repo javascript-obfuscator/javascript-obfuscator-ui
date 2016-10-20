@@ -12,7 +12,8 @@ import reducer from './reducers'
 
 import App from './containers/App'
 
-import "./styles/semantic.less";
+import "./styles/main.less";
+
 
 const middleware = [thunk, promiseMiddleware()];
 if (process.env.NODE_ENV !== 'production') {

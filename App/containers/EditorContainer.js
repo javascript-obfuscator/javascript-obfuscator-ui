@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 
 import Codemirror from 'react-codemirror';
 
-require('codemirror/lib/codemirror.css');
 require('codemirror/mode/javascript/javascript');
 
 
 export default class EditorContainer extends Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {
       code: props.value,
     }
   }
-  
+
   static propTypes = {
     value: React.PropTypes.string.isRequired,
     onBlur: React.PropTypes.func.isRequired,
