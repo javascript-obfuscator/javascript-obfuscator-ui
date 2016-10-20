@@ -10,10 +10,11 @@ app.use(bodyParser.json({limit: '5mb'}));
 
 app.use('/static', express.static(__dirname + '/public'));
 app.use('/static/dist', express.static(__dirname + '/dist'));
-app.use('/static/semantic', express.static(__dirname + '/semantic/dist'));
+app.use('/static/semantic', express.static(__dirname + '/public/semantic'));
+app.use('/static/styles', express.static(__dirname + '/App/styles'));
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/templates/index.html');
 });
 
 // function sleep(time) {

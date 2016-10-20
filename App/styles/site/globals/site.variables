@@ -1,0 +1,13 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+/* This is the single variable that controls them all */
+@emSize   : 16px;
+
+/* The size of page text  */
+@fontSize : 16px;
+
+
+@imagePath : '/static/semantic/assets/images';
+@fontPath  : '/static/semantic/assets/fonts';
