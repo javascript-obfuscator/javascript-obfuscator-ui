@@ -1,4 +1,3 @@
-var path = require('path');
 var express = require('express');
 var bodyParser = require("body-parser");
 
@@ -13,8 +12,8 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json({limit: '5mb'}));
 
-app.use('/static/dist', express.static(path.join(process.env.PWD, '/dist')));
-app.use('/static/semantic', express.static(path.join(process.env.PWD, '/public/semantic')));
+app.use('/static/dist', express.static(__dirname + '/dist'));
+app.use('/static/semantic', express.static(__dirname + '/public/semantic'));
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/templates/index.html');
