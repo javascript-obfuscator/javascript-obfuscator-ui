@@ -2,9 +2,9 @@ import * as types from '../constants/ActionTypes';
 
 
 const DEFAULT_CODE = [
-  '// Paste your Javascript code here',
+  '// Paste your JavaScript code here',
   'function hi() {',
-  ' console.log("Hello World!");',
+  '  console.log("Hello World!");',
   '}',
   'hi();',
 ].join('\n');

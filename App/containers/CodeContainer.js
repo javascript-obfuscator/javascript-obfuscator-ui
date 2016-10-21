@@ -81,8 +81,8 @@ class CodeContainer extends Component {
       <div>
 
         <div className="ui top attached tabular menu">
-          <Title active={tabIndex === TAB_CODE} onClick={() => this.onTabClick(TAB_CODE)}>Copy & Paste Javascript Code</Title>
-          <Title active={tabIndex === TAB_UPLOAD} onClick={() => this.onTabClick(TAB_UPLOAD)}>Upload Javascript Files</Title>
+          <Title active={tabIndex === TAB_CODE} onClick={() => this.onTabClick(TAB_CODE)}>Copy & Paste JavaScript Code</Title>
+          <Title active={tabIndex === TAB_UPLOAD} onClick={() => this.onTabClick(TAB_UPLOAD)}>Upload JavaScript Files</Title>
           <Title active={tabIndex === TAB_RESULTS} onClick={() => this.onTabClick(TAB_RESULTS)}>Output</Title>
         </div>
 

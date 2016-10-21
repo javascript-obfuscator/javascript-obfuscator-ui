@@ -22,7 +22,7 @@ const SOURCEMAP_OPTIONS = [
 
 
 const Options = ({dispatch, options}) =>
-  <Form>
+  <Form className="OptionsForm">
     <Grid columns={4} relaxed>
       <Grid.Column>
         <Segment basic>
