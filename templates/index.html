@@ -228,7 +228,7 @@
 
           <h4>Is this obfuscator absolutely foolproof?</h4>
           <p>No, while it's impossible to recover the exact original source code, someone with the time, knowledge and patience can reverse-engineer it.</p>
-          <p>Since the JavaScript runs on the browser, the browser JavaScript engine must be able to read and interpret it, so there's no way to prevent that. And any tool that promises you that is lying.</p>
+          <p>Since the JavaScript runs on the browser, the browser's JavaScript engine must be able to read and interpret it, so there's no way to prevent that. And any tool that promises that is not being honest.</p>
 
           <h4>Why my obfuscated code is larger than my original source?</h4>
           <p>Because the obfuscator introduces new pieces of code that are meant to protect and defend against debugging and reverse-engineering.</p>
@@ -237,7 +237,7 @@
           <p>No, it's not recommended and in some cases it'll break the code (such as if you enable <strong>self-defending</strong>. You can run before to make sure that it removes dead code and do other optimizations, though.</p>
 
           <h4>Do you store my source code?</h4>
-          <p>No. The source is processed by our application server to the obfuscator and back to the browser, so it only stays on our server memory for a brief period of time (usually milliseconds). </p>
+          <p>No. The source is processed by our application server, then to the obfuscator and back to the browser, so it only stays on our server memory for a brief period of time (usually milliseconds). </p>
 
           <h4>Can I recover the original source code from the obfuscated one?</h4>
           <p>No, that's impossible, so keep it safe.</p>
@@ -248,6 +248,21 @@
           <h4>I want to run the obfuscator on my own server/machine. Is it possible?</h4>
           <p>Sure. This tool uses a free and open source (MIT licensed) obfuscator written in TypeScript. You can go to <a href="https://github.com/sanex3339/javascript-obfuscator/" target="_new">its GitHub page</a> and read more there.</p>
 
+          <h4>Why did you do this tool?</h4>
+          <p>Creating a tool that solves a small, particular problem is a great way to get targeted users and in the future this might be useful to get users to a new service or product.</p>
+          <p>Besides, for some users installing the whole Node environment can be hard and time-consuming, specially if they're not used to typing things in the terminal and/or using Windows. So now they don't havet to deal with that just to get a small piece of code protected.</p>
+          <p>I also wanted to learn React + Redux and this was the perfect excuse: a small, side-project that can run with minimal maintenance.</p>
+
+          <h4>What are other similar tools?</h4>
+          <p>If you're interested in just uglyfing and compressing your code, I suggest <a href="https://jscompress.com/" target="_new">JSCompress.com</a>. I shamelessly copied three tabs layout from them.</p>
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column">
+          <div class="ui divider"></div>
+          <span>&copy; <a href="mailto:tserafim@gmail.com">Tiago Serafim</a></span>
         </div>
       </div>
 
