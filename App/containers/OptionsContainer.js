@@ -134,6 +134,7 @@ const Options = ({dispatch, options}) =>
             actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain)) }
             placeholder="domain.com"
             entries={options.domainLock}
+            disabled={true}
             buttonIcon="plus" />
 
           <EntryInputContainer

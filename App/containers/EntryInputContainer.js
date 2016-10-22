@@ -10,6 +10,7 @@ export default class EntryInputContainer extends Component {
     entries: React.PropTypes.array.isRequired,
     placeholder: React.PropTypes.string,
     buttonIcon: React.PropTypes.string,
+    disabled: React.PropTypes.bool,
   }
 
   constructor(props) {
@@ -42,7 +43,7 @@ export default class EntryInputContainer extends Component {
   }
 
   render() {
-    const {entries, label, buttonIcon, placeholder} = this.props;
+    const {entries, label, buttonIcon, placeholder, disabled} = this.props;
 
     return (
       <div>
@@ -52,6 +53,7 @@ export default class EntryInputContainer extends Component {
           value={this.state.value}
           action={{ icon: buttonIcon, onClick:this.handleAdd}}
           placeholder={placeholder}
+          disabled={disabled}
          />
         <Labels entries={entries} onCloseClick={::this.handleRemove}/>
       </div>

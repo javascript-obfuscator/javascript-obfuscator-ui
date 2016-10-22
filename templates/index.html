@@ -82,7 +82,8 @@
               <tr>
                 <td class="collapsing">Self Defending</td>
                 <td>
-                  This option makes the output code resilient against formating. If one tries to use a JavaScript beautifier on the obfuscated code, the code won't work. <p><small>requires the <strong>Compact Code</strong> setting.</small></p>
+                  <p>This option makes the output code resilient against formating and variable renaming. If one tries to use a JavaScript beautifier on the obfuscated code, the code won't work anymore, making it harder to understand and modify it.</p>
+                  <p><small>requires the <strong>Compact Code</strong> setting.</small></p>
                 </td>
               </tr>
 
@@ -194,9 +195,12 @@
               <tr>
                 <td class="collapsing">Domain Lock</td>
                 <td>
+                  <div class="ui tiny message">
+                    <p><i class="warning sign icon"></i> This feature doesn't work yet.</p>
+                  </div>
                   <p>Locks the obfuscated source code so it only runs on specific domains and/or sub-domains. This makes really hard for someone just copy and paste your source code and run elsewhere.</p>
                   <strong>Multiple domains and sub-domains</strong>
-                  <p>It's possible to lock your code to more than one domain or sub-domain. For instance, to lock it so the code only runs on <code>www.example.com</code> add <code>www.example.com</code>, to make it work on any sub-domain from example.com, use <code>.example.com</code>.</p>
+                  <p>It's possible to lock your code to more than one domain or sub-domain. For instance, to lock it so the code only runs on <strong>www.example.com</strong> add <code>www.example.com</code>, to make it work on <strong>any sub-domain from example.com</strong>, use <code>.example.com</code>.</p>
                 </td>
               </tr>
 
