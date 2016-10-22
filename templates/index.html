@@ -235,16 +235,16 @@
           <p>Since the JavaScript runs on the browser, the browser's JavaScript engine must be able to read and interpret it, so there's no way to prevent that. And any tool that promises that is not being honest.</p>
 
           <h4>Why my obfuscated code is larger than my original source?</h4>
-          <p>Because the obfuscator introduces new pieces of code that are meant to protect and defend against debugging and reverse-engineering.</p>
+          <p>Because the obfuscator introduces new pieces of code that are meant to protect and defend against debugging and reverse-engineering. Also strings are converted to <code>\xAB</code> hexadecimal code to make things a little bit harder to understand. You don't have to worry too much about code size because since there're a lot of repetition, the obfuscated code will be compressed extremely well by your webserver (if you have GZIP compression enabled on your server, which most do nowadays).</p>
 
           <h4>Can I run a minifier such as UglifyJS or Google Closure Compiler on the obfuscated output?</h4>
-          <p>No, it's not recommended and in some cases it'll break the code (such as if you enable <strong>self-defending</strong>. You can run before to make sure that it removes dead code and do other optimizations, though.</p>
+          <p>No, it's not recommended and in some cases it'll break the code (such as if you enable <strong>self-defending</strong>). You can run your code through a minifier before to make sure that it removes dead code and do other optimizations, though.</p>
 
           <h4>Do you store my source code?</h4>
           <p>No. The source is processed by our application server, then to the obfuscator and back to the browser, so it only stays on our server memory for a brief period of time (usually milliseconds). </p>
 
           <h4>Can I recover the original source code from the obfuscated one?</h4>
-          <p>No, that's impossible, so keep it safe.</p>
+          <p>No, it's impossible to revert the obfuscated code back to your original code, so keep the original safe.</p>
 
           <h4>Does this tool works with Node.js source code?</h4>
           <p>Yes.</p>
