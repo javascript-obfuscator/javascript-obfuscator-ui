@@ -93,7 +93,7 @@ const Options = ({dispatch, options}) =>
             min="0"
             max="1"
             step="0.1"
-            onChange={(event) => dispatch(actions.setUnicodeArrayThreshold(event.target.value)) }
+            onChange={(event) => dispatch(actions.setUnicodeArrayThreshold(parseFloat(event.target.value))) }
             disabled={!options.unicodeArrayThresholdEnabled} />
 
         </Segment>
