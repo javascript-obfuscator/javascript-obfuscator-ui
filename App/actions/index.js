@@ -53,9 +53,14 @@ export const removeReservedName = (name) => ({
   name
 });
 
-export const setUnicodeArrayThreshold = (threshold) => ({
-  'type': types.SET_UNICODE_ARRAY_THRESHOLD,
+export const setStringArrayThreshold = (threshold) => ({
+  'type': types.SET_STRING_ARRAY_THRESHOLD,
   threshold
+});
+
+export const setStringArrayEncoding = (encoding) => ({
+  'type': types.SET_STRING_ARRAY_ENCODING,
+  encoding
 });
 
 export const setSourceMapMode = (mode) => ({

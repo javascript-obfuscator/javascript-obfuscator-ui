@@ -121,10 +121,10 @@
               </tr>
 
               <tr>
-                <td class="collapsing">Unicode Array</td>
+                <td class="collapsing">String Array</td>
                 <td>
                   <p>
-                    Removes string literals and place them in a special array. For instance the string "Hello World" in <code>var m = "Hello World";</code> will be replaced with something like <code>var m = _0x12c456[0x1];</code>
+                    Removes string literals and place them in a special array. For instance the string "Hello World" in <code>var m = "Hello World";</code> will be replaced to a call to a function that will retrieve its value at runtime, e.g: <code>var m = _0xb0c3('0x1');</code>
                   </p>
 
                   <p>See the options below on how to configure this feature be more or less resilient.</p>
@@ -133,35 +133,29 @@
                     <tbody>
 
                       <tr>
-                        <td class="collapsing">Wrap Unicode Array Calls</td>
+                        <td class="collapsing">Rotate String Array</td>
                         <td>
-                          Replaces the direct array indexing <code>var m = _0x12c456[0x1];</code> with a call to a special function <code>var m = _0x23c123('0x1');</code>. Some JavaScript beautifiers (such as the Google Closure Compiler) can replace direct array indexing with the indexed string, and this option mitigates that.
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="collapsing">Rotate Unicode Array</td>
-                        <td>
-                          <p>Shift the <code>unicodeArray</code> array by a fixed and random (generated at the code obfuscation) places. This makes it harder to match the order of the removed strings to their original place.</p>
+                          <p>Shift the <code>stringArray</code> array by a fixed and random (generated at the code obfuscation) places. This makes it harder to match the order of the removed strings to their original place.</p>
                           <p>This option is recommended if your original source code isn't small, as the helper function can attract attention.</p>
                         </td>
                       </tr>
 
                       <tr>
-                        <td class="collapsing">Encode Unicode Literals</td>
+                        <td class="collapsing">Encode String Literals</td>
                         <td>
                           <div class="ui tiny message">
                             <p><i class="warning sign icon"></i> This option can slightly slow down your script.</p>
                           </div>
-                          <p>Encode all string literals of the <code>unicodeArray</code> using base64 and inserts a special function that it's used to decode it back at runtime.</p>
+                          <p>Encode all string literals of the <code>stringArray</code> using either Base64 or RC4 and inserts a special function that it's used to decode it back at runtime.</p>
+                          <p>Beware that the RC4 option is about 30-35% slower than the Base64 option, but it's more difficult to retrieve the strings back.</p>
                         </td>
                       </tr>
 
                       <tr>
-                        <td class="collapsing">Unicode Array Threshold</td>
+                        <td class="collapsing">String Array Threshold</td>
                         <td>
-                          <p>You can use this setting to adjust the probability (from 0 to 1) that a string literal will be inserted into the <code>unicodeArray</code>.</p>
-                          <p>This setting is useful in large codebases as repeatdely calls to the Unicode Array function can slow down your code.</p>
+                          <p>You can use this setting to adjust the probability (from 0 to 1) that a string literal will be inserted into the <code>stringArray</code>.</p>
+                          <p>This setting is useful in large codebases as repeatdely calls to the <code>stringArray</code> function can slow down your code.</p>
                         </td>
                       </tr>
 
@@ -196,9 +190,6 @@
               <tr>
                 <td class="collapsing">Domain Lock</td>
                 <td>
-                  <div class="ui tiny message">
-                    <p><i class="warning sign icon"></i> This feature doesn't work yet.</p>
-                  </div>
                   <p>Locks the obfuscated source code so it only runs on specific domains and/or sub-domains. This makes really hard for someone just copy and paste your source code and run elsewhere.</p>
                   <strong>Multiple domains and sub-domains</strong>
                   <p>It's possible to lock your code to more than one domain or sub-domain. For instance, to lock it so the code only runs on <strong>www.example.com</strong> add <code>www.example.com</code>, to make it work on <strong>any sub-domain from example.com</strong>, use <code>.example.com</code>.</p>
@@ -257,7 +248,7 @@
 
           <h4>Why did you do this tool?</h4>
           <p>Creating a tool that solves a small, particular problem is a great way to get targeted users and in the future this might be useful to attract users to a new service or product.</p>
-          <p>Besides, for some users installing the whole Node environment can be hard and time-consuming, specially if they're not used to typing things in the terminal and/or using Windows. So now they don't havet to deal with that just to get a small piece of code protected.</p>
+          <p>Besides, for some users installing the whole Node environment can be hard and time-consuming, specially if they're not used to typing things in the terminal and/or using Windows. So now they don't have to deal with that just to get a small piece of code protected.</p>
           <p>I also wanted to learn React + Redux and this was the perfect excuse: a small, side-project that can run with minimal maintenance.</p>
 
           <h4>What are other similar tools?</h4>

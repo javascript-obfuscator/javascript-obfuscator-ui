@@ -3,26 +3,23 @@ import * as types from '../constants/ActionTypes';
 import { SOURCEMAP_SEPARATE, SOURCEMAP_OFF } from '../containers/OptionsContainer'
 
 const initialState = {
-  compactCode: true,
+  compact: true,
   selfDefending: true,
   disableConsoleOutput: false,
 
   debugProtection: false,
   debugProtectionInterval: false,
 
-  unicodeArray: true,
+  stringArray: true,
 
-  rotateUnicodeArray: true,
-  rotateUnicodeArrayEnabled: true,
+  rotateStringArray: true,
+  rotateStringArrayEnabled: true,
 
-  unicodeArrayThreshold: 0.8,
-  unicodeArrayThresholdEnabled: true,
+  stringArrayThreshold: 0.8,
+  stringArrayThresholdEnabled: true,
 
-  wrapUnicodeArrayCalls: true,
-  wrapUnicodeArrayCallsEnabled: true,
-
-  encodeUnicodeLiterals: false,
-  encodeUnicodeLiteralsEnabled: true,
+  stringArrayEncoding: 'false',
+  stringArrayEncodingEnabled: true,
 
   sourceMap: false,
   sourceMapMode: 'off',
@@ -39,11 +36,11 @@ export const options = (state = initialState, action) => {
   switch (action.type) {
 
     case types.TOGGLE_COMPACT_CODE:
-      const compactCode = !state.compactCode;
+      const compact = !state.compact;
       return {
         ...state,
-        compactCode,
-        selfDefending: state.selfDefending && compactCode,
+        compact,
+        selfDefending: state.selfDefending && compact,
       }
 
     case types.TOGGLE_SELF_DEFENDING:
@@ -51,7 +48,7 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         selfDefending,
-        compactCode: state.compactCode || selfDefending,
+        compact: state.compact || selfDefending,
       }
 
     case types.TOGGLE_DISABLE_CONSOLE_OUTPUT:
@@ -74,39 +71,32 @@ export const options = (state = initialState, action) => {
         debugProtectionInterval: !state.debugProtectionInterval,
       }
 
-    case types.TOGGLE_UNICODE_ARRAY:
-      const unicodeArray = !state.unicodeArray;
+    case types.TOGGLE_STRING_ARRAY:
+      const stringArray = !state.stringArray;
       return {
         ...state,
-        unicodeArray,
-        rotateUnicodeArrayEnabled: unicodeArray,
-        unicodeArrayThresholdEnabled: unicodeArray,
-        wrapUnicodeArrayCallsEnabled: unicodeArray,
-        encodeUnicodeLiteralsEnabled: unicodeArray,
+        stringArray,
+        rotateStringArrayEnabled: stringArray,
+        stringArrayThresholdEnabled: stringArray,
+        stringArrayEncodingEnabled: stringArray,
       }
 
-    case types.TOGGLE_ROTATE_UNICODE_ARRAY:
+    case types.TOGGLE_ROTATE_STRING_ARRAY:
       return {
         ...state,
-        rotateUnicodeArray: !state.rotateUnicodeArray
+        rotateStringArray: !state.rotateStringArray
       }
 
-    case types.TOGGLE_WRAP_UNICODE_ARRAY_CALLS:
+    case types.SET_STRING_ARRAY_ENCODING:
       return {
         ...state,
-        wrapUnicodeArrayCalls: !state.wrapUnicodeArrayCalls
+        stringArrayEncoding: action.encoding
       }
 
-    case types.TOGGLE_ENCODE_UNICODE_LITERALS:
+    case types.SET_STRING_ARRAY_THRESHOLD:
       return {
         ...state,
-        encodeUnicodeLiterals: !state.encodeUnicodeLiterals
-      }
-
-    case types.SET_UNICODE_ARRAY_THRESHOLD:
-      return {
-        ...state,
-        unicodeArrayThreshold: action.threshold
+        stringArrayThreshold: action.threshold
       }
 
     case types.SET_SOURCEMAP_MODE:
@@ -127,7 +117,7 @@ export const options = (state = initialState, action) => {
     case types.SET_SOURCEMAP_FILE_NAME:
       return {
         ...state,
-        sourMapFileName: action.fileName
+        sourceMapFileName: action.fileName
       }
 
     case types.ADD_DOMAIN_LOCK:

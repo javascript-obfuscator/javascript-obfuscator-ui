@@ -33,6 +33,12 @@ app.post('/obfuscate', function (req, res) {
     delete options.sourceMapMode
   }
 
+  // options.stringArrayEncoding come from the client as strings, but the
+  // obfuscator expects it to be a boolean or a string if 'base64'/'rc4'
+  if (['false', 'true'].indexOf(options.stringArrayEncoding) !== -1) {
+    options.stringArrayEncoding = options.stringArrayEncoding === 'true';
+  }
+
   let response = {};
 
   try {

@@ -20,6 +20,11 @@ const SOURCEMAP_OPTIONS = [
 	{ text: 'Separate', value: SOURCEMAP_SEPARATE },
 ];
 
+const STRING_ARRAY_ENCODING_OPTIONS = [
+	{ text: 'Off', value: 'false' },
+	{ text: 'Base64', value: 'base64' },
+	{ text: 'RC4', value: 'rc4' },
+];
 
 const Options = ({dispatch, options}) =>
   <Form className="OptionsForm">
@@ -29,7 +34,7 @@ const Options = ({dispatch, options}) =>
 
           <Form.Checkbox
             label='Compact code'
-            checked={options.compactCode}
+            checked={options.compact}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE)) } />
 
           <Form.Checkbox
@@ -64,37 +69,32 @@ const Options = ({dispatch, options}) =>
         <Segment basic>
 
           <Form.Checkbox
-            label='Unicode Array'
-            checked={options.unicodeArray}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ARRAY)) } />
+            label='String Array'
+            checked={options.stringArray}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY)) } />
 
           <Form.Checkbox
-            label='Rotate Unicode Array'
-            checked={options.rotateUnicodeArray}
-            disabled={!options.rotateUnicodeArrayEnabled}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ROTATE_UNICODE_ARRAY)) } />
+            label='Rotate String Array'
+            checked={options.rotateStringArray}
+            disabled={!options.rotateStringArrayEnabled}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ROTATE_STRING_ARRAY)) } />
 
-          <Form.Checkbox
-            label='Wrap Unicode Array Calls'
-            checked={options.wrapUnicodeArrayCalls}
-            disabled={!options.wrapUnicodeArrayCallsEnabled}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_WRAP_UNICODE_ARRAY_CALLS)) } />
-
-          <Form.Checkbox
-            label='Encode Unicode Array Calls'
-            checked={options.encodeUnicodeLiterals}
-            disabled={!options.encodeUnicodeLiteralsEnabled}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ENCODE_UNICODE_LITERALS)) } />
+          <Form.Select
+            disabled={!options.stringArrayEncodingEnabled}
+            label='String Array Encoding'
+            value={options.stringArrayEncoding}
+            onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value)) }
+            options={STRING_ARRAY_ENCODING_OPTIONS} />
 
           <Form.Input
             type='number'
-            label='Unicode Array Threshold'
-            defaultValue={options.unicodeArrayThreshold}
+            label='String Array Threshold'
+            defaultValue={options.stringArrayThreshold}
             min="0"
             max="1"
             step="0.1"
-            onChange={(event) => dispatch(actions.setUnicodeArrayThreshold(parseFloat(event.target.value))) }
-            disabled={!options.unicodeArrayThresholdEnabled} />
+            onChange={(event) => dispatch(actions.setStringArrayThreshold(parseFloat(event.target.value))) }
+            disabled={!options.stringArrayThresholdEnabled} />
 
         </Segment>
       </Grid.Column>
@@ -134,7 +134,6 @@ const Options = ({dispatch, options}) =>
             actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain)) }
             placeholder="domain.com"
             entries={options.domainLock}
-            disabled={true}
             buttonIcon="plus" />
 
           <EntryInputContainer
