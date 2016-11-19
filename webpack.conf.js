@@ -24,7 +24,7 @@ module.exports = {
     },
     {
       test: /\.less$/,
-      loader: extractLESS.extract(['css', 'less']),
+      loader: extractLESS.extract(['css-loader', 'less-loader']),
     },
     {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
