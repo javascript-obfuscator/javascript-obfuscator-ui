@@ -30,7 +30,7 @@
     "extract-text-webpack-plugin": "^2.0.0-beta",
     "graceful-fs": "^4.1.9",
     "inert": "^4.0.2",
-    "javascript-obfuscator": "0.8.1",
+    "javascript-obfuscator": "0.8.2",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "react": "^15.3.1",
