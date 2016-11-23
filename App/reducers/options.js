@@ -29,6 +29,8 @@ const initialState = {
 
   domainLock: [],
   reservedNames: [],
+
+  seed: 0,
 }
 
 export const options = (state = initialState, action) => {
@@ -150,6 +152,12 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         reservedNames: state.reservedNames.filter((name) => name !== action.name),
+      }
+
+    case types.SET_SEED:
+      return {
+        ...state,
+        seed: action.seed
       }
 
     default:

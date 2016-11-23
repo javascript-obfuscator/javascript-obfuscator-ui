@@ -144,6 +144,15 @@ const Options = ({dispatch, options}) =>
             entries={options.reservedNames}
             buttonIcon="plus" />
 
+          <Form.Input
+            type='number'
+            label='Seed'
+            defaultValue={options.seed || 0}
+            min="0"
+            max="99999999"
+            step="1"
+            onChange={(event) => dispatch(actions.setSeed(parseInt(event.target.value))) } />
+
         </Segment>
       </Grid.Column>
 

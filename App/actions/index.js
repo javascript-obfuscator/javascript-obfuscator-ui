@@ -77,3 +77,8 @@ export const setSourceMapFileName = (fileName) => ({
   'type': types.SET_SOURCEMAP_FILE_NAME,
   fileName
 });
+
+export const setSeed = (seed) => ({
+  'type': types.SET_SEED,
+  seed
+});
