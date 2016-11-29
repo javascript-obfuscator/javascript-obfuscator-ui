@@ -12,9 +12,18 @@ You can see it running here: https://javascriptobfuscator.herokuapp.com
 
 ## Running it
 
+Building the react project:
 ```sh
+$ yarn # or npm install
+$ npm run updatesemantic
 $ npm run webpack:dev
 ```
+
+Running the express server:
+```sh
+$ node server.js
+```
+The server runs on http://localhost:3000/
 
 ## License
 
