@@ -4,7 +4,7 @@ import { SOURCEMAP_SEPARATE, SOURCEMAP_OFF } from '../containers/OptionsContaine
 
 const initialState = {
   compact: true,
-  selfDefending: true,
+  selfDefending: false,
   disableConsoleOutput: false,
 
   debugProtection: false,
