@@ -2444,9 +2444,9 @@ items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
 
-javascript-obfuscator@0.8.3:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.8.3.tgz#dd7ec48228c9da82d6bbc1db4ec40ecd35810d9d"
+javascript-obfuscator@0.8.6:
+  version "0.8.6"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.8.6.tgz#6ce17ab4d7e21961c0ceeaec68f967f8d9751dad"
   dependencies:
     babel-polyfill "6.16.0"
     chance "1.0.4"
