@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack:dev": "webpack --config webpack.conf.js --watch --color --progress",
-    "webpack:prod": "webpack --config webpack.conf.js --progress --optimize-minimize -p",
+    "webpack:prod": "NODE_ENV=production webpack --config webpack.conf.js --progress --optimize-minimize",
     "postinstall": "npm run updatesemantic",
     "updatesemantic": "cp App/styles/theme.config ./node_modules/semantic-ui-less/theme.config; rm -Rf ./node_modules/semantic-ui-less/site; cp -R App/styles/site ./node_modules/semantic-ui-less/",
     "heroku-postbuild": "npm run webpack:prod"
