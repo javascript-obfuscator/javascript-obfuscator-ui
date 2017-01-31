@@ -67,7 +67,7 @@ const Options = ({dispatch, options}) =>
           <Form.Input
             type='number'
             label='Seed'
-            defaultValue={options.seed || 0}
+            defaultValue={options.seed}
             min="0"
             max="99999999"
             step="1"
@@ -155,7 +155,7 @@ const Options = ({dispatch, options}) =>
             disabled={!options.controlFlowFlattening} />
 
           <EntryInputContainer
-            label='Add a domain lock'
+            label='Domain lock'
             actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain)) }
             actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain)) }
             placeholder="domain.com"
