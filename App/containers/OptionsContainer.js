@@ -62,6 +62,17 @@ const Options = ({dispatch, options}) =>
             disabled={!options.debugProtection}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL)) } />
 
+          <Divider />
+
+          <Form.Input
+            type='number'
+            label='Seed'
+            defaultValue={options.seed || 0}
+            min="0"
+            max="99999999"
+            step="1"
+            onChange={(event) => dispatch(actions.setSeed(parseInt(event.target.value))) } />
+
         </Segment>
       </Grid.Column>
 
@@ -128,6 +139,21 @@ const Options = ({dispatch, options}) =>
       <Grid.Column>
         <Segment basic>
 
+          <Form.Checkbox
+            label='Control Flow Flatteing'
+            checked={options.controlFlowFlattening}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_CONTROL_FLOW_FLATTENING)) } />
+
+          <Form.Input
+            type='number'
+            label='Control Flow Flattening Threshold'
+            defaultValue={options.controlFlowFlatteningThreshold}
+            min="0"
+            max="1"
+            step="0.1"
+            onChange={(event) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(event.target.value))) }
+            disabled={!options.controlFlowFlattening} />
+
           <EntryInputContainer
             label='Add a domain lock'
             actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain)) }
@@ -143,15 +169,6 @@ const Options = ({dispatch, options}) =>
             placeholder="^someVariable"
             entries={options.reservedNames}
             buttonIcon="plus" />
-
-          <Form.Input
-            type='number'
-            label='Seed'
-            defaultValue={options.seed || 0}
-            min="0"
-            max="99999999"
-            step="1"
-            onChange={(event) => dispatch(actions.setSeed(parseInt(event.target.value))) } />
 
         </Segment>
       </Grid.Column>

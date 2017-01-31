@@ -82,3 +82,8 @@ export const setSeed = (seed) => ({
   'type': types.SET_SEED,
   seed
 });
+
+export const setControlFlowFlatteningThreshold = (threshold) => ({
+  'type': types.SET_CONTROL_FLOW_FLATTENING_THRESHOLD,
+  threshold
+});

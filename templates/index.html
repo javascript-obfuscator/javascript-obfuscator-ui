@@ -121,6 +121,13 @@
               </tr>
 
               <tr>
+                <td class="collapsing">Seed</td>
+                <td>
+                  <p>By default (<code>seed = 0</code>), each time you obfuscate your code you'll get a new result (i.e: different variable names, different variables inserted into the <code>stringArray</code>, etc). If you want repeatable results, set the <code>seed</code> to a specific integer.</p>
+                </td>
+              </tr>
+
+              <tr>
                 <td class="collapsing">String Array</td>
                 <td>
                   <p>
@@ -188,6 +195,37 @@
               </tr>
 
               <tr>
+                <td class="collapsing">Control Flow Flattening</td>
+                <td>
+
+                  <div class="ui tiny message">
+                    <p><i class="warning sign icon"></i> This option will decrease the performance of your code.</p>
+                  </div>
+
+                  <p>
+                    Control flow flattening is a structure transformation of the source code that hinders program comprehension by removing functions definitions from its original locations and placing them inside a dispatch table. Arguments from those functions are also hidden inside a string array.
+                  </p>
+
+                  <p>Since this transformation makes the affected nodes' function calls dynamic, it will likely disable optimizations that the JavaScript engine can do and will slow down your code.</p>
+
+                  <table class="ui definition table">
+                    <tbody>
+
+                      <tr>
+                        <td class="collapsing">Control Flow Flattening Threshold</td>
+                        <td>
+                          <p>You can use this setting to adjust the probability (from 0 to 1) that a <code>controlFlowFlattening</code> transformation will be applied to a node.</p>
+                          <p>In larger codebases it's advised to lower this value, because larger amounts of control flow transformations will increase the size of your code and slow it down significantly.</p>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+                </td>
+              </tr>
+
+              <tr>
                 <td class="collapsing">Domain Lock</td>
                 <td>
                   <p>Locks the obfuscated source code so it only runs on specific domains and/or sub-domains. This makes really hard for someone just copy and paste your source code and run elsewhere.</p>
@@ -204,12 +242,6 @@
                 </td>
               </tr>
 
-              <tr>
-                <td class="collapsing">Seed</td>
-                <td>
-                  <p>By default (<code>seed = 0</code>), each time you obfuscate your code you'll get a new result (i.e: different variable names, different variables inserted into the <code>stringArray</code>, etc). If you want repeatable results, set the <code>seed</code> to a specific integer.</p>
-                </td>
-              </tr>
 
             </tbody>
           </table>

@@ -31,9 +31,20 @@ const initialState = {
   reservedNames: [],
 
   seed: 0,
+
+  controlFlowFlatteningThreshold: 0.75,
+  controlFlowFlattening: false,
 }
 
 export const options = (state = initialState, action) => {
+
+  // this is necessary because new options need to be filled with their
+  // default values and them merged with the state from the localStorage
+  // which can be outdated when new options are added
+  // from https://github.com/reactjs/redux/issues/433#issuecomment-129188687
+  if (!state.hydrated) {
+    state = { ...initialState, ...state, hydrated: true };
+  }
 
   switch (action.type) {
 
@@ -158,6 +169,18 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         seed: action.seed
+      }
+
+    case types.SET_CONTROL_FLOW_FLATTENING_THRESHOLD:
+      return {
+        ...state,
+        controlFlowFlatteningThreshold: action.threshold
+      }
+
+    case types.TOGGLE_CONTROL_FLOW_FLATTENING:
+      return {
+        ...state,
+        controlFlowFlattening: !state.controlFlowFlattening
       }
 
     default:
