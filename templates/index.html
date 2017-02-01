@@ -89,28 +89,25 @@
               </tr>
 
               <tr>
-                <td class="collapsing">Disable Console Output</td>
+                <td class="collapsing">Control Flow Flattening</td>
                 <td>
-                  Disables the use of <code>console.log</code>, <code>console.info</code>, <code>console.error</code> and <code>console.warn</code> by replacing them with empty functions. This makes the use of the debugger harder.
-                </td>
-              </tr>
 
-              <tr>
-                <td class="collapsing">Debug Protection</td>
-                <td>
                   <div class="ui tiny message">
-                    <p><i class="warning sign icon"></i> Can freeze your browser if you open the Developer Tools.</p>
+                    <p><i class="warning sign icon"></i> This option greatly affects the performance up to 1.5x slower runtime speed.</p>
                   </div>
-                  <p>This option makes it almost impossible to use the <strong>Console</strong> tab of the Developer Tools (both on Google Chrome and Mozilla Firefox).</p>
+
+                  <p>
+                    Enables code control flow flattening. Control flow flattening is a structure transformation of the source code that hinders program comprehension. See the docs on <a href="https://github.com/javascript-obfuscator/javascript-obfuscator#controlflowflattening" target="_new">JavaScript's obfuscator GH page</a> for an example of how the transformation works.
+                  </p>
 
                   <table class="ui definition table">
                     <tbody>
 
                       <tr>
-                        <td class="collapsing">Debug Protection Interval</td>
+                        <td class="collapsing">Control Flow Flattening Threshold</td>
                         <td>
-                          <p>If checked, an interval is used to force the debug mode on the <strong>Console</strong> tab, making it harder to use other features of the Developer Tools.</p>
-                          <p>How does it works? A special code that calls <code>debugger;</code> repeatedly is inserted throughout the obfuscated source code.</p>
+                          <p>You can use this setting to adjust the probability (from 0 to 1) that a <code>controlFlowFlattening</code> transformation will be applied to a node.</p>
+                          <p>In larger codebases it's advised to lower this value, because larger amounts of control flow transformations can increase the size of your code and slow it down.</p>
                         </td>
                       </tr>
 
@@ -173,49 +170,28 @@
               </tr>
 
               <tr>
-                <td class="collapsing">Source Map</td>
+                <td class="collapsing">Disable Console Output</td>
                 <td>
-                  <div class="ui tiny message">
-                    <p><i class="warning sign icon"></i> Be sure not to upload the obfuscated source code with the inline source map embedded on it, as it contains your original source code.</p>
-                  </div>
-
-                  <p>Source maps can be useful to help you debug your obfuscated Java Script source code. If you want or need to debug in production, you can upload the separate source map file to a secret location and then point your browser there. <a href="https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps" target="_new">Read more about source maps on the Google Chrome Developer Tools website</a>.</p>
-
-                  <strong>Inline Source Map</strong>
-                  <p>This embeds the source map of your source in the result of the obfuscated code. Useful if you just want to debug locally on your machine.</p>
-
-                  <strong>Separate Source Map</strong>
-                  <p>This generates a separate file with the source map. Useful to debug code in production, as this enables you to upload the source map to a secret location on your server and then point your browser to use it.</p>
-
-                  <p>Use the <strong>Source Map Base URL</strong> and <strong>Source Map File Name</strong> to customize the <code>sourceMappingURL</code> property that will get appended to the end of your obfuscated code.</p>
-
-                  <p>For instance, if you set the <strong>Base URL</strong> to <code>"http://localhost:9000"</code> and <strong>File Name</strong> to <code>"example"</code>, you'll get: <code>//# sourceMappingURL=http://localhost:9000/example.js.map</code>. appended to the end of your obfuscated code.</p>
-
+                  Disables the use of <code>console.log</code>, <code>console.info</code>, <code>console.error</code> and <code>console.warn</code> by replacing them with empty functions. This makes the use of the debugger harder.
                 </td>
               </tr>
 
               <tr>
-                <td class="collapsing">Control Flow Flattening</td>
+                <td class="collapsing">Debug Protection</td>
                 <td>
-
                   <div class="ui tiny message">
-                    <p><i class="warning sign icon"></i> This option will decrease the performance of your code.</p>
+                    <p><i class="warning sign icon"></i> Can freeze your browser if you open the Developer Tools.</p>
                   </div>
-
-                  <p>
-                    Control flow flattening is a structure transformation of the source code that hinders program comprehension by removing functions definitions from its original locations and placing them inside a dispatch table. Arguments from those functions are also hidden inside a string array.
-                  </p>
-
-                  <p>Since this transformation makes the affected nodes' function calls dynamic, it will likely disable optimizations that the JavaScript engine can do and will slow down your code.</p>
+                  <p>This option makes it almost impossible to use the <strong>Console</strong> tab of the Developer Tools (both on Google Chrome and Mozilla Firefox).</p>
 
                   <table class="ui definition table">
                     <tbody>
 
                       <tr>
-                        <td class="collapsing">Control Flow Flattening Threshold</td>
+                        <td class="collapsing">Debug Protection Interval</td>
                         <td>
-                          <p>You can use this setting to adjust the probability (from 0 to 1) that a <code>controlFlowFlattening</code> transformation will be applied to a node.</p>
-                          <p>In larger codebases it's advised to lower this value, because larger amounts of control flow transformations will increase the size of your code and slow it down significantly.</p>
+                          <p>If checked, an interval is used to force the debug mode on the <strong>Console</strong> tab, making it harder to use other features of the Developer Tools.</p>
+                          <p>How does it works? A special code that calls <code>debugger;</code> repeatedly is inserted throughout the obfuscated source code.</p>
                         </td>
                       </tr>
 
@@ -242,6 +218,27 @@
                 </td>
               </tr>
 
+              <tr>
+                <td class="collapsing">Source Map</td>
+                <td>
+                  <div class="ui tiny message">
+                    <p><i class="warning sign icon"></i> Be sure not to upload the obfuscated source code with the inline source map embedded on it, as it contains your original source code.</p>
+                  </div>
+
+                  <p>Source maps can be useful to help you debug your obfuscated Java Script source code. If you want or need to debug in production, you can upload the separate source map file to a secret location and then point your browser there. <a href="https://developers.google.com/web/tools/chrome-devtools/javascript/source-maps" target="_new">Read more about source maps on the Google Chrome Developer Tools website</a>.</p>
+
+                  <strong>Inline Source Map</strong>
+                  <p>This embeds the source map of your source in the result of the obfuscated code. Useful if you just want to debug locally on your machine.</p>
+
+                  <strong>Separate Source Map</strong>
+                  <p>This generates a separate file with the source map. Useful to debug code in production, as this enables you to upload the source map to a secret location on your server and then point your browser to use it.</p>
+
+                  <p>Use the <strong>Source Map Base URL</strong> and <strong>Source Map File Name</strong> to customize the <code>sourceMappingURL</code> property that will get appended to the end of your obfuscated code.</p>
+
+                  <p>For instance, if you set the <strong>Base URL</strong> to <code>"http://localhost:9000"</code> and <strong>File Name</strong> to <code>"example"</code>, you'll get: <code>//# sourceMappingURL=http://localhost:9000/example.js.map</code>. appended to the end of your obfuscated code.</p>
+
+                </td>
+              </tr>
 
             </tbody>
           </table>

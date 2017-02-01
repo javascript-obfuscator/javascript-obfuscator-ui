@@ -45,22 +45,19 @@ const Options = ({dispatch, options}) =>
           <Divider />
 
           <Form.Checkbox
-            label='Disable Console Output'
-            checked={options.disableConsoleOutput}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT)) } />
+            label='Control Flow Flatteing'
+            checked={options.controlFlowFlattening}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_CONTROL_FLOW_FLATTENING)) } />
 
-          <Divider />
-
-          <Form.Checkbox
-            label='Debug Protection'
-            checked={options.debugProtection}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION)) } />
-
-          <Form.Checkbox
-            label='Debug Protection Interval'
-            checked={options.debugProtectionInterval}
-            disabled={!options.debugProtection}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL)) } />
+          <Form.Input
+            type='number'
+            label='Control Flow Flattening Threshold'
+            defaultValue={options.controlFlowFlatteningThreshold}
+            min="0"
+            max="1"
+            step="0.1"
+            onChange={(event) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(event.target.value))) }
+            disabled={!options.controlFlowFlattening} />
 
           <Divider />
 
@@ -113,6 +110,48 @@ const Options = ({dispatch, options}) =>
       <Grid.Column>
         <Segment basic>
 
+          <Form.Checkbox
+            label='Disable Console Output'
+            checked={options.disableConsoleOutput}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT)) } />
+
+          <Divider />
+
+          <Form.Checkbox
+            label='Debug Protection'
+            checked={options.debugProtection}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION)) } />
+
+          <Form.Checkbox
+            label='Debug Protection Interval'
+            checked={options.debugProtectionInterval}
+            disabled={!options.debugProtection}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL)) } />
+
+          <Divider />
+
+          <EntryInputContainer
+            label='Domain lock'
+            actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain)) }
+            actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain)) }
+            placeholder="domain.com"
+            entries={options.domainLock}
+            buttonIcon="plus" />
+
+          <EntryInputContainer
+            label='Reserved Names'
+            actionAddEntryToState={(name) => dispatch(actions.addReservedName(name)) }
+            actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name)) }
+            placeholder="^someVariable"
+            entries={options.reservedNames}
+            buttonIcon="plus" />
+
+        </Segment>
+      </Grid.Column>
+
+      <Grid.Column>
+        <Segment basic>
+
           <Form.Select
             label='Sourcemaps'
             value={options.sourceMapMode}
@@ -132,43 +171,6 @@ const Options = ({dispatch, options}) =>
             onBlur={(event) => dispatch(actions.setSourceMapFileName(event.target.value)) }
             defaultValue={options.sourceMapFileName}
             placeholder='example' />
-
-        </Segment>
-      </Grid.Column>
-
-      <Grid.Column>
-        <Segment basic>
-
-          <Form.Checkbox
-            label='Control Flow Flatteing'
-            checked={options.controlFlowFlattening}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_CONTROL_FLOW_FLATTENING)) } />
-
-          <Form.Input
-            type='number'
-            label='Control Flow Flattening Threshold'
-            defaultValue={options.controlFlowFlatteningThreshold}
-            min="0"
-            max="1"
-            step="0.1"
-            onChange={(event) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(event.target.value))) }
-            disabled={!options.controlFlowFlattening} />
-
-          <EntryInputContainer
-            label='Domain lock'
-            actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain)) }
-            actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain)) }
-            placeholder="domain.com"
-            entries={options.domainLock}
-            buttonIcon="plus" />
-
-          <EntryInputContainer
-            label='Reserved Names'
-            actionAddEntryToState={(name) => dispatch(actions.addReservedName(name)) }
-            actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name)) }
-            placeholder="^someVariable"
-            entries={options.reservedNames}
-            buttonIcon="plus" />
 
         </Segment>
       </Grid.Column>
