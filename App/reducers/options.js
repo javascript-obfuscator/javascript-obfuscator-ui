@@ -208,8 +208,8 @@ export const options = (state = initialState, action) => {
       const stringArray = state.stringArray || deadCodeInjection;
       return {
         ...state,
-        stringArray,
         deadCodeInjection: deadCodeInjection,
+        stringArray,
         rotateStringArrayEnabled: stringArray,
         stringArrayThresholdEnabled: stringArray,
         stringArrayEncodingEnabled: stringArray
