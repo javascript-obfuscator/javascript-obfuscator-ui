@@ -2578,7 +2578,7 @@ items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
 
-javascript-obfuscator@0.10.0:
+javascript-obfuscator@^0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.10.0.tgz#e80314eaf3421da63f350e6e75e43b4576b61bfc"
   dependencies:
