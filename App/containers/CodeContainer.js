@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { Form, Segment, Button, Icon } from 'semantic-ui-react';
+import { Form, Grid, Segment, Button, Icon } from 'semantic-ui-react';
 
 import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
+import prettyFormat from 'pretty-format';
 
 import EditorContainer from '../containers/EditorContainer';
 
@@ -33,7 +34,10 @@ class CodeContainer extends Component {
     super(props);
     this.state = {
       selectedTabIndex: TAB_CODE,
+      evaluate: false,
+      evaluatedResult: '',
     }
+    this.capturingConsole = null;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -41,6 +45,10 @@ class CodeContainer extends Component {
       this.setState({
         selectedTabIndex: TAB_RESULTS,
       })
+    }
+
+    if (this.state.evaluate) {
+      this.evaluate(nextProps.obfuscatedCode);
     }
   }
 
@@ -59,6 +67,64 @@ class CodeContainer extends Component {
     }
 
     reader.readAsText(file);
+
+  }
+
+  toggleEvaluate = () => {
+    const nextEvaluate = !this.state.evaluate;
+
+    this.setState({
+      evaluate: nextEvaluate,
+    });
+
+    if (nextEvaluate) {
+      this.evaluate(this.props.obfuscatedCode);
+    }
+
+  }
+
+  // from https://github.com/babel/babel.github.io/blob/e7d082e4d545a75d7aa29b1df580c86114ab1586/scripts/7.js#L361
+  evaluate (code) {
+    this.capturingConsole = Object.create(console);
+    const capturingConsole = this.capturingConsole;
+    let buffer = [];
+    var done = false;
+
+    const self = this;
+
+    function flush() {
+      self.setState({
+        evaluatedResult: buffer.join('\n'),
+      })
+    }
+
+    function write(data) {
+      buffer.push(data);
+      if (done) flush();
+    }
+
+    function capture() {
+      const logs = [].map.call(arguments, (log) => {
+        return prettyFormat(log);
+      });
+      write(logs.join('\n'));
+    }
+
+    ['error', 'log', 'info', 'debug'].forEach(function(key) {
+      capturingConsole[key] = function() {
+        Function.prototype.apply.call(console[key], console, arguments);
+        capture.apply(this, arguments);
+      };
+    });
+
+    try {
+      new Function('console', code)(capturingConsole);
+    } catch (err) {
+      buffer.push(err.message);
+    }
+
+    done = true;
+    flush();
 
   }
 
@@ -113,21 +179,43 @@ class CodeContainer extends Component {
               onFocus={(event) => event.target.select()}
               ></Form.TextArea>
           </Form>
-          <Segment basic>
-            <Button
-              disabled={!hasObfuscatedCode}
-              onClick={onDownloadCodeClick}
-              >
-                <Icon name='download' /> Download obfuscated code
-            </Button>
-            { hasSourceMap &&
-            <Button
-              onClick={onDownloadSourceMapClick}
-              >
-                <Icon name='download' /> Download source map file
-            </Button>
-            }
-          </Segment>
+
+          <Grid columns={2} relaxed>
+            <Grid.Column width={13}>
+              <Segment basic>
+                <Button
+                  disabled={!hasObfuscatedCode}
+                  onClick={onDownloadCodeClick}
+                  >
+                    <Icon name='download' /> Download obfuscated code
+                </Button>
+                { hasSourceMap &&
+                <Button
+                  onClick={onDownloadSourceMapClick}
+                  >
+                    <Icon name='download' /> Download source map file
+                </Button>
+                }
+              </Segment>
+            </Grid.Column>
+
+            <Grid.Column width={3}>
+              <Segment basic>
+                <Form.Checkbox
+                  label='Evaluate'
+                  checked={this.state.evaluate}
+                  onChange={this.toggleEvaluate} />
+              </Segment>
+            </Grid.Column>
+          </Grid>
+
+          {this.state.evaluate &&
+            <Segment basic>
+              <div className="evaluatedCode">
+                {this.state.evaluatedResult}
+              </div>
+            </Segment>
+          }
         </Pane>
 
       </div>
