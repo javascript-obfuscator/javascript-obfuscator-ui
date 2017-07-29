@@ -34,6 +34,11 @@ const initialState = {
 
   controlFlowFlatteningThreshold: 0.75,
   controlFlowFlattening: false,
+
+  deadCodeInjectionThreshold: 0.4,
+  deadCodeInjection: false,
+
+  mangle: false,
 }
 
 export const options = (state = initialState, action) => {
@@ -48,21 +53,23 @@ export const options = (state = initialState, action) => {
 
   switch (action.type) {
 
-    case types.TOGGLE_COMPACT_CODE:
+    case types.TOGGLE_COMPACT_CODE: {
       const compact = !state.compact;
       return {
         ...state,
         compact,
         selfDefending: state.selfDefending && compact,
       }
+    }
 
-    case types.TOGGLE_SELF_DEFENDING:
+    case types.TOGGLE_SELF_DEFENDING: {
       const selfDefending = !state.selfDefending;
       return {
         ...state,
         selfDefending,
         compact: state.compact || selfDefending,
       }
+    }
 
     case types.TOGGLE_DISABLE_CONSOLE_OUTPUT:
       return {
@@ -70,13 +77,14 @@ export const options = (state = initialState, action) => {
         disableConsoleOutput: !state.disableConsoleOutput,
       }
 
-    case types.TOGGLE_DEBUG_PROTECTION:
+    case types.TOGGLE_DEBUG_PROTECTION: {
       const debugProtection = !state.debugProtection;
       return {
         ...state,
         debugProtection,
         debugProtectionInterval: state.debugProtectionInterval && debugProtection,
       }
+    }
 
     case types.TOGGLE_DEBUG_PROTECTION_INTERVAL:
       return {
@@ -84,7 +92,8 @@ export const options = (state = initialState, action) => {
         debugProtectionInterval: !state.debugProtectionInterval,
       }
 
-    case types.TOGGLE_STRING_ARRAY:
+    case types.TOGGLE_STRING_ARRAY: {
+      // Also change the TOGGLE_DEAD_CODE_INJECTION below if changed
       const stringArray = !state.stringArray;
       return {
         ...state,
@@ -93,6 +102,7 @@ export const options = (state = initialState, action) => {
         stringArrayThresholdEnabled: stringArray,
         stringArrayEncodingEnabled: stringArray,
       }
+    }
 
     case types.TOGGLE_ROTATE_STRING_ARRAY:
       return {
@@ -112,7 +122,7 @@ export const options = (state = initialState, action) => {
         stringArrayThreshold: action.threshold
       }
 
-    case types.SET_SOURCEMAP_MODE:
+    case types.SET_SOURCEMAP_MODE: {
       const mode = action.mode;
       return {
         ...state,
@@ -120,6 +130,7 @@ export const options = (state = initialState, action) => {
         sourceMapMode: mode,
         sourceMapSeparate: mode === SOURCEMAP_SEPARATE
       }
+    }
 
     case types.SET_SOURCEMAP_BASE_URL:
       return {
@@ -133,7 +144,7 @@ export const options = (state = initialState, action) => {
         sourceMapFileName: action.fileName
       }
 
-    case types.ADD_DOMAIN_LOCK:
+    case types.ADD_DOMAIN_LOCK: {
       const domain = action.domain;
       if (state.domainLock.indexOf(domain) !== -1)
         return state;
@@ -142,6 +153,7 @@ export const options = (state = initialState, action) => {
         ...state,
         domainLock: [...state.domainLock, domain],
       }
+    }
 
     case types.REMOVE_DOMAIN_LOCK:
       return {
@@ -149,7 +161,7 @@ export const options = (state = initialState, action) => {
         domainLock: state.domainLock.filter((domain) => domain !== action.domain),
       }
 
-    case types.ADD_RESERVED_NAME:
+    case types.ADD_RESERVED_NAME: {
       const name = action.name;
       if (state.reservedNames.indexOf(name) !== -1)
         return state;
@@ -158,6 +170,7 @@ export const options = (state = initialState, action) => {
         ...state,
         reservedNames: [...state.reservedNames, name],
       }
+    }
 
     case types.REMOVE_RESERVED_NAME:
       return {
@@ -181,6 +194,32 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         controlFlowFlattening: !state.controlFlowFlattening
+      }
+
+    case types.SET_DEAD_CODE_INJECTION_THRESHOLD:
+      return {
+        ...state,
+        deadCodeInjectionThreshold: action.threshold
+      }
+
+    case types.TOGGLE_DEAD_CODE_INJECTION: {
+      // Also change the TOGGLE_STRING_ARRAY above if changed
+      const deadCodeInjection = !state.deadCodeInjection;
+      const stringArray = state.stringArray || deadCodeInjection;
+      return {
+        ...state,
+        stringArray,
+        deadCodeInjection: deadCodeInjection,
+        rotateStringArrayEnabled: stringArray,
+        stringArrayThresholdEnabled: stringArray,
+        stringArrayEncodingEnabled: stringArray
+      }
+    }
+
+    case types.TOGGLE_MANGLE:
+      return {
+        ...state,
+        mangle: !state.mangle
       }
 
     default:

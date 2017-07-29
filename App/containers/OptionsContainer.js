@@ -42,6 +42,10 @@ const Options = ({dispatch, options}) =>
             checked={options.selfDefending}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING)) } />
 
+          <Form.Checkbox
+            label='Mangle Variable Names'
+            checked={options.mangle}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_MANGLE)) } />
           <Divider />
 
           <Form.Checkbox
@@ -61,14 +65,21 @@ const Options = ({dispatch, options}) =>
 
           <Divider />
 
+          <Form.Checkbox
+            label='Dead Code Injection'
+            checked={options.deadCodeInjection}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEAD_CODE_INJECTION)) } />
+
           <Form.Input
             type='number'
-            label='Seed'
-            defaultValue={options.seed}
+            label='Dead Code Injection Threshold'
+            defaultValue={options.deadCodeInjectionThreshold}
             min="0"
-            max="99999999"
-            step="1"
-            onChange={(event) => dispatch(actions.setSeed(parseInt(event.target.value))) } />
+            max="1"
+            step="0.1"
+            onChange={(event) => dispatch(actions.setDeadCodeInjectionThreshold(parseFloat(event.target.value))) }
+            disabled={!options.deadCodeInjection} />
+
 
         </Segment>
       </Grid.Column>
@@ -171,6 +182,17 @@ const Options = ({dispatch, options}) =>
             onBlur={(event) => dispatch(actions.setSourceMapFileName(event.target.value)) }
             defaultValue={options.sourceMapFileName}
             placeholder='example' />
+
+          <Divider />
+
+          <Form.Input
+            type='number'
+            label='Seed'
+            defaultValue={options.seed}
+            min="0"
+            max="99999999"
+            step="1"
+            onChange={(event) => dispatch(actions.setSeed(parseInt(event.target.value))) } />
 
         </Segment>
       </Grid.Column>

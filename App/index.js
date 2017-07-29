@@ -24,6 +24,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 const persistedState = loadState();
 
+// should not be in the localState, but was saved there by a bug
+// now we need this here because some users will have this on their localState.
+delete persistedState.options.hydrated;
+
 const store = createStore(
   reducer,
   persistedState,
@@ -33,8 +37,10 @@ const store = createStore(
 // There's no need to throttle the saveState function because
 // we don't change the state very often
 store.subscribe(() => {
+  const options = store.getState().options;
+  delete options.hydrated;
   saveState({
-    options: store.getState().options
+    options,
   });
 })
 

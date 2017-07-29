@@ -87,3 +87,8 @@ export const setControlFlowFlatteningThreshold = (threshold) => ({
   'type': types.SET_CONTROL_FLOW_FLATTENING_THRESHOLD,
   threshold
 });
+
+export const setDeadCodeInjectionThreshold = (threshold) => ({
+  'type': types.SET_DEAD_CODE_INJECTION_THRESHOLD,
+  threshold
+});
