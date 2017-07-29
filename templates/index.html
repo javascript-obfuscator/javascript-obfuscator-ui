@@ -81,17 +81,17 @@
               </tr>
 
               <tr>
-                <td class="collapsing">Self Defending</td>
+                <td class="collapsing">Mangle Variable Names</td>
                 <td>
-                  <p>This option makes the output code resilient against formating and variable renaming. If one tries to use a JavaScript beautifier on the obfuscated code, the code won't work anymore, making it harder to understand and modify it.</p>
-                  <p><small>requires the <strong>Compact Code</strong> setting.</small></p>
+                  Mangles the variable names. (For instance, instead of having this random pattern <code>0x123456</code>, they become <code>a</code>, <code>b</code>, and so on.)
                 </td>
               </tr>
 
               <tr>
-                <td class="collapsing">Mangle Variable Names</td>
+                <td class="collapsing">Self Defending</td>
                 <td>
-                  Mangles the variable names. (For instance, instead of having this random pattern <code>0x123456</code>, they become <code>a</code>, <code>b</code>, and so on.)
+                  <p>This option makes the output code resilient against formating and variable renaming. If one tries to use a JavaScript beautifier on the obfuscated code, the code won't work anymore, making it harder to understand and modify it.</p>
+                  <p><small>requires the <strong>Compact Code</strong> setting.</small></p>
                 </td>
               </tr>
 
@@ -136,8 +136,6 @@
                     This feature adds random blocks of dead code (i.e: code that won't be executed) to the obfuscated output, making it harder to be reverserd-engineered. See the docs on <a href="https://github.com/javascript-obfuscator/javascript-obfuscator#deadcodeinjection" target="_new">JavaScript's obfuscator GH page</a> for an example of how this feature works.
                   </p>
 
-                  <p><small>requires the <strong>String Array</strong> option.</small></p>
-
                   <table class="ui definition table">
                     <tbody>
 
@@ -150,6 +148,8 @@
 
                     </tbody>
                   </table>
+
+                  <p><small>requires the <strong>String Array</strong> option.</small></p>
 
                 </td>
               </tr>

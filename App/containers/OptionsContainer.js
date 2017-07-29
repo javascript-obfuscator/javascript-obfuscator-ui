@@ -38,14 +38,17 @@ const Options = ({dispatch, options}) =>
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE)) } />
 
           <Form.Checkbox
+            label='Mangle Variable Names'
+            checked={options.mangle}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_MANGLE)) } />
+
+          <Divider />
+
+          <Form.Checkbox
             label='Self Defending'
             checked={options.selfDefending}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING)) } />
 
-          <Form.Checkbox
-            label='Mangle Variable Names'
-            checked={options.mangle}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_MANGLE)) } />
           <Divider />
 
           <Form.Checkbox
