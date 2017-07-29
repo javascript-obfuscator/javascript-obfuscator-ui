@@ -24,9 +24,13 @@ if (process.env.NODE_ENV !== 'production') {
 
 const persistedState = loadState();
 
-// should not be in the localState, but was saved there by a bug
-// now we need this here because some users will have this on their localState.
-delete persistedState.options.hydrated;
+  /*
+    `options.hydrated` should not be in the localStorage, but was saved there previously. Now we need to delete it here because some users will have it on
+    their localStorage.
+  */
+if (persistedState !== undefined) {
+  delete persistedState.options.hydrated;
+}
 
 const store = createStore(
   reducer,
