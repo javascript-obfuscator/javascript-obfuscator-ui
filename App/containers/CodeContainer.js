@@ -6,7 +6,6 @@ import { Form, Grid, Segment, Button, Icon } from 'semantic-ui-react';
 
 import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
-import prettyFormat from 'pretty-format';
 
 import EditorContainer from '../containers/EditorContainer';
 
@@ -101,6 +100,12 @@ class CodeContainer extends Component {
     function write(data) {
       buffer.push(data);
       if (done) flush();
+    }
+
+    // TODO: replace this function with a proper one
+    // right now the `pretty-format` npm package doesn't work with the uglify
+    function prettyFormat (str) {
+      return str;
     }
 
     function capture() {
