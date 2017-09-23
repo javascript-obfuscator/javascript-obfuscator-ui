@@ -39,6 +39,11 @@ const initialState = {
   deadCodeInjection: false,
 
   mangle: false,
+
+  unicodeEscapeSequence: false,
+
+  renameGlobals: false,
+
 }
 
 export const options = (state = initialState, action) => {
@@ -220,6 +225,18 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         mangle: !state.mangle
+      }
+
+    case types.TOGGLE_UNICODE_ESCAPE_SEQUENCE:
+      return {
+        ...state,
+        unicodeEscapeSequence: !state.unicodeEscapeSequence
+      }
+
+    case types.TOGGLE_RENAME_GLOBALS:
+      return {
+        ...state,
+        renameGlobals: !state.renameGlobals
       }
 
     default:

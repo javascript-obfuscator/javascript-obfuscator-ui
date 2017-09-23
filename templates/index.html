@@ -200,6 +200,14 @@
               </tr>
 
               <tr>
+                <td class="collapsing">Escape Unicode Sequence</td>
+                <td>
+                  <p>Converts all the strings to their unicode representation. For instance, the string <code>"Hello World!"</code> will be converted to <code>"'\x48\x65\x6c\x6c\x6f\x20\x57\x6f\x72\x6c\x64\x21"</code>.</p>
+                  <p>This convertion is pretty easy to revert, and will increase the obfuscated code size greatly. It's not recommended on larger code bases.</p>
+                </td>
+              </tr>
+
+              <tr>
                 <td class="collapsing">Disable Console Output</td>
                 <td>
                   Disables the use of <code>console.log</code>, <code>console.info</code>, <code>console.error</code> and <code>console.warn</code> by replacing them with empty functions. This makes the use of the debugger harder.
@@ -245,6 +253,16 @@
                 <td>
                   <p>Disables the obfuscation of variables names, function names and function parameters that match the Regular Expression used.</p>
                   <p>For instance, if you add <code>^someName</code>, the obfuscator will ensure that all variables, function names and function arguments that starts with <strong>someName</strong> will not get mangled.</p>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="collapsing">Rename Globals</td>
+                <td>
+                  <div class="ui tiny message">
+                    <p><i class="warning sign icon"></i> This option can break your code. Only enable it if you know what it does.</p>
+                  </div>
+                  <p>Enables the obfuscation of global variables and function names with declaration.</p>
                 </td>
               </tr>
 

@@ -118,6 +118,13 @@ const Options = ({dispatch, options}) =>
             onChange={(event) => dispatch(actions.setStringArrayThreshold(parseFloat(event.target.value))) }
             disabled={!options.stringArrayThresholdEnabled} />
 
+          <Divider />
+
+          <Form.Checkbox
+            label='Unicode Escape Sequence'
+            checked={options.unicodeEscapeSequence}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE)) } />
+
         </Segment>
       </Grid.Column>
 
@@ -159,6 +166,13 @@ const Options = ({dispatch, options}) =>
             placeholder="^someVariable"
             entries={options.reservedNames}
             buttonIcon="plus" />
+
+          <Divider />
+
+          <Form.Checkbox
+            label='Rename Globals'
+            checked={options.renameGlobals}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS)) } />
 
         </Segment>
       </Grid.Column>
