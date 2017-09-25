@@ -42,6 +42,11 @@ const Options = ({dispatch, options}) =>
             checked={options.mangle}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_MANGLE)) } />
 
+          <Form.Checkbox
+            label='Rename Globals'
+            checked={options.renameGlobals}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS)) } />
+
           <Divider />
 
           <Form.Checkbox
@@ -166,13 +171,6 @@ const Options = ({dispatch, options}) =>
             placeholder="^someVariable"
             entries={options.reservedNames}
             buttonIcon="plus" />
-
-          <Divider />
-
-          <Form.Checkbox
-            label='Rename Globals'
-            checked={options.renameGlobals}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS)) } />
 
         </Segment>
       </Grid.Column>
