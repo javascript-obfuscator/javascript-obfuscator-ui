@@ -44,6 +44,8 @@ const initialState = {
 
   renameGlobals: false,
 
+  target: 'browser',
+
 }
 
 export const options = (state = initialState, action) => {
@@ -237,6 +239,12 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         renameGlobals: !state.renameGlobals
+      }
+
+    case types.SET_TARGET:
+      return {
+        ...state,
+        target: action.target
       }
 
     default:

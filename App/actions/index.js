@@ -92,3 +92,8 @@ export const setDeadCodeInjectionThreshold = (threshold) => ({
   'type': types.SET_DEAD_CODE_INJECTION_THRESHOLD,
   threshold
 });
+
+export const setTarget = (target) => ({
+  'type': types.SET_TARGET,
+  target
+});

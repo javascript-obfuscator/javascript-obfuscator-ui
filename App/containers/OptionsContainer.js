@@ -15,15 +15,25 @@ export const SOURCEMAP_INLINE = 'inline'
 export const SOURCEMAP_SEPARATE = 'separate'
 
 const SOURCEMAP_OPTIONS = [
-	{ text: 'Off', value: SOURCEMAP_OFF },
-	{ text: 'Inline', value: SOURCEMAP_INLINE },
-	{ text: 'Separate', value: SOURCEMAP_SEPARATE },
+  { text: 'Off', value: SOURCEMAP_OFF },
+  { text: 'Inline', value: SOURCEMAP_INLINE },
+  { text: 'Separate', value: SOURCEMAP_SEPARATE },
 ];
 
 const STRING_ARRAY_ENCODING_OPTIONS = [
-	{ text: 'Off', value: 'false' },
-	{ text: 'Base64', value: 'base64' },
-	{ text: 'RC4', value: 'rc4' },
+  { text: 'Off', value: 'false' },
+  { text: 'Base64', value: 'base64' },
+  { text: 'RC4', value: 'rc4' },
+];
+
+export const TARGET_BROWSER = 'browser'
+export const TARGET_EXTENSION = 'extension'
+export const TARGET_NODE = 'node'
+
+const TARGET_OPTIONS = [
+  { text: 'Browser', value: TARGET_BROWSER },
+  { text: 'Extension', value: TARGET_EXTENSION },
+  { text: 'Node', value: TARGET_NODE },
 ];
 
 const Options = ({dispatch, options}) =>
@@ -208,6 +218,14 @@ const Options = ({dispatch, options}) =>
             max="99999999"
             step="1"
             onChange={(event) => dispatch(actions.setSeed(parseInt(event.target.value))) } />
+
+          <Divider />
+
+          <Form.Select
+            label='Target'
+            value={options.target}
+            onChange={(event, {value}) => dispatch(actions.setTarget(value)) }
+            options={TARGET_OPTIONS} />
 
         </Segment>
       </Grid.Column>
