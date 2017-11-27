@@ -1709,9 +1709,9 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-escodegen-wallaby@1.6.12:
-  version "1.6.12"
-  resolved "https://registry.yarnpkg.com/escodegen-wallaby/-/escodegen-wallaby-1.6.12.tgz#dac2ed380daca6c7a2c9e8496d50c091239fe26f"
+escodegen-wallaby@1.6.14:
+  version "1.6.14"
+  resolved "https://registry.yarnpkg.com/escodegen-wallaby/-/escodegen-wallaby-1.6.14.tgz#41a0a7a2a2bd776207d25b4d2f373f12853de23f"
   dependencies:
     esprima "^2.7.1"
     estraverse "^1.9.1"
@@ -2424,9 +2424,9 @@ invariant@^2.0.0, invariant@^2.2.0:
   dependencies:
     loose-envify "^1.0.0"
 
-inversify@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/inversify/-/inversify-4.5.0.tgz#1a575ddf1db216ed3292d9b0f70f497de275874e"
+inversify@4.5.2:
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/inversify/-/inversify-4.5.2.tgz#f2478fd140f398836b2e1fee839f37588f1e6a9b"
 
 invert-kv@^1.0.0:
   version "1.0.0"
@@ -2608,19 +2608,19 @@ items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
 
-javascript-obfuscator@^0.12.1:
-  version "0.12.1"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.12.1.tgz#a7913240d81fed971ef1225136b957f5ce258cb2"
+javascript-obfuscator@^0.12.3:
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.12.3.tgz#1492011811e594e5e56d7415d21e9820c93fa290"
   dependencies:
     chalk "2.3.0"
     chance "1.0.12"
     class-validator "0.7.3"
     commander "2.11.0"
-    escodegen-wallaby "1.6.12"
+    escodegen-wallaby "1.6.14"
     esmangle "1.0.1"
     esprima "4.0.0"
     estraverse "4.2.0"
-    inversify "4.5.0"
+    inversify "4.5.2"
     md5 "2.2.1"
     mkdirp "0.5.1"
     opencollective "1.0.3"
