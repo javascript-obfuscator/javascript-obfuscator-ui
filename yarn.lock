@@ -1298,9 +1298,9 @@ combined-stream@^1.0.5, combined-stream@~1.0.5:
   dependencies:
     delayed-stream "~1.0.0"
 
-commander@2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.11.0.tgz#157152fd1e7a6c8d98a5b715cf376df928004563"
+commander@2.12.2:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.12.2.tgz#0f5946c427ed9ec0d91a46bb9def53e54650e555"
 
 commander@^2.9.0:
   version "2.9.0"
@@ -1709,9 +1709,9 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-escodegen-wallaby@1.6.14:
-  version "1.6.14"
-  resolved "https://registry.yarnpkg.com/escodegen-wallaby/-/escodegen-wallaby-1.6.14.tgz#41a0a7a2a2bd776207d25b4d2f373f12853de23f"
+escodegen-wallaby@1.6.15:
+  version "1.6.15"
+  resolved "https://registry.yarnpkg.com/escodegen-wallaby/-/escodegen-wallaby-1.6.15.tgz#9d5ef67dd4d8c7c8a58aff1e4edd63512566ba9f"
   dependencies:
     esprima "^2.7.1"
     estraverse "^1.9.1"
@@ -2608,15 +2608,15 @@ items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
 
-javascript-obfuscator@^0.12.3:
-  version "0.12.3"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.12.3.tgz#1492011811e594e5e56d7415d21e9820c93fa290"
+javascript-obfuscator@^0.12.5:
+  version "0.12.5"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.12.5.tgz#99c4fc53776937ffaf4edf965c6e99f7ddad728d"
   dependencies:
     chalk "2.3.0"
     chance "1.0.12"
     class-validator "0.7.3"
-    commander "2.11.0"
-    escodegen-wallaby "1.6.14"
+    commander "2.12.2"
+    escodegen-wallaby "1.6.15"
     esmangle "1.0.1"
     esprima "4.0.0"
     estraverse "4.2.0"
