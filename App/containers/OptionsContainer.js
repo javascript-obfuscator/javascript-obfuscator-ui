@@ -56,6 +56,12 @@ const Options = ({dispatch, options}) =>
             checked={options.compact}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE)) } />
 
+          <Form.Select
+            label='Identifier Names Generator'
+            value={options.identifierNamesGenerator}
+            onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value)) }
+            options={IDENTIFIER_NAMES_GENERATOR_OPTIONS} />
+
           <Form.Checkbox
             label='Rename Globals'
             checked={options.renameGlobals}
@@ -143,14 +149,6 @@ const Options = ({dispatch, options}) =>
             label='Unicode Escape Sequence'
             checked={options.unicodeEscapeSequence}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE)) } />
-
-          <Divider />
-
-          <Form.Select
-            label='Identifier Names Generator'
-            value={options.identifierNamesGenerator}
-            onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value)) }
-            options={IDENTIFIER_NAMES_GENERATOR_OPTIONS} />
 
         </Segment>
       </Grid.Column>
