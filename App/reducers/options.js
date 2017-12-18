@@ -38,13 +38,13 @@ const initialState = {
   deadCodeInjectionThreshold: 0.4,
   deadCodeInjection: false,
 
-  mangle: false,
-
   unicodeEscapeSequence: false,
 
   renameGlobals: false,
 
   target: 'browser',
+
+  identifierNamesGenerator: 'hexadecimal',
 
 }
 
@@ -223,12 +223,6 @@ export const options = (state = initialState, action) => {
       }
     }
 
-    case types.TOGGLE_MANGLE:
-      return {
-        ...state,
-        mangle: !state.mangle
-      }
-
     case types.TOGGLE_UNICODE_ESCAPE_SEQUENCE:
       return {
         ...state,
@@ -245,6 +239,12 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         target: action.target
+      }
+
+    case types.SET_IDENTIFIER_NAMES_GENERATOR:
+      return {
+        ...state,
+        identifierNamesGenerator: action.identifierNamesGenerator
       }
 
     default:

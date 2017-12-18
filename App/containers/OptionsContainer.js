@@ -36,6 +36,15 @@ const TARGET_OPTIONS = [
   { text: 'Node', value: TARGET_NODE },
 ];
 
+export const IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL = 'hexadecimal'
+export const IDENTIFIER_NAMES_GENERATOR_MANGLED = 'mangled'
+
+const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
+  { text: 'hexadecimal', value: IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL },
+  { text: 'mangled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED },
+];
+
+
 const Options = ({dispatch, options}) =>
   <Form className="OptionsForm">
     <Grid columns={4} relaxed>
@@ -46,11 +55,6 @@ const Options = ({dispatch, options}) =>
             label='Compact code'
             checked={options.compact}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE)) } />
-
-          <Form.Checkbox
-            label='Mangle Variable Names'
-            checked={options.mangle}
-            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_MANGLE)) } />
 
           <Form.Checkbox
             label='Rename Globals'
@@ -139,6 +143,14 @@ const Options = ({dispatch, options}) =>
             label='Unicode Escape Sequence'
             checked={options.unicodeEscapeSequence}
             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE)) } />
+
+          <Divider />
+
+          <Form.Select
+            label='Identifier Names Generator'
+            value={options.identifierNamesGenerator}
+            onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value)) }
+            options={IDENTIFIER_NAMES_GENERATOR_OPTIONS} />
 
         </Segment>
       </Grid.Column>

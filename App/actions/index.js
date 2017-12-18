@@ -97,3 +97,8 @@ export const setTarget = (target) => ({
   'type': types.SET_TARGET,
   target
 });
+
+export const setIdentifierNamesGenerator = (identifierNamesGenerator) => ({
+  'type': types.SET_IDENTIFIER_NAMES_GENERATOR,
+  identifierNamesGenerator
+});
