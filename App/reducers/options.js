@@ -45,6 +45,9 @@ const initialState = {
   target: 'browser',
 
   identifierNamesGenerator: 'hexadecimal',
+  identifiersPrefix: '',
+
+  transformObjectKeys: false,
 
 }
 
@@ -245,6 +248,18 @@ export const options = (state = initialState, action) => {
       return {
         ...state,
         identifierNamesGenerator: action.identifierNamesGenerator
+      }
+
+    case types.SET_IDENTIFIERS_PREFIX:
+      return {
+        ...state,
+        identifiersPrefix: action.identifiersPrefix
+      }
+
+    case types.TOGGLE_TRANSFORM_OBJECT_KEYS:
+      return {
+        ...state,
+        transformObjectKeys: !state.transformObjectKeys
       }
 
     default:

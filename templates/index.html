@@ -95,6 +95,14 @@
               </tr>
 
               <tr>
+                <td class="collapsing">Identifiers Prefix</td>
+                <td>
+                  <p>This options makes all obfuscated identifiers have a specific prefix.</p>
+                  <p>Use this option when obfuscating multiple files that are loaded on the same page. This option helps to avoid conflicts between global identifiers of these files. Use a different prefix for each file.</p>
+                </td>
+              </tr>
+
+              <tr>
                 <td class="collapsing">Rename Globals</td>
                 <td>
                   <div class="ui tiny message">
@@ -150,7 +158,7 @@
                   </div>
 
                   <p>
-                    This feature adds random blocks of dead code (i.e: code that won't be executed) to the obfuscated output, making it harder to be reverserd-engineered. See the docs on <a href="https://github.com/javascript-obfuscator/javascript-obfuscator#deadcodeinjection" target="_new">JavaScript's obfuscator GH page</a> for an example of how this feature works.
+                    This feature adds random blocks of dead code (i.e: code that won't be executed) to the obfuscated output, making it harder to be reverserd-engineered. See the docs on <a href="https://github.com/javascript-obfuscator/javascript-obfuscator#deadcodeinjection" target="_new">JavaScript Obfuscator's GH page</a> for an example of how this feature works.
                   </p>
 
                   <table class="ui definition table">
@@ -213,6 +221,16 @@
                     </tbody>
                   </table>
 
+                </td>
+              </tr>
+
+              <tr>
+                <td class="collapsing">Transform Object Keys</td>
+                <td>
+                  <p>Transforms (obfuscates) object keys.</p>
+                  <p>For instance, this code <code>var a = {enabled: true};</code> when obfuscated with this option will hide the <code>enabled</code> object key: <code>var a = {}; a[_0x2ae0[('0x0')] = true;</code>.</p>
+                  <p>See the <a href="https://github.com/javascript-obfuscator/javascript-obfuscator#transformobjectkeys" target="_new">official documentation of the JavaScript Obfuscator on GitHub</a> for a full example.</p>
+                  <p><small>ideally used with the <strong>String Array</strong> setting.</small></p>
                 </td>
               </tr>
 

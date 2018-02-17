@@ -102,3 +102,8 @@ export const setIdentifierNamesGenerator = (identifierNamesGenerator) => ({
   'type': types.SET_IDENTIFIER_NAMES_GENERATOR,
   identifierNamesGenerator
 });
+
+export const setIdentifiersPrefix = (identifiersPrefix) => ({
+  'type': types.SET_IDENTIFIERS_PREFIX,
+  identifiersPrefix
+});

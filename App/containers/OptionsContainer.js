@@ -62,6 +62,12 @@ const Options = ({dispatch, options}) =>
             onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value)) }
             options={IDENTIFIER_NAMES_GENERATOR_OPTIONS} />
 
+          <Form.Input
+            label='Identifiers Prefix'
+            onBlur={(event) => dispatch(actions.setIdentifiersPrefix(event.target.value)) }
+            defaultValue={options.identifiersPrefix}
+            placeholder='' />
+
           <Form.Checkbox
             label='Rename Globals'
             checked={options.renameGlobals}
@@ -142,6 +148,13 @@ const Options = ({dispatch, options}) =>
             step="0.1"
             onChange={(event) => dispatch(actions.setStringArrayThreshold(parseFloat(event.target.value))) }
             disabled={!options.stringArrayThresholdEnabled} />
+
+          <Divider />
+
+          <Form.Checkbox
+            label='Transform Object Keys'
+            checked={options.transformObjectKeys}
+            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_TRANSFORM_OBJECT_KEYS)) } />
 
           <Divider />
 
