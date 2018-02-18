@@ -2551,9 +2551,9 @@ items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
 
-javascript-obfuscator@^0.14.2:
-  version "0.14.2"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.14.2.tgz#653066652e15427a3f2d804bd53fbfcabefbdd3b"
+javascript-obfuscator@^0.14.3:
+  version "0.14.3"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.14.3.tgz#ac9e48d2efdde5172d31eb4dfc484ef414454a0d"
   dependencies:
     chalk "2.3.1"
     chance "1.0.13"
