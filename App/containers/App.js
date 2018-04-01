@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -13,14 +14,14 @@ import OptionsContainer from './OptionsContainer';
 class App extends Component {
 
   static propTypes = {
-    dispatch: React.PropTypes.func,
-    code: React.PropTypes.string,
-    obfuscatedCode: React.PropTypes.string,
-    sourceMap: React.PropTypes.string,
-    obfuscating: React.PropTypes.bool,
-    obfuscated: React.PropTypes.bool,
-    error: React.PropTypes.bool,
-    options: React.PropTypes.object,
+    dispatch: PropTypes.func,
+    code: PropTypes.string,
+    obfuscatedCode: PropTypes.string,
+    sourceMap: PropTypes.string,
+    obfuscating: PropTypes.bool,
+    obfuscated: PropTypes.bool,
+    error: PropTypes.bool,
+    options: PropTypes.object,
   }
 
   obfuscate() {

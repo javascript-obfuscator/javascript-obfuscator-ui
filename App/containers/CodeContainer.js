@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
@@ -17,16 +18,16 @@ const TAB_RESULTS = 2;
 class CodeContainer extends Component {
 
   static propTypes = {
-    code: React.PropTypes.string,
-    obfuscatedCode: React.PropTypes.string,
-    pending: React.PropTypes.bool,
-    hasResults: React.PropTypes.bool,
-    onCodeChange: React.PropTypes.func,
-    onObfuscateClick: React.PropTypes.func,
-    onDownloadCodeClick: React.PropTypes.func,
-    onDownloadSourceMapClick: React.PropTypes.func,
-    hasSourceMap: React.PropTypes.bool,
-    hasObfuscatedCode: React.PropTypes.bool,
+    code: PropTypes.string,
+    obfuscatedCode: PropTypes.string,
+    pending: PropTypes.bool,
+    hasResults: PropTypes.bool,
+    onCodeChange: PropTypes.func,
+    onObfuscateClick: PropTypes.func,
+    onDownloadCodeClick: PropTypes.func,
+    onDownloadSourceMapClick: PropTypes.func,
+    hasSourceMap: PropTypes.bool,
+    hasObfuscatedCode: PropTypes.bool,
   };
 
   constructor(props) {
@@ -151,7 +152,7 @@ class CodeContainer extends Component {
     return (
       <div>
 
-        <div className="ui top attached tabular menu">
+        <div className="ui top attached stackable three item menu">
           <Title active={tabIndex === TAB_CODE} onClick={() => this.onTabClick(TAB_CODE)}>Copy & Paste JavaScript Code</Title>
           <Title active={tabIndex === TAB_UPLOAD} onClick={() => this.onTabClick(TAB_UPLOAD)}>Upload JavaScript Files</Title>
           <Title active={tabIndex === TAB_RESULTS} onClick={() => this.onTabClick(TAB_RESULTS)}>Output</Title>
@@ -250,8 +251,8 @@ const Pane = (props) => {
 }
 
 Pane.propTypes = {
-  active: React.PropTypes.bool.isRequired,
-  children: React.PropTypes.node.isRequired,
+  active: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 
@@ -265,7 +266,7 @@ const Title = (props) => {
 }
 
 Title.propTypes = {
-  active: React.PropTypes.bool.isRequired,
-  children: React.PropTypes.node.isRequired,
-  onClick: React.PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired,
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Codemirror from 'react-codemirror';
 
@@ -15,8 +16,8 @@ export default class EditorContainer extends Component {
   }
 
   static propTypes = {
-    value: React.PropTypes.string.isRequired,
-    onBlur: React.PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
+    onBlur: PropTypes.func.isRequired,
   }
 
   componentDidMount () {

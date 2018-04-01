@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
 
 export default class EntryInputContainer extends Component {
 
   static propTypes = {
-    label: React.PropTypes.string,
-    actionAddEntryToState: React.PropTypes.func.isRequired,
-    actionRemoveEntryFromState: React.PropTypes.func.isRequired,
-    entries: React.PropTypes.array.isRequired,
-    placeholder: React.PropTypes.string,
-    buttonIcon: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
+    label: PropTypes.string,
+    actionAddEntryToState: PropTypes.func.isRequired,
+    actionRemoveEntryFromState: PropTypes.func.isRequired,
+    entries: PropTypes.array.isRequired,
+    placeholder: PropTypes.string,
+    buttonIcon: PropTypes.string,
+    disabled: PropTypes.bool,
   }
 
   constructor(props) {
@@ -75,6 +76,6 @@ const Labels = ({entries, onCloseClick}) =>
   </div>
 
 Labels.propTypes = {
-  entries: React.PropTypes.array,
-  onCloseClick: React.PropTypes.func.isRequired,
+  entries: PropTypes.array,
+  onCloseClick: PropTypes.func.isRequired,
 }
