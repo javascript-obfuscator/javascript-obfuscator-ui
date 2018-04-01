@@ -2,16 +2,16 @@
   "name": "javascript-obfuscator-web",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": ">=6.3.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run webpack:prod && node server.js",
+    "start": "node server.js",
     "webpack:dev": "webpack --mode development --config webpack.conf.js --watch --color --progress",
     "webpack:prod": "NODE_ENV=production webpack --mode production --config webpack.conf.js --progress --optimize-minimize",
-    "postinstall": "npm run updatesemantic",
+    "postinstall": "npm run updatesemantic && npm run webpack:prod",
     "updatesemantic": "cp App/styles/theme.config ./node_modules/semantic-ui-less/theme.config; rm -Rf ./node_modules/semantic-ui-less/site; cp -R App/styles/site ./node_modules/semantic-ui-less/",
     "heroku-postbuild": "npm run webpack:prod"
   },
