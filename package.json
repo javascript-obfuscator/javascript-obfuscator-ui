@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run webpack:prod && node start server.js",
+    "start": "npm run webpack:prod && node server.js",
     "webpack:dev": "webpack --mode development --config webpack.conf.js --watch --color --progress",
     "webpack:prod": "NODE_ENV=production webpack --mode production --config webpack.conf.js --progress --optimize-minimize",
     "postinstall": "npm run updatesemantic",
