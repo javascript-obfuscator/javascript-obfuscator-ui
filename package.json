@@ -36,9 +36,7 @@
     "redux-promise-middleware": "5.0.0",
     "redux-thunk": "2.1.0",
     "semantic-ui-less": "2.3.1",
-    "semantic-ui-react": "0.79.0"
-  },
-  "devDependencies": {
+    "semantic-ui-react": "0.79.0",
     "babel-core": "6.14.0",
     "babel-eslint": "8.2.2",
     "babel-loader": "7.1.4",
