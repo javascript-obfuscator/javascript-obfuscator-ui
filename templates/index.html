@@ -13,7 +13,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116652505-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-116652505-1');
@@ -22,10 +26,10 @@
 </head>
 <body>
 
-<div class="ui grid">
+<div class="ui container grid middle aligned stackable">
 
     <div class="row">
-        <div class="column">
+        <div class="column twelve wide">
             <div class="ui basic segment">
                 <h1>JavaScript Obfuscator Tool</h1>
                 <p>A free and efficient obfuscator for JavaScript (including ES6). Make your code harder to copy and
@@ -34,10 +38,16 @@
                     created by Timofey Kachalov.</p>
             </div>
         </div>
+
+        <div class="column four wide">
+            <div class="ui basic segment">
+                <img id="Logo" class="ui image centered" src="/static/images/logo.png" alt="obfuscator.io">
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="ui message internally celled equal width stackable four column grid">
+<div class="ui container message internally celled equal width stackable four column grid">
     <div class="column">
         <h3>What is this?</h3>
         <p>This tool transforms your original JavaScript source code into a new representation that's harder to

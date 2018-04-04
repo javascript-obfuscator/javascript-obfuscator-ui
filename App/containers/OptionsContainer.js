@@ -10,10 +10,9 @@ import EntryInputContainer from '../containers/EntryInputContainer';
 import * as types from '../constants/ActionTypes';
 import * as actions from '../actions';
 
-
-export const SOURCEMAP_OFF = 'off'
-export const SOURCEMAP_INLINE = 'inline'
-export const SOURCEMAP_SEPARATE = 'separate'
+export const SOURCEMAP_OFF = 'off';
+export const SOURCEMAP_INLINE = 'inline';
+export const SOURCEMAP_SEPARATE = 'separate';
 
 const SOURCEMAP_OPTIONS = [
     {text: 'Off', value: SOURCEMAP_OFF},
@@ -27,9 +26,9 @@ const STRING_ARRAY_ENCODING_OPTIONS = [
     {text: 'RC4', value: 'rc4'},
 ];
 
-export const TARGET_BROWSER = 'browser'
-export const TARGET_EXTENSION = 'extension'
-export const TARGET_NODE = 'node'
+export const TARGET_BROWSER = 'browser';
+export const TARGET_EXTENSION = 'extension';
+export const TARGET_NODE = 'node';
 
 const TARGET_OPTIONS = [
     {text: 'Browser', value: TARGET_BROWSER},
@@ -37,18 +36,17 @@ const TARGET_OPTIONS = [
     {text: 'Node', value: TARGET_NODE},
 ];
 
-export const IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL = 'hexadecimal'
-export const IDENTIFIER_NAMES_GENERATOR_MANGLED = 'mangled'
+export const IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL = 'hexadecimal';
+export const IDENTIFIER_NAMES_GENERATOR_MANGLED = 'mangled';
 
 const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
     {text: 'hexadecimal', value: IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL},
     {text: 'mangled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED},
 ];
 
-
 const Options = ({dispatch, options}) =>
     <Form className="OptionsForm">
-        <Grid columns={4} relaxed stackable>
+        <Grid columns={4} relaxed stackable doubling>
             <Grid.Column style={{display: 'block'}}>
                 <Segment basic>
 
@@ -255,18 +253,18 @@ const Options = ({dispatch, options}) =>
             </Grid.Column>
 
         </Grid>
-    </Form>
+    </Form>;
 
 
 Options.propTypes = {
     dispatch: PropTypes.func.isRequired,
     options: PropTypes.object,
-}
+};
 
 const mapStateToProps = (state) => {
     return {
         options: state.options,
     }
-}
+};
 
 export default connect(mapStateToProps)(Options);

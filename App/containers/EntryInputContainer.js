@@ -1,81 +1,80 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Form } from 'semantic-ui-react';
+import {Form} from 'semantic-ui-react';
 
 export default class EntryInputContainer extends Component {
+    static propTypes = {
+        label: PropTypes.string,
+        actionAddEntryToState: PropTypes.func.isRequired,
+        actionRemoveEntryFromState: PropTypes.func.isRequired,
+        entries: PropTypes.array.isRequired,
+        placeholder: PropTypes.string,
+        buttonIcon: PropTypes.string,
+        disabled: PropTypes.bool,
+    };
 
-  static propTypes = {
-    label: PropTypes.string,
-    actionAddEntryToState: PropTypes.func.isRequired,
-    actionRemoveEntryFromState: PropTypes.func.isRequired,
-    entries: PropTypes.array.isRequired,
-    placeholder: PropTypes.string,
-    buttonIcon: PropTypes.string,
-    disabled: PropTypes.bool,
-  }
+    constructor(props) {
+        super(props);
 
-  constructor(props) {
-    super(props);
+        this.state = {
+            value: '',
+        };
 
-    this.state = {
-      value: '',
+        this.handleAdd = this.handleAdd.bind(this);
+
     }
 
-    this.handleAdd = this.handleAdd.bind(this);
+    handleAdd(event) {
+        event.preventDefault();
+        this.props.actionAddEntryToState(this.state.value);
+        this.setState({
+            value: '',
+        })
+    }
 
-  }
+    handleRemove(entry) {
+        this.props.actionRemoveEntryFromState(entry)
+    }
 
-  handleAdd(event) {
-    event.preventDefault();
-    this.props.actionAddEntryToState(this.state.value);
-    this.setState({
-      value: '',
-    })
-  }
+    handleOnChange(value) {
+        this.setState({
+            value: value,
+        })
+    }
 
-  handleRemove(entry) {
-    this.props.actionRemoveEntryFromState(entry)
-  }
+    render() {
+        const {entries, label, buttonIcon, placeholder, disabled} = this.props;
 
-  handleOnChange(value) {
-    this.setState({
-      value: value,
-    })
-  }
+        return (
+            <div>
+                <Form.Input
+                    label={label}
+                    onChange={(event) => this.handleOnChange(event.target.value)}
+                    value={this.state.value}
+                    action={{icon: buttonIcon, onClick: this.handleAdd}}
+                    placeholder={placeholder}
+                    disabled={disabled}
+                />
+                <Labels entries={entries} onCloseClick={::this.handleRemove}/>
+            </div>
+        );
 
-  render() {
-    const {entries, label, buttonIcon, placeholder, disabled} = this.props;
-
-    return (
-      <div>
-        <Form.Input
-          label={label}
-          onChange={(event) => this.handleOnChange(event.target.value) }
-          value={this.state.value}
-          action={{ icon: buttonIcon, onClick:this.handleAdd}}
-          placeholder={placeholder}
-          disabled={disabled}
-         />
-        <Labels entries={entries} onCloseClick={::this.handleRemove}/>
-      </div>
-    );
-
-  }
+    }
 
 }
 
 
 const Labels = ({entries, onCloseClick}) =>
-  <div className="ui labels">
-    {entries.map(entry =>
-        <span className="ui label" key={entry}>
+    <div className="ui labels">
+        {entries.map(entry =>
+                <span className="ui label" key={entry}>
           {entry}
-          <i onClick={() => onCloseClick(entry)} className="icon close"></i>
+                    <i onClick={() => onCloseClick(entry)} className="icon close"/>
         </span>
-    )}
-  </div>
+        )}
+    </div>;
 
 Labels.propTypes = {
-  entries: PropTypes.array,
-  onCloseClick: PropTypes.func.isRequired,
-}
+    entries: PropTypes.array,
+    onCloseClick: PropTypes.func.isRequired,
+};
