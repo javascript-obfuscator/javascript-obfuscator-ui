@@ -8,7 +8,7 @@
 
 This project is a web interface to the [javascript obufscator](https://github.com/javascript-obfuscator/javascript-obfuscator) project.
 
-You can see it running here: https://javascriptobfuscator.herokuapp.com
+You can see it running here: [obfuscator.io](https://obfuscator.io)
 
 ## Running it
 
@@ -27,7 +27,7 @@ The server runs on http://localhost:3000/
 
 ## License
 
-Copyright (C) 2016 Tiago Serafim
+Copyright (C) 2016-2018 Tiago Serafim
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 

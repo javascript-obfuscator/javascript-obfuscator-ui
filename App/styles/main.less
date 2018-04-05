@@ -1,5 +1,16 @@
 @import "semantic.less";
 @import (inline) "~codemirror/lib/codemirror.css";
+@import url('~semantic-ui-less/themes/default/globals/site.variables');
+
+#Github {
+  display: flex;
+
+  @media only screen and (max-width: @largestMobileScreen) {
+    & {
+      justify-content: center;
+    }
+  }
+}
 
 .CodeMirror {
   height: 200px;
