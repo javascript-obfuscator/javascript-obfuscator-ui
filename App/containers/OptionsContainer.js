@@ -58,6 +58,7 @@ const Options = ({dispatch, options}) =>
                     <Form.Select
                         label='Identifier Names Generator'
                         value={options.identifierNamesGenerator}
+                        fluid
                         onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value))}
                         options={IDENTIFIER_NAMES_GENERATOR_OPTIONS}/>
 
@@ -134,6 +135,7 @@ const Options = ({dispatch, options}) =>
                     <Form.Select
                         disabled={!options.stringArrayEncodingEnabled}
                         label='String Array Encoding'
+                        fluid
                         value={options.stringArrayEncoding}
                         onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
                         options={STRING_ARRAY_ENCODING_OPTIONS}/>
@@ -213,6 +215,7 @@ const Options = ({dispatch, options}) =>
                     <Form.Select
                         label='Sourcemaps'
                         value={options.sourceMapMode}
+                        fluid
                         onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value))}
                         options={SOURCEMAP_OPTIONS}/>
 
@@ -246,6 +249,7 @@ const Options = ({dispatch, options}) =>
                     <Form.Select
                         label='Target'
                         value={options.target}
+                        fluid
                         onChange={(event, {value}) => dispatch(actions.setTarget(value))}
                         options={TARGET_OPTIONS}/>
 
