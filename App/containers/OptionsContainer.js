@@ -27,12 +27,12 @@ const STRING_ARRAY_ENCODING_OPTIONS = [
 ];
 
 export const TARGET_BROWSER = 'browser';
-export const TARGET_EXTENSION = 'extension';
+export const TARGET_BROWSER_NO_EVAL = 'browser-no-eval';
 export const TARGET_NODE = 'node';
 
 const TARGET_OPTIONS = [
     {text: 'Browser', value: TARGET_BROWSER},
-    {text: 'Extension', value: TARGET_EXTENSION},
+    {text: 'Browser No Eval', value: TARGET_BROWSER_NO_EVAL},
     {text: 'Node', value: TARGET_NODE},
 ];
 
