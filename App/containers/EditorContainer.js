@@ -48,7 +48,6 @@ export default class EditorContainer extends Component {
 
     render() {
         const options = {
-            autofocus: true,
             lineNumbers: true,
             mode: 'javascript',
         };
