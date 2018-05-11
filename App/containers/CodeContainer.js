@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
-import {Form, Grid, Segment, Button, Icon} from 'semantic-ui-react';
+import {Form, Grid, Segment, Button, Icon, Tab} from 'semantic-ui-react';
 
-import classNames from 'classnames';
 import Dropzone from 'react-dropzone';
 
 import EditorContainer from '../containers/EditorContainer';
@@ -60,15 +59,21 @@ class CodeContainer extends Component {
     }
 
     onDrop(files) {
+        const {onCodeChange} = this.props;
+
+        if (!window.File || !window.FileReader) {
+            alert('Your browser does not support File API');
+        }
+
         const file = files[0];
         const reader = new FileReader();
 
         reader.onload = (event) => {
-            this.props.onCodeChange(event.target.result);
+            onCodeChange(event.target.result);
+            this.onTabClick(TAB_CODE);
         };
 
         reader.readAsText(file);
-
     }
 
     toggleEvaluate = () => {
@@ -135,12 +140,9 @@ class CodeContainer extends Component {
 
         done = true;
         flush();
-
     }
 
-    render() {
-        const tabIndex = this.state.selectedTabIndex;
-
+    buildPanes() {
         const {
             code,
             obfuscatedCode,
@@ -153,87 +155,102 @@ class CodeContainer extends Component {
             hasObfuscatedCode,
         } = this.props;
 
+        return [
+            {
+                menuItem: 'Copy & Paste JavaScript Code',
+                render: () => (
+                    <Pane>
+                        <EditorContainer onBlur={onCodeChange} value={code}/>
+                        <Segment basic>
+                            <Button
+                                loading={pending}
+                                disabled={pending}
+                                primary
+                                onClick={onObfuscateClick}
+                            >
+                                Obfuscate
+                            </Button>
+                        </Segment>
+                    </Pane>
+                )
+            },
+            {
+                menuItem: 'Upload JavaScript File',
+                render: () => (
+                    <Pane>
+                        <Dropzone onDrop={::this.onDrop} multiple={false} className="DropZone">
+                            <div>Try dropping some file here, or click to select file to upload.</div>
+                        </Dropzone>
+                    </Pane>
+                )
+            },
+            {
+                menuItem: 'Output',
+                render: () => (
+                    <Pane>
+                        <Form>
+                            <Form.TextArea
+                                value={obfuscatedCode}
+                                onFocus={(event) => event.target.select()}
+                            />
+                        </Form>
+
+                        <Grid stackable columns={2} relaxed>
+                            <Grid.Column width={13}>
+                                <Segment basic>
+                                    <Button
+                                        disabled={!hasObfuscatedCode}
+                                        onClick={onDownloadCodeClick}
+                                    >
+                                        <Icon name='download'/> Download obfuscated code
+                                    </Button>
+                                    {hasSourceMap &&
+                                        <Button
+                                            onClick={onDownloadSourceMapClick}
+                                        >
+                                            <Icon name='download'/> Download source map file
+                                        </Button>
+                                    }
+                                </Segment>
+                            </Grid.Column>
+
+                            <Grid.Column width={3}>
+                                <Segment basic>
+                                    <Form.Checkbox
+                                        label='Evaluate'
+                                        checked={this.state.evaluate}
+                                        onChange={this.toggleEvaluate}/>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid>
+
+                        {this.state.evaluate &&
+                            <Segment basic>
+                                <div className="evaluatedCode">
+                                    {this.state.evaluatedResult}
+                                </div>
+                            </Segment>
+                        }
+                    </Pane>
+                )
+            }
+        ];
+    }
+
+    render() {
+        const tabIndex = this.state.selectedTabIndex;
+
         return (
             <div>
-
-                <div className="ui top attached stackable three item menu">
-                    <Title active={tabIndex === TAB_CODE} onClick={() => this.onTabClick(TAB_CODE)}>Copy & Paste
-                        JavaScript Code</Title>
-                    <Title active={tabIndex === TAB_UPLOAD} onClick={() => this.onTabClick(TAB_UPLOAD)}>Upload
-                        JavaScript Files</Title>
-                    <Title active={tabIndex === TAB_RESULTS} onClick={() => this.onTabClick(TAB_RESULTS)}>Output</Title>
-                </div>
-
-                <Pane active={tabIndex === TAB_CODE}>
-                    <EditorContainer onBlur={onCodeChange} value={code}/>
-                    <Segment basic>
-                        <Button
-                            loading={pending}
-                            disabled={pending}
-                            primary
-                            onClick={onObfuscateClick}
-                        >
-                            Obfuscate
-                        </Button>
-                    </Segment>
-                </Pane>
-
-                <Pane active={tabIndex === TAB_UPLOAD}>
-                    <Dropzone onDrop={::this.onDrop} multiple={false} className="DropZone">
-                        <div>Try dropping some files here, or click to select files to upload.</div>
-                    </Dropzone>
-                </Pane>
-
-                <Pane active={tabIndex === TAB_RESULTS}>
-                    <Form>
-                        <Form.TextArea
-                            value={obfuscatedCode}
-                            onFocus={(event) => event.target.select()}
-                        />
-                    </Form>
-
-                    <Grid columns={2} relaxed>
-                        <Grid.Column width={13}>
-                            <Segment basic>
-                                <Button
-                                    disabled={!hasObfuscatedCode}
-                                    onClick={onDownloadCodeClick}
-                                >
-                                    <Icon name='download'/> Download obfuscated code
-                                </Button>
-                                {hasSourceMap &&
-                                <Button
-                                    onClick={onDownloadSourceMapClick}
-                                >
-                                    <Icon name='download'/> Download source map file
-                                </Button>
-                                }
-                            </Segment>
-                        </Grid.Column>
-
-                        <Grid.Column width={3}>
-                            <Segment basic>
-                                <Form.Checkbox
-                                    label='Evaluate'
-                                    checked={this.state.evaluate}
-                                    onChange={this.toggleEvaluate}/>
-                            </Segment>
-                        </Grid.Column>
-                    </Grid>
-
-                    {this.state.evaluate &&
-                    <Segment basic>
-                        <div className="evaluatedCode">
-                            {this.state.evaluatedResult}
-                        </div>
-                    </Segment>
-                    }
-                </Pane>
-
+                <Tab
+                    activeIndex={tabIndex}
+                    menu={{attached: 'top', stackable: true, widths: 'three'}}
+                    panes={this.buildPanes()}
+                    onTabChange={(event, data) => this.onTabClick(data.activeIndex)}
+                />
             </div>
         );
     }
-
 }
 
 const mapStateToProps = (state) => {
@@ -248,32 +265,13 @@ export default connect(mapStateToProps)(CodeContainer);
 
 
 const Pane = (props) => {
-    const className = classNames('ui bottom attached tab segment'.split(' '), {'active': props.active});
     return (
-        <div className={className}>
+        <div className="ui bottom attached tab segment active">
             {props.children}
         </div>
     )
 };
 
 Pane.propTypes = {
-    active: PropTypes.bool.isRequired,
     children: PropTypes.node.isRequired,
-};
-
-
-const Title = (props) => {
-    const className = classNames('item', {'active': props.active});
-
-    return (
-        <a className={className} onClick={props.onClick}>
-            {props.children}
-        </a>
-    )
-};
-
-Title.propTypes = {
-    active: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired,
-    onClick: PropTypes.func.isRequired,
 };

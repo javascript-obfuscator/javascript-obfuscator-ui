@@ -23,7 +23,6 @@ const initialState = {
 export const code = (state = initialState, action) => {
 
     switch (action.type) {
-
         case types.UPDATE_CODE:
             return {
                 ...state,

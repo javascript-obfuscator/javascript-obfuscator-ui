@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-import Codemirror from 'react-codemirror';
+import {Controlled as CodeMirror} from 'react-codemirror2'
 
 require('codemirror/mode/javascript/javascript');
 
 export default class EditorContainer extends Component {
+    editor = null;
+
     constructor(props) {
         super(props);
 
         this.state = {
-            code: props.value,
+            code: props.value
         }
     }
 
@@ -19,26 +21,29 @@ export default class EditorContainer extends Component {
         onBlur: PropTypes.func.isRequired,
     };
 
-    componentDidMount() {
-        this.refs.editor.getCodeMirror().execCommand('selectAll');
-    }
-
     componentWillReceiveProps(nextProps) {
         this.setState({
             code: nextProps.value
         });
+
+        setTimeout(() => {
+            this.editor && this.editor.refresh();
+        }, 1);
     }
 
-    handleOnChange(newCode) {
+    handleEditorMount(editor) {
+        editor.execCommand('selectAll');
+        this.editor = editor;
+    }
+
+    handleOnChange(editor, data, value) {
         this.setState({
-            code: newCode
+            code: value
         });
     }
 
-    handleFocusChange(focused) {
-        if (!focused) {
-            this.props.onBlur(this.state.code);
-        }
+    handleFocusChange(editor) {
+        this.props.onBlur(editor.getValue());
     }
 
     render() {
@@ -49,11 +54,12 @@ export default class EditorContainer extends Component {
         };
 
         return (
-            <Codemirror
-                ref='editor'
+            <CodeMirror
+                editorDidMount={::this.handleEditorMount}
                 value={this.state.code}
-                onChange={::this.handleOnChange}
-                onFocusChange={::this.handleFocusChange}
+                onBeforeChange={::this.handleOnChange}
+                onFocus={::this.handleFocusChange}
+                onBlur={::this.handleFocusChange}
                 options={options}
             />
         );

@@ -67,10 +67,10 @@ export default class EntryInputContainer extends Component {
 const Labels = ({entries, onCloseClick}) =>
     <div className="ui labels">
         {entries.map(entry =>
-                <span className="ui label" key={entry}>
-          {entry}
-                    <i onClick={() => onCloseClick(entry)} className="icon close"/>
-        </span>
+            <span className="ui label" key={entry}>
+                {entry}
+                <i onClick={() => onCloseClick(entry)} className="icon close"/>
+            </span>
         )}
     </div>;
 
