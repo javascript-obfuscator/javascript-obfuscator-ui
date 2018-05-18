@@ -27,7 +27,7 @@ export default class EntryInputContainer extends Component {
     handleAdd(event) {
         event.preventDefault();
 
-        if (this.state.value === '') {
+        if (this.state.value.trim() === '') {
             return;
         }
 
