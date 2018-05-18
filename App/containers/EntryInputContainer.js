@@ -26,6 +26,11 @@ export default class EntryInputContainer extends Component {
 
     handleAdd(event) {
         event.preventDefault();
+
+        if (this.state.value === '') {
+            return;
+        }
+
         this.props.actionAddEntryToState(this.state.value);
         this.setState({
             value: '',
