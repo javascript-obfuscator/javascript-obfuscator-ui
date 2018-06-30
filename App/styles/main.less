@@ -2,7 +2,7 @@
 @import (inline) "~codemirror/lib/codemirror.css";
 @import url('~semantic-ui-less/themes/default/globals/site.variables');
 
-#Github {
+#GithubBadges, #DonateBadges {
   display: flex;
 
   @media only screen and (max-width: @largestMobileScreen) {
@@ -10,6 +10,14 @@
       justify-content: center;
     }
   }
+}
+
+#DonateWallets {
+  word-break: break-all;
+}
+
+.donate-badge {
+  margin-right: 4px;
 }
 
 .CodeMirror {
@@ -61,4 +69,14 @@ img#Logo {
 
 .table code {
   word-break: break-word;
+}
+
+pre#Html {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  
+  & code {
+    width: 100%;
+  }
 }
