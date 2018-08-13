@@ -49,7 +49,7 @@
                 <p>
                     A free and efficient obfuscator for JavaScript (including ES2017). Make your code harder to copy and
                     prevent people from stealing your work. This tool is a Web UI to the excellent (and open source)
-                    <code><a href="https://github.com/javascript-obfuscator/javascript-obfuscator" target="_new">javascript-obfuscator</a>@0.17.3</code>
+                    <code><a href="https://github.com/javascript-obfuscator/javascript-obfuscator" target="_new">javascript-obfuscator</a>@0.18.0</code>
                     created by Timofey Kachalov.
                 </p>
                 <div id="GithubBadges">
@@ -394,13 +394,23 @@
                 </tr>
 
                 <tr>
-                    <td class="collapsing">Reseverd Names</td>
+                    <td class="collapsing">Reserved Names</td>
                     <td>
                         <p>Disables obfuscation and generation of identifiers, which being matched by passed RegExp
                             patterns.</p>
                         <p>For instance, if you add <code>^someName</code>, the obfuscator will ensure that all
                             variables, function names and function arguments that starts with <strong>someName</strong>
                             will not get mangled.</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="collapsing">Reserved Strings</td>
+                    <td>
+                        <p>Disables transformation of string literals, which being matched by passed RegExp patterns.</p>
+                        <p>For instance, if you add <code>^some *string</code>, the obfuscator will ensure that all
+                            strings that starts with <strong>some string</strong>
+                            will not get moved to the `stringArray`.</p>
                     </td>
                 </tr>
 

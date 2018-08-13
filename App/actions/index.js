@@ -53,6 +53,16 @@ export const removeReservedName = (name) => ({
     name
 });
 
+export const addReservedString = (string) => ({
+    'type': types.ADD_RESERVED_STRING,
+    string
+});
+
+export const removeReservedString = (string) => ({
+    'type': types.REMOVE_RESERVED_STRING,
+    string
+});
+
 export const setStringArrayThreshold = (threshold) => ({
     'type': types.SET_STRING_ARRAY_THRESHOLD,
     threshold

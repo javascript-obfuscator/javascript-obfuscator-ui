@@ -202,8 +202,16 @@ const Options = ({dispatch, options}) =>
                         label='Reserved Names'
                         actionAddEntryToState={(name) => dispatch(actions.addReservedName(name))}
                         actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name))}
-                        placeholder="^someVariable"
+                        placeholder="^someVariable *or *RegExp"
                         entries={options.reservedNames}
+                        buttonIcon="plus"/>
+
+                    <EntryInputContainer
+                        label='Reserved Strings'
+                        actionAddEntryToState={(string) => dispatch(actions.addReservedString(string))}
+                        actionRemoveEntryFromState={(string) => dispatch(actions.removeReservedString(string))}
+                        placeholder="^some *string *or RegExp"
+                        entries={options.reservedStrings}
                         buttonIcon="plus"/>
 
                 </Segment>

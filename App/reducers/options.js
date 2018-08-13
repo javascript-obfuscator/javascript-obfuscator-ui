@@ -29,6 +29,7 @@ const initialState = {
 
     domainLock: [],
     reservedNames: [],
+    reservedStrings: [],
 
     seed: 0,
 
@@ -186,6 +187,23 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 reservedNames: state.reservedNames.filter((name) => name !== action.name),
+            };
+
+        case types.ADD_RESERVED_STRING: {
+            const string = action.string;
+            if (state.reservedStrings.indexOf(string) !== -1)
+                return state;
+
+            return {
+                ...state,
+                reservedStrings: [...state.reservedStrings, string],
+            };
+        }
+
+        case types.REMOVE_RESERVED_STRING:
+            return {
+                ...state,
+                reservedStrings: state.reservedStrings.filter((string) => string !== action.string),
             };
 
         case types.SET_SEED:
