@@ -83,7 +83,7 @@ const Options = ({dispatch, options}) =>
                     <Divider/>
 
                     <Form.Checkbox
-                        label='Control Flow Flatteing'
+                        label='Control Flow Flattening'
                         checked={options.controlFlowFlattening}
                         onChange={() => dispatch(actions.toggleOption(types.TOGGLE_CONTROL_FLOW_FLATTENING))}/>
 
