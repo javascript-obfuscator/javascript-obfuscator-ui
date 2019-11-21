@@ -35,7 +35,7 @@
     "javascript-obfuscator": "0.18.4",
     "less": "2.7.1",
     "less-loader": "4.1.0",
-    "pm2": "^4.1.2",
+    "pm2": "3.5.1",
     "prop-types": "15.6.1",
     "react": "16.3.0",
     "react-codemirror2": "5.0.1",
