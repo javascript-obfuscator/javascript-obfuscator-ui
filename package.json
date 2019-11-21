@@ -6,7 +6,7 @@
     "node": ">=6.3.1"
   },
   "scripts": {
-    "start": "pm2 restart ecosystem.config.js",
+    "start": "server.js",
     "stop": "pm2 delete ecosystem.config.js",
     "webpack:dev": "webpack --mode development --config webpack.conf.js --watch --color --progress",
     "webpack:prod": "NODE_ENV=production webpack --mode production --config webpack.conf.js --devtool source-map --progress --optimize-minimize",
