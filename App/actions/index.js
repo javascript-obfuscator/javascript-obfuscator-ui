@@ -63,6 +63,11 @@ export const removeReservedString = (string) => ({
     string
 });
 
+export const setSplitStringsChunkLength = (chunkLength) => ({
+    'type': types.SET_SPLIT_STRINGS_CHUNK_LENGTH,
+    chunkLength
+});
+
 export const setStringArrayThreshold = (threshold) => ({
     'type': types.SET_STRING_ARRAY_THRESHOLD,
     threshold

@@ -10,6 +10,11 @@ const initialState = {
     debugProtection: false,
     debugProtectionInterval: false,
 
+    splitStrings: false,
+
+    splitStringsChunkLength: 10,
+    splitStringsChunkLengthEnabled: false,
+
     stringArray: true,
 
     rotateStringArray: true,
@@ -101,6 +106,22 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 debugProtectionInterval: !state.debugProtectionInterval,
+            };
+
+        case types.TOGGLE_SPLIT_STRINGS: {
+            const splitStrings = !state.splitStrings;
+
+            return {
+                ...state,
+                splitStrings,
+                splitStringsChunkLengthEnabled: splitStrings,
+            };
+        }
+
+        case types.SET_SPLIT_STRINGS_CHUNK_LENGTH:
+            return {
+                ...state,
+                splitStringsChunkLength: action.chunkLength
             };
 
         case types.TOGGLE_STRING_ARRAY: {

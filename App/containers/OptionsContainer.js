@@ -153,6 +153,22 @@ const Options = ({dispatch, options}) =>
                     <Divider/>
 
                     <Form.Checkbox
+                        label='Split Strings'
+                        checked={options.splitStrings}
+                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SPLIT_STRINGS))}/>
+
+                    <Form.Input
+                        type='number'
+                        label='Split Strings Chunk Length'
+                        defaultValue={options.splitStringsChunkLength}
+                        min="1"
+                        step="1"
+                        onChange={(event) => dispatch(actions.setSplitStringsChunkLength(parseInt(event.target.value)))}
+                        disabled={!options.splitStringsChunkLengthEnabled}/>
+
+                    <Divider/>
+
+                    <Form.Checkbox
                         label='Transform Object Keys'
                         checked={options.transformObjectKeys}
                         onChange={() => dispatch(actions.toggleOption(types.TOGGLE_TRANSFORM_OBJECT_KEYS))}/>
