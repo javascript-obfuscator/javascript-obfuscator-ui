@@ -17,7 +17,7 @@ app.use('/static/images', express.static(__dirname + '/public/images'));
 app.use('/static/semantic', express.static(__dirname + '/public/semantic'));
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/templates/index.html');
+    res.sendFile(__dirname + '/dist/index.html');
 });
 
 app.post('/obfuscate', function (req, res) {

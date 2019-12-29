@@ -1,6 +1,7 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractLESS = new ExtractTextPlugin('stylesheets/[name].css');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     context: __dirname,
@@ -35,6 +36,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            template: './templates/index.html',
+            hash: true
+        }),
         extractLESS
     ]
 };
