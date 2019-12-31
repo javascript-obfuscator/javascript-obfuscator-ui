@@ -36,10 +36,12 @@ const TARGET_OPTIONS = [
     {text: 'Node', value: TARGET_NODE},
 ];
 
+export const IDENTIFIER_NAMES_GENERATOR_DICTIONARY = 'dictionary';
 export const IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL = 'hexadecimal';
 export const IDENTIFIER_NAMES_GENERATOR_MANGLED = 'mangled';
 
 const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
+    {text: 'dictionary', value: IDENTIFIER_NAMES_GENERATOR_DICTIONARY},
     {text: 'hexadecimal', value: IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL},
     {text: 'mangled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED},
 ];
@@ -61,6 +63,15 @@ const Options = ({dispatch, options}) =>
                         fluid
                         onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value))}
                         options={IDENTIFIER_NAMES_GENERATOR_OPTIONS}/>
+
+                    <EntryInputContainer
+                        label='Identifiers Dictionary'
+                        disabled={options.identifierNamesGenerator !== IDENTIFIER_NAMES_GENERATOR_DICTIONARY}
+                        actionAddEntryToState={(name) => dispatch(actions.addDictionaryIdentifier(name))}
+                        actionRemoveEntryFromState={(name) => dispatch(actions.removeDictionaryIdentifier(name))}
+                        placeholder="foo"
+                        entries={options.identifiersDictionary}
+                        buttonIcon="plus"/>
 
                     <Form.Input
                         label='Identifiers Prefix'

@@ -63,6 +63,16 @@ export const removeReservedString = (string) => ({
     string
 });
 
+export const addDictionaryIdentifier = (name) => ({
+    'type': types.ADD_DICTIONARY_IDENTIFIER,
+    name
+});
+
+export const removeDictionaryIdentifier = (name) => ({
+    'type': types.REMOVE_DICTIONARY_IDENTIFIER,
+    name
+});
+
 export const setSplitStringsChunkLength = (chunkLength) => ({
     'type': types.SET_SPLIT_STRINGS_CHUNK_LENGTH,
     chunkLength

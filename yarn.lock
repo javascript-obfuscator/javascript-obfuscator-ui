@@ -46,13 +46,6 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@babel/runtime@7.7.4":
-  version "7.7.4"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.4.tgz#b23a856751e4bf099262f867767889c0e3fe175b"
-  integrity sha512-r24eVUUr0QqNZa+qrImUk8fn5SPhHq+IfYvIoIMg0do3GdK9sMdiLKP3GYVVaxpPKORgm8KRKaNTEhAjgIpLMw==
-  dependencies:
-    regenerator-runtime "^0.13.2"
-
 "@babel/template@7.0.0-beta.46":
   version "7.0.0-beta.46"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.46.tgz#8b23982411d5b5dbfa479437bfe414adb1411bb9"
@@ -4145,12 +4138,11 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-javascript-obfuscator@0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.19.0.tgz#95b26d4dccfc60a2af0dd45c6abb569357d6da5b"
-  integrity sha512-qPFGXDAx2AdDpaOGVuZByvrQIbEbaA7yfH8jDQqPagqQNu21e+YEe5A7fqR3Nd3jKlpHf4CxHp7XUIRpGe33/Q==
+javascript-obfuscator@0.20.0:
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.20.0.tgz#54719a9c2ed2b757a591ccb1a4e29f96dbd13b17"
+  integrity sha512-9gTGu9I7tTKHumzRSOu0C4Ym1emQ5kbxn8QR6/YjQC4SbkDDLdz6L3dDNLqqseGH7KCvZ0tgWxDo/OOIl/sfTg==
   dependencies:
-    "@babel/runtime" "7.7.4"
     chalk "3.0.0"
     chance "1.1.3"
     class-validator "0.11.0"
@@ -6256,11 +6248,6 @@ regenerator-runtime@^0.10.0:
 regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
-
-regenerator-runtime@^0.13.2:
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
-  integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
 
 regenerator-transform@^0.10.0:
   version "0.10.1"

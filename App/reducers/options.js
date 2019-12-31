@@ -51,6 +51,7 @@ const initialState = {
     target: 'browser',
 
     identifierNamesGenerator: 'hexadecimal',
+    identifiersDictionary: [],
     identifiersPrefix: '',
 
     transformObjectKeys: false,
@@ -225,6 +226,21 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 reservedStrings: state.reservedStrings.filter((string) => string !== action.string),
+            };
+
+        case types.ADD_DICTIONARY_IDENTIFIER: {
+            const name = action.name;
+
+            return {
+                ...state,
+                identifiersDictionary: [...state.identifiersDictionary, name],
+            };
+        }
+
+        case types.REMOVE_DICTIONARY_IDENTIFIER:
+            return {
+                ...state,
+                identifiersDictionary: state.identifiersDictionary.filter((name) => name !== action.name),
             };
 
         case types.SET_SEED:
