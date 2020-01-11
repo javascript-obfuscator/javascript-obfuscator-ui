@@ -10,7 +10,6 @@ import Dropzone from 'react-dropzone';
 import EditorContainer from '../containers/EditorContainer';
 
 const TAB_CODE = 0;
-const TAB_UPLOAD = 1;
 const TAB_RESULTS = 2;
 
 class CodeContainer extends Component {
@@ -188,49 +187,50 @@ class CodeContainer extends Component {
                 menuItem: 'Output',
                 render: () => (
                     <Pane>
-                        <Form>
-                            <Form.TextArea
-                                value={obfuscatedCode}
-                                onFocus={(event) => event.target.select()}
-                            />
-                        </Form>
-
                         <Grid stackable columns={2} relaxed>
+                            <Grid.Column width={16}>
+                                <Form>
+                                    <Form.TextArea
+                                        value={obfuscatedCode}
+                                        rows={8}
+                                        onFocus={(event) => event.target.select()}
+                                    />
+                                </Form>
+                            </Grid.Column>
+
                             <Grid.Column width={13}>
-                                <Segment basic>
+                                <Button
+                                    disabled={!hasObfuscatedCode}
+                                    onClick={onDownloadCodeClick}
+                                >
+                                    <Icon name='download'/> Download obfuscated code
+                                </Button>
+
+                                {hasSourceMap &&
                                     <Button
-                                        disabled={!hasObfuscatedCode}
-                                        onClick={onDownloadCodeClick}
+                                        onClick={onDownloadSourceMapClick}
                                     >
-                                        <Icon name='download'/> Download obfuscated code
+                                        <Icon name='download'/> Download source map file
                                     </Button>
-                                    {hasSourceMap &&
-                                        <Button
-                                            onClick={onDownloadSourceMapClick}
-                                        >
-                                            <Icon name='download'/> Download source map file
-                                        </Button>
-                                    }
-                                </Segment>
+                                }
                             </Grid.Column>
 
-                            <Grid.Column width={3}>
-                                <Segment basic>
-                                    <Form.Checkbox
-                                        label='Evaluate'
-                                        checked={this.state.evaluate}
-                                        onChange={this.toggleEvaluate}/>
-                                </Segment>
+                            <Grid.Column width={3} verticalAlign="middle">
+                                <Form.Checkbox
+                                    label='Evaluate'
+                                    checked={this.state.evaluate}
+                                    onChange={this.toggleEvaluate}
+                                />
                             </Grid.Column>
+
+                            {this.state.evaluate &&
+                                <Grid.Column width={16}>
+                                    <div className="evaluatedCode">
+                                        {this.state.evaluatedResult}
+                                    </div>
+                                </Grid.Column>
+                            }
                         </Grid>
-
-                        {this.state.evaluate &&
-                            <Segment basic>
-                                <div className="evaluatedCode">
-                                    {this.state.evaluatedResult}
-                                </div>
-                            </Segment>
-                        }
                     </Pane>
                 )
             }
