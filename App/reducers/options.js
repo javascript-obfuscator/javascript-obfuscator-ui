@@ -20,6 +20,9 @@ const initialState = {
     rotateStringArray: true,
     rotateStringArrayEnabled: true,
 
+    shuffleStringArray: true,
+    shuffleStringArrayEnabled: true,
+
     stringArrayThreshold: 0.8,
     stringArrayThresholdEnabled: true,
 
@@ -132,6 +135,7 @@ export const options = (state = initialState, action) => {
                 ...state,
                 stringArray,
                 rotateStringArrayEnabled: stringArray,
+                shuffleStringArrayEnabled: stringArray,
                 stringArrayThresholdEnabled: stringArray,
                 stringArrayEncodingEnabled: stringArray,
             };
@@ -141,6 +145,12 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 rotateStringArray: !state.rotateStringArray
+            };
+
+        case types.TOGGLE_SHUFFLE_STRING_ARRAY:
+            return {
+                ...state,
+                shuffleStringArray: !state.shuffleStringArray
             };
 
         case types.SET_STRING_ARRAY_ENCODING:

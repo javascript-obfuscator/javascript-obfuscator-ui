@@ -143,6 +143,12 @@ const Options = ({dispatch, options}) =>
                         disabled={!options.rotateStringArrayEnabled}
                         onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ROTATE_STRING_ARRAY))}/>
 
+                    <Form.Checkbox
+                        label='Shuffle String Array'
+                        checked={options.shuffleStringArray}
+                        disabled={!options.shuffleStringArrayEnabled}
+                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SHUFFLE_STRING_ARRAY))}/>
+
                     <Form.Select
                         disabled={!options.stringArrayEncodingEnabled}
                         label='String Array Encoding'
