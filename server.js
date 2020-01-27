@@ -14,6 +14,7 @@ process.env.PWD = process.cwd();
     app.use(bodyParser.json({limit: '3mb'}));
 
     app.use('/static/dist', express.static(__dirname + '/dist'));
+    app.use('/workers', express.static(__dirname + '/dist/workers'));
     app.use('/static/images', express.static(__dirname + '/public/images'));
     app.use('/static/semantic', express.static(__dirname + '/public/semantic'));
 

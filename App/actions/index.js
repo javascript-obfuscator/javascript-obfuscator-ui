@@ -1,32 +1,59 @@
 import * as types from '../constants/ActionTypes';
 
+const obfuscationWorker = new Worker('../workers/obfuscation-worker.js');
+
 export const updateCode = (code) => ({
     'type': types.UPDATE_CODE,
     code
 });
 
 export const obfuscateCode = (code, options) => {
+    return (dispatch) => {
+        const message = {
+            code,
+            options
+        };
 
-    const body = {
-        code,
-        options
+        if (!options.sourceMap) {
+            delete options.sourceMapMode
+        }
+
+        // options.stringArrayEncoding come from the client as strings, but the
+        // obfuscator expects it to be a boolean or a string if 'base64'/'rc4'
+        if (['false', 'true'].indexOf(options.stringArrayEncoding) !== -1) {
+            options.stringArrayEncoding = options.stringArrayEncoding === 'true';
+        }
+
+        obfuscationWorker.postMessage(message);
+
+        dispatch({
+            type: types.OBFUSCATE,
+            payload: new Promise((resolve) => {
+                obfuscationWorker.onmessage = function (event) {
+                    const result = JSON.parse(event.data);
+
+                    resolve(result);
+                };
+            }),
+        });
+
+        /**
+        const request = new Request('/obfuscate', {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body),
+        });
+
+        return {
+            type: types.OBFUSCATE,
+            payload: fetch(request).then((response) => response.json()),
+        }
+        */
     };
-
-    const request = new Request('/obfuscate', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body),
-    });
-
-    return {
-        type: types.OBFUSCATE,
-        payload: fetch(request).then((response) => response.json()),
-    }
-
 };
 
 export const toggleOption = (optionType) => ({

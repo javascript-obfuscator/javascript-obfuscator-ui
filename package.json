@@ -1,13 +1,12 @@
 {
   "name": "javascript-obfuscator-web",
-  "version": "2.5.1",
+  "version": "3.0.0",
   "description": "",
   "engines": {
     "node": ">=12.13.1"
   },
   "scripts": {
     "start": "node server.js",
-    "stop": "pm2 delete ecosystem.config.js",
     "webpack:dev": "webpack --mode development --config webpack.conf.js --watch --color --progress",
     "webpack:prod": "NODE_ENV=production webpack --mode production --config webpack.conf.js --devtool source-map --progress --optimize-minimize",
     "postinstall": "npm run updatesemantic && npm run webpack:prod",

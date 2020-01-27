@@ -6,11 +6,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     context: __dirname,
     entry: {
-        "bundle": "./App/index.js"
+        "bundle": "./App/index.js",
+        "workers/obfuscation-worker": "./App/workers/obfuscation-worker.js"
     },
     output: {
         path: __dirname + "/dist",
-        filename: "bundle.js"
+        filename: "[name].js",
+        globalObject: "this"
     },
     module: {
         rules: [
