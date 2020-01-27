@@ -50,6 +50,7 @@
     "semantic-ui-less": "2.3.1",
     "semantic-ui-react": "0.79.0",
     "style-loader": "0.20.3",
+    "threads": "^1.0.2",
     "url-loader": "1.0.1",
     "webpack": "4.4.1",
     "webpack-cli": "2.0.13"
