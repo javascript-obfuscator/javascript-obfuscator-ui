@@ -36,6 +36,7 @@ const initialState = {
     sourceMapSeparate: false,
 
     domainLock: [],
+    domainLockEnabled: true,
     reservedNames: [],
     reservedStrings: [],
 
@@ -72,6 +73,10 @@ export const options = (state = initialState, action) => {
     }
 
     switch (action.type) {
+
+        case types.RESET_OPTIONS: {
+            return initialState;
+        }
 
         case types.TOGGLE_COMPACT_CODE: {
             const compact = !state.compact;
@@ -303,11 +308,20 @@ export const options = (state = initialState, action) => {
                 renameGlobals: !state.renameGlobals
             };
 
-        case types.SET_TARGET:
+        case types.SET_TARGET: {
+            const target = action.target;
+
+            const isNodeTarget = target === 'node';
+
             return {
                 ...state,
-                target: action.target
+                target,
+                ...isNodeTarget && {
+                    domainLock: []
+                },
+                domainLockEnabled: !isNodeTarget
             };
+        }
 
         case types.SET_IDENTIFIER_NAMES_GENERATOR:
             return {

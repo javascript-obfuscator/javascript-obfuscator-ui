@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
-import {Form, Grid, Segment, Divider} from 'semantic-ui-react';
+import {Form, Grid, Segment, Divider, Button} from 'semantic-ui-react';
 
 import EntryInputContainer from '../containers/EntryInputContainer';
 
@@ -51,6 +51,14 @@ const Options = ({dispatch, options}) =>
         <Grid columns={4} relaxed stackable doubling>
             <Grid.Column style={{display: 'block'}}>
                 <Segment basic>
+                    <Button
+                        fluid
+                        onClick={() => dispatch(actions.resetOptions())}
+                    >
+                        Reset options
+                    </Button>
+
+                    <Divider/>
 
                     <Form.Checkbox
                         label='Compact code'
@@ -225,6 +233,7 @@ const Options = ({dispatch, options}) =>
 
                     <EntryInputContainer
                         label='Domain lock'
+                        disabled={!options.domainLockEnabled}
                         actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain))}
                         actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain))}
                         placeholder="domain.com"

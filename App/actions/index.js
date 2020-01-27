@@ -56,6 +56,10 @@ export const obfuscateCode = (code, options) => {
     };
 };
 
+export const resetOptions = () => ({
+    'type': types.RESET_OPTIONS,
+});
+
 export const toggleOption = (optionType) => ({
     'type': optionType
 });
