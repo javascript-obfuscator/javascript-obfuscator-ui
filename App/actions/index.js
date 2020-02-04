@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 
-const obfuscationWorker = new Worker('../workers/obfuscation-worker.js');
+const obfuscationWorker = new Worker('../workers/obfuscation-worker.js?v=' + new Date().getTime());
 
 export const updateCode = (code) => ({
     'type': types.UPDATE_CODE,
