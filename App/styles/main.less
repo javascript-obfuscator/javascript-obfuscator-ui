@@ -5,6 +5,50 @@
 #GithubBadges, #DonateBadges {
   display: flex;
 
+  & #donate {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+    padding: 3px 10px;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+    color: #24292e;
+    background-color: #eee;
+    background-image: linear-gradient(to bottom,#fcfcfc 0,#eee 100%);
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-repeat: repeat-x;
+    background-position: -1px -1px;
+    background-size: 110% 110%;
+    border: 1px solid rgba(27,31,35,.2);
+    border-radius: .25em;
+
+    &:hover {
+      background-color: #ddd;
+      background-image: linear-gradient(to bottom,#eee 0,#ddd 100%);
+      border-color: #ccc;
+    }
+
+    &:active {
+      background-image: none;
+      background-color: #dcdcdc;
+      border-color: #b5b5b5;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,.15);
+    }
+
+    & #donate-heart {
+      display: inline-block;
+      vertical-align: middle;
+      color: #ea4aaa;
+      fill: currentColor;
+      margin-right: 2px;
+      margin-bottom: 2px;
+    }
+  }
+
   @media only screen and (max-width: @largestMobileScreen) {
     & {
       justify-content: center;
