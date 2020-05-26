@@ -83,9 +83,10 @@ const Options = ({dispatch, options}) =>
 
                     <Form.Input
                         label='Identifiers Prefix'
-                        onBlur={(event) => dispatch(actions.setIdentifiersPrefix(event.target.value))}
-                        defaultValue={options.identifiersPrefix}
-                        placeholder=''/>
+                        value={options.identifiersPrefix}
+                        placeholder=''
+                        onChange={(event, {value}) => dispatch(actions.setIdentifiersPrefix(value))}
+                    />
 
                     <Form.Checkbox
                         label='Rename Globals'
@@ -109,11 +110,11 @@ const Options = ({dispatch, options}) =>
                     <Form.Input
                         type='number'
                         label='Control Flow Flattening Threshold'
-                        defaultValue={options.controlFlowFlatteningThreshold}
+                        value={options.controlFlowFlatteningThreshold}
                         min="0"
                         max="1"
                         step="0.1"
-                        onChange={(event) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(event.target.value)))}
+                        onChange={(event, {value}) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(value)))}
                         disabled={!options.controlFlowFlattening}/>
 
                     <Divider/>
@@ -126,11 +127,11 @@ const Options = ({dispatch, options}) =>
                     <Form.Input
                         type='number'
                         label='Dead Code Injection Threshold'
-                        defaultValue={options.deadCodeInjectionThreshold}
+                        value={options.deadCodeInjectionThreshold}
                         min="0"
                         max="1"
                         step="0.1"
-                        onChange={(event) => dispatch(actions.setDeadCodeInjectionThreshold(parseFloat(event.target.value)))}
+                        onChange={(event, {value}) => dispatch(actions.setDeadCodeInjectionThreshold(parseFloat(value)))}
                         disabled={!options.deadCodeInjection}/>
 
 
@@ -168,11 +169,11 @@ const Options = ({dispatch, options}) =>
                     <Form.Input
                         type='number'
                         label='String Array Threshold'
-                        defaultValue={options.stringArrayThreshold}
+                        value={options.stringArrayThreshold}
                         min="0"
                         max="1"
                         step="0.1"
-                        onChange={(event) => dispatch(actions.setStringArrayThreshold(parseFloat(event.target.value)))}
+                        onChange={(event, {value}) => dispatch(actions.setStringArrayThreshold(parseFloat(value)))}
                         disabled={!options.stringArrayThresholdEnabled}/>
 
                     <Divider/>
@@ -185,10 +186,10 @@ const Options = ({dispatch, options}) =>
                     <Form.Input
                         type='number'
                         label='Split Strings Chunk Length'
-                        defaultValue={options.splitStringsChunkLength}
+                        value={options.splitStringsChunkLength}
                         min="1"
                         step="1"
-                        onChange={(event) => dispatch(actions.setSplitStringsChunkLength(parseInt(event.target.value)))}
+                        onChange={(event, {value}) => dispatch(actions.setSplitStringsChunkLength(parseInt(value)))}
                         disabled={!options.splitStringsChunkLengthEnabled}/>
 
                     <Divider/>
@@ -272,15 +273,15 @@ const Options = ({dispatch, options}) =>
                     <Form.Input
                         label='Source Map Base URL'
                         disabled={!options.sourceMapSeparate}
-                        onBlur={(event) => dispatch(actions.setSourceMapBaseUrl(event.target.value))}
-                        defaultValue={options.sourceMapBaseUrl}
+                        onChange={(event, {value}) => dispatch(actions.setSourceMapBaseUrl(value))}
+                        value={options.sourceMapBaseUrl}
                         placeholder='http://localhost:3000'/>
 
                     <Form.Input
                         label='Source Map File Name'
                         disabled={!options.sourceMapSeparate}
-                        onBlur={(event) => dispatch(actions.setSourceMapFileName(event.target.value))}
-                        defaultValue={options.sourceMapFileName}
+                        onChange={(event, {value}) => dispatch(actions.setSourceMapFileName(value))}
+                        value={options.sourceMapFileName}
                         placeholder='example'/>
 
                     <Divider/>
@@ -288,11 +289,11 @@ const Options = ({dispatch, options}) =>
                     <Form.Input
                         type='number'
                         label='Seed'
-                        defaultValue={options.seed}
+                        value={options.seed}
                         min="0"
                         max="99999999"
                         step="1"
-                        onChange={(event) => dispatch(actions.setSeed(parseInt(event.target.value)))}/>
+                        onChange={(event, {value}) => dispatch(actions.setSeed(parseInt(value)))}/>
 
                     <Divider/>
 

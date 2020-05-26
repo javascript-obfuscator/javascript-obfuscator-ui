@@ -9,11 +9,6 @@ export const updateCode = (code) => ({
 
 export const obfuscateCode = (code, options) => {
     return (dispatch) => {
-        const message = {
-            code,
-            options
-        };
-
         if (!options.sourceMap) {
             delete options.sourceMapMode
         }
@@ -23,6 +18,11 @@ export const obfuscateCode = (code, options) => {
         if (['false', 'true'].indexOf(options.stringArrayEncoding) !== -1) {
             options.stringArrayEncoding = options.stringArrayEncoding === 'true';
         }
+
+        const message = {
+            code,
+            options
+        };
 
         obfuscationWorker.postMessage(message);
 

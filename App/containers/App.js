@@ -26,7 +26,8 @@ class App extends Component {
     obfuscate() {
         const {dispatch} = this.props;
         const {code, options} = this.props;
-        dispatch(actions.obfuscateCode(code, options));
+
+        dispatch(actions.obfuscateCode(code, {...options}));
     }
 
     downloadCode() {
