@@ -2662,10 +2662,10 @@ eslint-plugin-react@7.7.0:
     jsx-ast-utils "^2.0.1"
     prop-types "^15.6.0"
 
-eslint-scope@5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-5.0.0.tgz#e87c8887c73e8d1ec84f1ca591645c358bfc8fb9"
-  integrity sha512-oYrhJW7S0bxAFDvWqzvMPRm6pcgcnWc4QnofCAqRTRfQC0JcwenzGglTtsLyIuuWFfkqDG9vz67cnttSd53djw==
+eslint-scope@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-5.1.0.tgz#d0f971dfe59c69e0cada684b23d49dbf82600ce5"
+  integrity sha512-iiGRvtxWqgtx5m8EyQUJihBloE4EnYeGE/bz1wSPwJE6tZuJUtHlhqDM4Xj2ukE8Dyy1+HCZ4hE0fzIVMzb58w==
   dependencies:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
@@ -4146,10 +4146,10 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-javascript-obfuscator@0.28.5:
-  version "0.28.5"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.28.5.tgz#7bf4df28281493fac731d1dc6f7a8f47591f8e55"
-  integrity sha512-4JiE4EMjNl6rNIIqz17mqhl7sl0rE8c8pCUHMNTjs8oeqqYpkJX4MbeaNrqVo3bghCjHpuDnBWKeouzCDB0oag==
+javascript-obfuscator@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-1.0.0.tgz#027de861411efeb0452d96230d04f51882b83af3"
+  integrity sha512-laeqz4pVVTyIRc9kLf1QLUVN3YJsCAu08P6vH+e/8gvD+WgI49+kyCyDAkvLKenpuPgsX/RtlTu9VKvGhaCXbg==
   dependencies:
     "@gradecam/tsenum" "1.2.0"
     "@nuxtjs/opencollective" "0.2.2"
@@ -4159,7 +4159,7 @@ javascript-obfuscator@0.28.5:
     class-validator "0.12.2"
     commander "5.1.0"
     escodegen "1.14.2"
-    eslint-scope "5.0.0"
+    eslint-scope "5.1.0"
     estraverse "5.1.0"
     eventemitter3 "4.0.4"
     fast-deep-equal "3.1.1"
