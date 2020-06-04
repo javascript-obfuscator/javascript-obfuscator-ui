@@ -2629,10 +2629,10 @@ escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
 
-escodegen@1.14.1:
-  version "1.14.1"
-  resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.14.1.tgz#ba01d0c8278b5e95a9a45350142026659027a457"
-  integrity sha512-Bmt7NcRySdIfNPfU2ZoXDrrXsG9ZjvDxcAlMfDUgRBjLOWTuIACXPBFJH7Z+cLb40JeQco5toikyc9t9P8E9SQ==
+escodegen@1.14.2:
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/escodegen/-/escodegen-1.14.2.tgz#14ab71bf5026c2aa08173afba22c6f3173284a84"
+  integrity sha512-InuOIiKk8wwuOFg6x9BQXbzjrQhtyXh46K9bqVTPzSo2FnyMBaYGBMC6PhQy7yxxil9vIedFBweQBMK74/7o8A==
   dependencies:
     esprima "^4.0.1"
     estraverse "^4.2.0"
@@ -4146,10 +4146,10 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-javascript-obfuscator@0.28.4:
-  version "0.28.4"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.28.4.tgz#84f5b8ffd3ffdade0d90715bedde48def7d971af"
-  integrity sha512-pl0s6AGfW/2diYa7YmOANFgGnvKsDZ4bXBwFh7t+v3BINStdpzAWcTT+Wqf7Lm8VOjNRvnpsAkFtBSDzNtyTXg==
+javascript-obfuscator@0.28.5:
+  version "0.28.5"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-0.28.5.tgz#7bf4df28281493fac731d1dc6f7a8f47591f8e55"
+  integrity sha512-4JiE4EMjNl6rNIIqz17mqhl7sl0rE8c8pCUHMNTjs8oeqqYpkJX4MbeaNrqVo3bghCjHpuDnBWKeouzCDB0oag==
   dependencies:
     "@gradecam/tsenum" "1.2.0"
     "@nuxtjs/opencollective" "0.2.2"
@@ -4158,7 +4158,7 @@ javascript-obfuscator@0.28.4:
     chance "1.1.6"
     class-validator "0.12.2"
     commander "5.1.0"
-    escodegen "1.14.1"
+    escodegen "1.14.2"
     eslint-scope "5.0.0"
     estraverse "5.1.0"
     eventemitter3 "4.0.4"
