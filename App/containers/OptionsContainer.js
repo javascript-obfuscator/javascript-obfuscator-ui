@@ -93,6 +93,11 @@ const Options = ({dispatch, options}) =>
                         checked={options.renameGlobals}
                         onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS))}/>
 
+                    <Form.Checkbox
+                        label='Rename Properties'
+                        checked={options.renameProperties}
+                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_PROPERTIES))}/>
+
                     <Divider/>
 
                     <Form.Checkbox

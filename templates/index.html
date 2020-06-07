@@ -49,7 +49,7 @@
                 <p>
                     A free and efficient obfuscator for JavaScript (including partial support of ES2019). Make your code harder to copy and
                     prevent people from stealing your work. This tool is a Web UI to the excellent (and open source)
-                    <code><a href="https://github.com/javascript-obfuscator/javascript-obfuscator" target="_new">javascript-obfuscator</a>@1.0.0</code>
+                    <code><a href="https://github.com/javascript-obfuscator/javascript-obfuscator" target="_new">javascript-obfuscator</a>@1.1.0</code>
                     created by Timofey Kachalov.
                 </p>
                 <div id="GithubBadges">
@@ -189,6 +189,20 @@
                                 know what it does.</p>
                         </div>
                         <p>Enables the obfuscation of global variables and function names with declaration.</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="collapsing">Rename Properties</td>
+                    <td>
+                        <div class="ui tiny message">
+                            <p><i class="warning sign icon"></i> This option <b>WILL</b> break your code in most cases. Enable it only if you know what it does!</p>
+                        </div>
+                        <p>Enables renaming of property names. All built-in DOM properties and properties in core JavaScript classes will be ignored.</p>
+
+                        <p>To set format of renamed property names use <code>identifierNamesGenerator</code> option.</p>
+
+                        <p>To control which properties will be renamed use <code>reservedNames</code> option.</p>
                     </td>
                 </tr>
 

@@ -51,6 +51,7 @@ const initialState = {
     unicodeEscapeSequence: false,
 
     renameGlobals: false,
+    renameProperties: false,
 
     target: 'browser',
 
@@ -306,6 +307,12 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 renameGlobals: !state.renameGlobals
+            };
+
+        case types.TOGGLE_RENAME_PROPERTIES:
+            return {
+                ...state,
+                renameProperties: !state.renameProperties
             };
 
         case types.SET_TARGET: {
