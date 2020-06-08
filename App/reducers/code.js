@@ -9,14 +9,16 @@ const DEFAULT_CODE = [
     'hi();',
 ].join('\n');
 
+export const DEFAULT_OUTPUT_FILE_NAME = 'obfuscated.js';
 
 const initialState = {
     code: DEFAULT_CODE,
+    outputFileName: DEFAULT_OUTPUT_FILE_NAME,
     obfuscatedCode: '',
     sourceMap: '',
     obfuscating: false,
     obfuscated: false,
-    error: false,
+    error: false
 };
 
 
@@ -61,6 +63,12 @@ export const code = (state = initialState, action) => {
                 error: false,
                 obfuscatedCode: action.payload.code,
                 sourceMap: action.payload.sourceMap,
+            };
+
+        case types.UPDATE_OUTPUT_FILE_NAME:
+            return {
+                ...state,
+                outputFileName: action.outputFileName
             };
 
         default:

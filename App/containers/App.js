@@ -16,6 +16,7 @@ class App extends Component {
         dispatch: PropTypes.func,
         code: PropTypes.string,
         obfuscatedCode: PropTypes.string,
+        outputFileName: PropTypes.string,
         sourceMap: PropTypes.string,
         obfuscating: PropTypes.bool,
         obfuscated: PropTypes.bool,
@@ -33,7 +34,7 @@ class App extends Component {
     downloadCode() {
         const data = {
             mime: 'application/javascript',
-            filename: 'obfuscated.js',
+            filename: this.props.outputFileName,
             contents: this.props.obfuscatedCode,
         };
 
@@ -43,7 +44,7 @@ class App extends Component {
     downloadSourceMap() {
         const data = {
             mime: 'application/octet-stream',
-            filename: 'obfuscated.js.map',
+            filename: `${this.props.outputFileName}.map`,
             contents: this.props.sourceMap,
         };
 
@@ -74,6 +75,7 @@ class App extends Component {
                     pending={obfuscating}
                     hasResults={obfuscated || error}
                     onCodeChange={(code) => dispatch(actions.updateCode(code))}
+                    onOutputFileNameChange={(fileName) => dispatch(actions.updateOutputFileName(fileName))}
                     onObfuscateClick={::this.obfuscate}
                     onDownloadCodeClick={::this.downloadCode}
                     onDownloadSourceMapClick={::this.downloadSourceMap}
@@ -98,6 +100,7 @@ const mapStateToProps = (state) => {
     return {
         code: code.code,
         obfuscatedCode: code.obfuscatedCode,
+        outputFileName: code.outputFileName,
         sourceMap: code.sourceMap,
         obfuscating: code.obfuscating,
         obfuscated: code.obfuscated,

@@ -1,6 +1,6 @@
 {
   "name": "javascript-obfuscator-web",
-  "version": "3.5.0",
+  "version": "3.6.0",
   "description": "",
   "engines": {
     "node": ">=12.13.1"

@@ -7,6 +7,11 @@ export const updateCode = (code) => ({
     code
 });
 
+export const updateOutputFileName = (outputFileName) => ({
+    'type': types.UPDATE_OUTPUT_FILE_NAME,
+    outputFileName
+});
+
 export const obfuscateCode = (code, options) => {
     return (dispatch) => {
         if (!options.sourceMap) {

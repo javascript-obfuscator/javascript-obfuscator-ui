@@ -8,6 +8,7 @@ import {Form, Grid, Segment, Button, Icon, Tab} from 'semantic-ui-react';
 import Dropzone from 'react-dropzone';
 
 import EditorContainer from '../containers/EditorContainer';
+import {DEFAULT_OUTPUT_FILE_NAME} from '../reducers/code';
 
 const TAB_CODE = 0;
 const TAB_RESULTS = 2;
@@ -20,6 +21,7 @@ class CodeContainer extends Component {
         pending: PropTypes.bool,
         hasResults: PropTypes.bool,
         onCodeChange: PropTypes.func,
+        onOutputFileNameChange: PropTypes.func,
         onObfuscateClick: PropTypes.func,
         onDownloadCodeClick: PropTypes.func,
         onDownloadSourceMapClick: PropTypes.func,
@@ -57,8 +59,18 @@ class CodeContainer extends Component {
         });
     }
 
+    onCodeChange(code) {
+        const {code: prevCode, onCodeChange, onOutputFileNameChange} = this.props;
+
+        onCodeChange(code);
+
+        if (code !== prevCode) {
+            onOutputFileNameChange(DEFAULT_OUTPUT_FILE_NAME);
+        }
+    }
+
     onDrop(files) {
-        const {onCodeChange} = this.props;
+        const {onCodeChange, onOutputFileNameChange} = this.props;
 
         if (!window.File || !window.FileReader) {
             alert('Your browser does not support File API');
@@ -69,6 +81,7 @@ class CodeContainer extends Component {
 
         reader.onload = (event) => {
             onCodeChange(event.target.result);
+            onOutputFileNameChange(file.name);
             this.onTabClick(TAB_CODE);
         };
 
@@ -146,7 +159,6 @@ class CodeContainer extends Component {
             code,
             obfuscatedCode,
             pending,
-            onCodeChange,
             onObfuscateClick,
             onDownloadCodeClick,
             onDownloadSourceMapClick,
@@ -159,7 +171,7 @@ class CodeContainer extends Component {
                 menuItem: 'Copy & Paste JavaScript Code',
                 render: () => (
                     <Pane>
-                        <EditorContainer onBlur={onCodeChange} value={code}/>
+                        <EditorContainer onBlur={::this.onCodeChange} value={code}/>
                         <Segment basic>
                             <Button
                                 loading={pending}
@@ -177,7 +189,11 @@ class CodeContainer extends Component {
                 menuItem: 'Upload JavaScript File',
                 render: () => (
                     <Pane>
-                        <Dropzone onDrop={::this.onDrop} multiple={false} className="DropZone">
+                        <Dropzone
+                            onDrop={::this.onDrop}
+                            multiple={false}
+                            className="DropZone"
+                        >
                             <div>Try dropping some file here, or click to select file to upload.</div>
                         </Dropzone>
                     </Pane>
