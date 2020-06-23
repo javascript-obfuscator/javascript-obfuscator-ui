@@ -1,6 +1,6 @@
 {
   "name": "javascript-obfuscator-web",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "",
   "engines": {
     "node": ">=12.13.1"
@@ -32,7 +32,7 @@
     "graceful-fs": "4.1.9",
     "html-webpack-plugin": "^3.2.0",
     "inert": "5.1.0",
-    "javascript-obfuscator": "1.1.0",
+    "javascript-obfuscator": "1.1.1",
     "less": "2.7.1",
     "less-loader": "4.1.0",
     "pm2": "3.5.1",
