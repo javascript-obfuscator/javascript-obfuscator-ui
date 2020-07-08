@@ -101,9 +101,9 @@ const Options = ({dispatch, options}) =>
                     <Divider/>
 
                     <Form.Checkbox
-                        label='Self Defending'
-                        checked={options.selfDefending}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING))}/>
+                        label='Simplify'
+                        checked={options.simplify}
+                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SIMPLIFY))}/>
 
                     <Divider/>
 
@@ -221,6 +221,13 @@ const Options = ({dispatch, options}) =>
                         label='Disable Console Output'
                         checked={options.disableConsoleOutput}
                         onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT))}/>
+
+                    <Divider/>
+
+                    <Form.Checkbox
+                        label='Self Defending'
+                        checked={options.selfDefending}
+                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING))}/>
 
                     <Divider/>
 

@@ -23,6 +23,8 @@ const initialState = {
     shuffleStringArray: true,
     shuffleStringArrayEnabled: true,
 
+    simplify: true,
+
     stringArrayThreshold: 0.8,
     stringArrayThresholdEnabled: true,
 
@@ -85,6 +87,13 @@ export const options = (state = initialState, action) => {
                 ...state,
                 compact,
                 selfDefending: state.selfDefending && compact,
+            };
+        }
+
+        case types.TOGGLE_SIMPLIFY: {
+            return {
+                ...state,
+                simplify: !state.simplify,
             };
         }
 
