@@ -39,11 +39,13 @@ const TARGET_OPTIONS = [
 export const IDENTIFIER_NAMES_GENERATOR_DICTIONARY = 'dictionary';
 export const IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL = 'hexadecimal';
 export const IDENTIFIER_NAMES_GENERATOR_MANGLED = 'mangled';
+export const IDENTIFIER_NAMES_GENERATOR_MANGLED_SHUFFLED = 'mangled-shuffled';
 
 const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
     {text: 'dictionary', value: IDENTIFIER_NAMES_GENERATOR_DICTIONARY},
     {text: 'hexadecimal', value: IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL},
     {text: 'mangled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED},
+    {text: 'mangled-shuffled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED_SHUFFLED},
 ];
 
 const Options = ({dispatch, options}) =>
