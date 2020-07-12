@@ -31,6 +31,8 @@ const initialState = {
     stringArrayEncoding: 'false',
     stringArrayEncodingEnabled: true,
 
+    numbersToExpressions: false,
+
     sourceMap: false,
     sourceMapMode: 'off',
     sourceMapBaseUrl: '',
@@ -305,6 +307,12 @@ export const options = (state = initialState, action) => {
                 stringArrayEncodingEnabled: stringArray
             };
         }
+
+        case types.TOGGLE_NUMBERS_TO_EXPRESSIONS:
+            return {
+                ...state,
+                numbersToExpressions: !state.numbersToExpressions
+            };
 
         case types.TOGGLE_UNICODE_ESCAPE_SEQUENCE:
             return {

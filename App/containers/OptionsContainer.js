@@ -209,6 +209,13 @@ const Options = ({dispatch, options}) =>
                     <Divider/>
 
                     <Form.Checkbox
+                        label='Numbers To Expressions'
+                        checked={options.numbersToExpressions}
+                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_NUMBERS_TO_EXPRESSIONS))}/>
+
+                    <Divider/>
+
+                    <Form.Checkbox
                         label='Unicode Escape Sequence'
                         checked={options.unicodeEscapeSequence}
                         onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE))}/>

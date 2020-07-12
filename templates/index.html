@@ -49,7 +49,7 @@
                 <p>
                     A free and efficient obfuscator for JavaScript (including partial support of ES2019). Make your code harder to copy and
                     prevent people from stealing your work. This tool is a Web UI to the excellent (and open source)
-                    <code><a href="https://github.com/javascript-obfuscator/javascript-obfuscator" target="_new">javascript-obfuscator</a>@1.5.2</code>
+                    <code><a href="https://github.com/javascript-obfuscator/javascript-obfuscator" target="_new">javascript-obfuscator</a>@1.6.0</code>
                     created by Timofey Kachalov.
                 </p>
                 <div id="GithubBadges">
@@ -393,6 +393,23 @@
                             full example.</p>
                         <p>
                             <small>ideally used with the <strong>String Array</strong> setting.</small>
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="collapsing">Numbers To Expressions</td>
+                    <td>
+                        <p>Enables numbers conversion to expressions</p>
+                        <p>
+                            Example:<br/>
+                            <code>
+                                // input<br/>
+                                const foo = 1234;<br/>
+                                <br/>
+                                // output<br/>
+                                const foo=-0xd93+-0x10b4+0x41*0x67+0x84e*0x3+-0xff8;
+                            </code>
                         </p>
                     </td>
                 </tr>

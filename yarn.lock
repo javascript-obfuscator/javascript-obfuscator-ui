@@ -4146,10 +4146,10 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-javascript-obfuscator@1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-1.5.2.tgz#771742ec736b64a1f18003d920922e1417ffb7f7"
-  integrity sha512-D11n0jvo9j6rv+/qfutCXxkOx60gF+SnjqQG0TIkHN50LG+4BjRUK9YHK7BtZvH5tNXowTpCb0sB8wwv+YWJiQ==
+javascript-obfuscator@1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-1.6.0.tgz#ed70f2f0da962a2ede51e71f1f9ed817ea87ee3b"
+  integrity sha512-gG1UD5SitqITe1i/Z8ZvnTn/ZKZH9UkybwxAOOMXejrUfbWuPz8d7q1bE5GAzGLijbB3TMSu97f7WD6HyTAcTw==
   dependencies:
     "@gradecam/tsenum" "1.2.0"
     "@nuxtjs/opencollective" "0.2.2"
