@@ -1909,10 +1909,10 @@ commander@2.17.x:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commander@5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
-  integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
+commander@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-6.0.0.tgz#2b270da94f8fb9014455312f829a1129dbf8887e"
+  integrity sha512-s7EA+hDtTYNhuXkTlhqew4txMZVdszBmKWSPEMxGr8ru8JXR7bLUFIAtPhcSuFdJQ0ILMxnJi8GkQL0yvDy/YA==
 
 commander@~2.13.0:
   version "2.13.0"
@@ -4146,10 +4146,10 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-javascript-obfuscator@1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-1.7.0.tgz#752aa53126bbd6f5f834bb19dc7e31f49206535a"
-  integrity sha512-dSw40GTo2OpqDrs+Bh8BW5XHBXRkTOK1CuCtlxEHqbM9+Fjt8LJ0gzAYJiWoejm/v1UIcfLoZv0ZOUB/RgC1Rw==
+javascript-obfuscator@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-1.8.0.tgz#fb135f91d573875d8e8e857e1e7267e53eca8b35"
+  integrity sha512-Ck8cqrpEnvTLVl68EE6o5uIGnIIi8vTHu4NHiyFtsXK5yJ1b6kRU3aZdehtqswrTRR0N8uh5Fc/zcjBUran6Vw==
   dependencies:
     "@gradecam/tsenum" "1.2.0"
     "@nuxtjs/opencollective" "0.2.2"
@@ -4157,7 +4157,7 @@ javascript-obfuscator@1.7.0:
     chalk "4.1.0"
     chance "1.1.6"
     class-validator "0.12.2"
-    commander "5.1.0"
+    commander "6.0.0"
     escodegen "1.14.3"
     eslint-scope "5.1.0"
     estraverse "5.1.0"
