@@ -10,6 +10,18 @@ import EntryInputContainer from '../containers/EntryInputContainer';
 import * as types from '../constants/ActionTypes';
 import * as actions from '../actions';
 
+export const OPTIONS_PRESET_DEFAULT = 'default';
+export const OPTIONS_PRESET_LOW_OBFUSCATION = 'low-obfuscation';
+export const OPTIONS_PRESET_MEDIUM_OBFUSCATION = 'medium-obfuscation';
+export const OPTIONS_PRESET_HIGH_OBFUSCATION = 'high-obfuscation';
+
+const OPTIONS_PRESET_OPTIONS = [
+    {text: 'default', value: OPTIONS_PRESET_DEFAULT},
+    {text: 'low', value: OPTIONS_PRESET_LOW_OBFUSCATION},
+    {text: 'medium', value: OPTIONS_PRESET_MEDIUM_OBFUSCATION},
+    {text: 'high', value: OPTIONS_PRESET_HIGH_OBFUSCATION},
+];
+
 export const SOURCEMAP_OFF = 'off';
 export const SOURCEMAP_INLINE = 'inline';
 export const SOURCEMAP_SEPARATE = 'separate';
@@ -20,10 +32,14 @@ const SOURCEMAP_OPTIONS = [
     {text: 'Separate', value: SOURCEMAP_SEPARATE},
 ];
 
+export const STRING_ARRAY_ENCODING_NONE = 'none';
+export const STRING_ARRAY_ENCODING_BASE64 = 'base64';
+export const STRING_ARRAY_ENCODING_RC4 = 'rc4';
+
 const STRING_ARRAY_ENCODING_OPTIONS = [
-    {text: 'Off', value: 'false'},
-    {text: 'Base64', value: 'base64'},
-    {text: 'RC4', value: 'rc4'},
+    {text: 'None', value: STRING_ARRAY_ENCODING_NONE},
+    {text: 'Base64', value: STRING_ARRAY_ENCODING_BASE64},
+    {text: 'RC4', value: STRING_ARRAY_ENCODING_RC4},
 ];
 
 export const TARGET_BROWSER = 'browser';
@@ -59,6 +75,15 @@ const Options = ({dispatch, options}) =>
                     >
                         Reset options
                     </Button>
+
+                    <Divider/>
+
+                    <Form.Select
+                        label='Options Preset'
+                        value={options.optionsPreset}
+                        fluid
+                        onChange={(event, {value}) => dispatch(actions.setOptionsPreset(value))}
+                        options={OPTIONS_PRESET_OPTIONS}/>
 
                     <Divider/>
 
@@ -169,8 +194,16 @@ const Options = ({dispatch, options}) =>
                         disabled={!options.stringArrayEncodingEnabled}
                         label='String Array Encoding'
                         fluid
+                        multiple
+                        placeholder={STRING_ARRAY_ENCODING_NONE}
                         value={options.stringArrayEncoding}
                         onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
+                        renderLabel={(item) => {
+                            return ({
+                                content: `${item.value}`,
+                                ...item.value === STRING_ARRAY_ENCODING_NONE && {onRemove: undefined}
+                            });
+                        }}
                         options={STRING_ARRAY_ENCODING_OPTIONS}/>
 
                     <Form.Input

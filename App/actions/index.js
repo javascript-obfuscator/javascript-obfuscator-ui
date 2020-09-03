@@ -65,6 +65,11 @@ export const resetOptions = () => ({
     'type': types.RESET_OPTIONS,
 });
 
+export const setOptionsPreset = (optionsPreset) => ({
+    'type': types.SET_OPTIONS_PRESET,
+    optionsPreset
+});
+
 export const toggleOption = (optionType) => ({
     'type': optionType
 });

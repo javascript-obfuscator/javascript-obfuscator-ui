@@ -1,8 +1,15 @@
 import * as types from '../constants/ActionTypes';
 
-import {SOURCEMAP_SEPARATE, SOURCEMAP_OFF} from '../containers/OptionsContainer';
+import {
+    SOURCEMAP_SEPARATE,
+    SOURCEMAP_OFF,
+    OPTIONS_PRESET_DEFAULT,
+    IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL, TARGET_BROWSER, STRING_ARRAY_ENCODING_NONE
+} from '../containers/OptionsContainer';
 
 const initialState = {
+    optionsPreset: OPTIONS_PRESET_DEFAULT,
+
     compact: true,
     selfDefending: false,
     disableConsoleOutput: false,
@@ -28,13 +35,13 @@ const initialState = {
     stringArrayThreshold: 0.8,
     stringArrayThresholdEnabled: true,
 
-    stringArrayEncoding: 'false',
+    stringArrayEncoding: [STRING_ARRAY_ENCODING_NONE],
     stringArrayEncodingEnabled: true,
 
     numbersToExpressions: false,
 
     sourceMap: false,
-    sourceMapMode: 'off',
+    sourceMapMode: SOURCEMAP_OFF,
     sourceMapBaseUrl: '',
     sourceMapFileName: '',
     sourceMapSeparate: false,
@@ -57,9 +64,9 @@ const initialState = {
     renameGlobals: false,
     renameProperties: false,
 
-    target: 'browser',
+    target: TARGET_BROWSER,
 
-    identifierNamesGenerator: 'hexadecimal',
+    identifierNamesGenerator: IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL,
     identifiersDictionary: [],
     identifiersPrefix: '',
 
@@ -81,6 +88,13 @@ export const options = (state = initialState, action) => {
 
         case types.RESET_OPTIONS: {
             return initialState;
+        }
+
+        case types.SET_OPTIONS_PRESET: {
+            return {
+                ...state,
+                optionsPreset: action.optionsPreset
+            };
         }
 
         case types.TOGGLE_COMPACT_CODE: {
@@ -173,7 +187,7 @@ export const options = (state = initialState, action) => {
         case types.SET_STRING_ARRAY_ENCODING:
             return {
                 ...state,
-                stringArrayEncoding: action.encoding
+                stringArrayEncoding: action.encoding.length ? action.encoding : initialState.stringArrayEncoding
             };
 
         case types.SET_STRING_ARRAY_THRESHOLD:
