@@ -169,11 +169,11 @@
                             obfuscated.</p>
 
                         <strong>dictionary</strong>
-                        <p>Generates identifier names using names from <code>identifiersDictionary</code> list
+                        <p>Generates identifier names using names from <code>identifiersDictionary</code> list.
                         </p>
 
                         <strong>hexadecimal</strong>
-                        <p>Generates random identifier names using a hexadecimal pattern (e.g: <code>0xabc123</code>)
+                        <p>Generates random identifier names using a hexadecimal pattern (e.g: <code>0xabc123</code>).
                         </p>
 
                         <strong>mangled</strong>
@@ -185,14 +185,14 @@
                 <tr>
                     <td class="collapsing">Identifiers Dictionary</td>
                     <td>
-                        <p>This options sets identifiers list for <code>identifierNamesGenerator: dictionary</code> option
+                        <p>This option sets identifiers list for <code>identifierNamesGenerator: dictionary</code> option.
                     </td>
                 </tr>
 
                 <tr>
                     <td class="collapsing">Identifiers Prefix</td>
                     <td>
-                        <p>This options makes all global identifiers have a specific prefix.</p>
+                        <p>This option makes all global identifiers have a specific prefix.</p>
                         <p>Use this option when obfuscating multiple files that are loaded on the same page. This option
                             helps to avoid conflicts between global identifiers of these files. Use a different prefix
                             for each file.</p>
@@ -607,7 +607,7 @@
             <h3 id="FAQ">FAQ</h3>
 
             <h4>Why would I want to obfuscate my JavaScript code?</h4>
-            <p>There're a numerous reasons why it's a good idea to protect your code, such as:</p>
+            <p>There are numerous reasons why it's a good idea to protect your code, such as:</p>
             <ul>
                 <li>Prevent anyone from simply copy/pasting your work. This is specially important on 100% client side
                     projects, such as HTML5 games;
@@ -615,7 +615,7 @@
                 <li>Removal of comments and whitespace that aren't needed. Making it faster to load and harder to
                     understand;
                 </li>
-                <li>Protection of work that hasn't been paid yet. You can show your work to the client knowing that they
+                <li>Protection of work that hasn't been paid for yet. You can show your work to the client knowing that they
                     won't have the source code until the invoice has been paid.
                 </li>
             </ul>
@@ -627,11 +627,11 @@
                 interpret it, so there's no way to prevent that. And any tool that promises that is not being
                 honest.</p>
 
-            <h4>Why my obfuscated code is larger than my original source?</h4>
+            <h4>Why is my obfuscated code larger than my original source?</h4>
             <p>Because the obfuscator introduces new pieces of code that are meant to protect and defend against
                 debugging and reverse-engineering. Also strings are converted to <code>\xAB</code> hexadecimal code to
                 make things a little bit harder to understand. You don't have to worry too much about code size because
-                since there're a lot of repetition, the obfuscated code will be compressed extremely well by your
+                there is a lot of repetition, so the obfuscated code will be compressed extremely well by your
                 webserver (if you have GZIP compression enabled on your server, which most do nowadays).</p>
 
             <h4>Can I run a minifier such as UglifyJS or Google Closure Compiler on the obfuscated output?</h4>
