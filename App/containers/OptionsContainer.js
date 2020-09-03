@@ -198,12 +198,6 @@ const Options = ({dispatch, options}) =>
                         placeholder={STRING_ARRAY_ENCODING_NONE}
                         value={options.stringArrayEncoding}
                         onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
-                        renderLabel={(item) => {
-                            return ({
-                                content: `${item.value}`,
-                                ...item.value === STRING_ARRAY_ENCODING_NONE && {onRemove: undefined}
-                            });
-                        }}
                         options={STRING_ARRAY_ENCODING_OPTIONS}/>
 
                     <Form.Input

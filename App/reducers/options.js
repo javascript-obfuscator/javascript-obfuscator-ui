@@ -35,7 +35,7 @@ const initialState = {
     stringArrayThreshold: 0.8,
     stringArrayThresholdEnabled: true,
 
-    stringArrayEncoding: [STRING_ARRAY_ENCODING_NONE],
+    stringArrayEncoding: [],
     stringArrayEncodingEnabled: true,
 
     numbersToExpressions: false,
@@ -187,7 +187,7 @@ export const options = (state = initialState, action) => {
         case types.SET_STRING_ARRAY_ENCODING:
             return {
                 ...state,
-                stringArrayEncoding: action.encoding.length ? action.encoding : initialState.stringArrayEncoding
+                stringArrayEncoding: action.encoding
             };
 
         case types.SET_STRING_ARRAY_THRESHOLD:
