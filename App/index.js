@@ -15,6 +15,7 @@ import reducer from './reducers'
 import App from './containers/App'
 
 import "./styles/main.less";
+import {sanitizePersistedOptions} from "./reducers/options";
 
 
 const middleware = [thunk, promiseMiddleware()];
@@ -30,6 +31,8 @@ const persistedState = loadState();
 */
 if (persistedState !== undefined) {
     delete persistedState.options.hydrated;
+
+    sanitizePersistedOptions(persistedState.options);
 }
 
 const store = createStore(

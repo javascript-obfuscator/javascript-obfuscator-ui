@@ -382,5 +382,10 @@ export const options = (state = initialState, action) => {
         default:
             return state
     }
-
 };
+
+export function sanitizePersistedOptions(persistedOptions) {
+    if (!Array.isArray(persistedOptions.stringArrayEncoding)) {
+        persistedOptions.stringArrayEncoding = [persistedOptions.stringArrayEncoding];
+    }
+}
