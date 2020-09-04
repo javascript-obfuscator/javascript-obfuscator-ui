@@ -386,6 +386,6 @@ export const options = (state = initialState, action) => {
 
 export function sanitizePersistedOptions(persistedOptions) {
     if (!Array.isArray(persistedOptions.stringArrayEncoding)) {
-        persistedOptions.stringArrayEncoding = [persistedOptions.stringArrayEncoding];
+        persistedOptions.stringArrayEncoding = initialState.stringArrayEncoding;
     }
 }
