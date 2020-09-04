@@ -4,7 +4,11 @@ import {
     SOURCEMAP_SEPARATE,
     SOURCEMAP_OFF,
     OPTIONS_PRESET_DEFAULT,
-    IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL, TARGET_BROWSER, STRING_ARRAY_ENCODING_NONE
+    IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL,
+    TARGET_BROWSER,
+    STRING_ARRAY_ENCODING_NONE,
+    STRING_ARRAY_ENCODING_BASE64,
+    STRING_ARRAY_ENCODING_RC4
 } from '../containers/OptionsContainer';
 
 const initialState = {
@@ -387,5 +391,17 @@ export const options = (state = initialState, action) => {
 export function sanitizePersistedOptions(persistedOptions) {
     if (!Array.isArray(persistedOptions.stringArrayEncoding)) {
         persistedOptions.stringArrayEncoding = initialState.stringArrayEncoding;
+    } else {
+        for (const value of persistedOptions.stringArrayEncoding) {
+            if (
+                value !== STRING_ARRAY_ENCODING_NONE
+                || value !== STRING_ARRAY_ENCODING_BASE64
+                || value !== STRING_ARRAY_ENCODING_RC4
+            ) {
+                persistedOptions.stringArrayEncoding = initialState.stringArrayEncoding;
+
+                break;
+            }
+        }
     }
 }
