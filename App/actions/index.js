@@ -56,7 +56,7 @@ export const resetOptions = () => {
         dispatch({
             'type': types.RESET_OPTIONS,
         });
-        setOptionsPreset(OPTIONS_PRESET_DEFAULT);
+        dispatch(setOptionsPreset(OPTIONS_PRESET_DEFAULT));
     };
 };
 

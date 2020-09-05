@@ -22,12 +22,10 @@ const OPTIONS_PRESET_OPTIONS = [
     {text: 'high', value: OPTIONS_PRESET_HIGH_OBFUSCATION},
 ];
 
-export const SOURCEMAP_OFF = 'off';
 export const SOURCEMAP_INLINE = 'inline';
 export const SOURCEMAP_SEPARATE = 'separate';
 
 const SOURCEMAP_OPTIONS = [
-    {text: 'Off', value: SOURCEMAP_OFF},
     {text: 'Inline', value: SOURCEMAP_INLINE},
     {text: 'Separate', value: SOURCEMAP_SEPARATE},
 ];
@@ -214,7 +212,7 @@ const Options = ({dispatch, options}) => {
                             value={options.stringArrayThreshold}
                             min="0"
                             max="1"
-                            step="0.1"
+                            step="0.05"
                             onChange={(event, {value}) => dispatch(actions.setStringArrayThreshold(parseFloat(value)))}
                             disabled={!options.stringArrayThresholdEnabled}/>
 
@@ -319,23 +317,29 @@ const Options = ({dispatch, options}) => {
                 <Grid.Column>
                     <Segment basic>
 
+                        <Form.Checkbox
+                            label='Enable Source Map'
+                            checked={options.sourceMap}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SOURCEMAP))}/>
+
                         <Form.Select
-                            label='Sourcemaps'
+                            label='Source Map Mode'
                             value={options.sourceMapMode}
+                            disabled={!options.sourceMap}
                             fluid
                             onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value))}
                             options={SOURCEMAP_OPTIONS}/>
 
                         <Form.Input
                             label='Source Map Base URL'
-                            disabled={!options.sourceMapSeparate}
+                            disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
                             onChange={(event, {value}) => dispatch(actions.setSourceMapBaseUrl(value))}
                             value={options.sourceMapBaseUrl}
                             placeholder='http://localhost:3000'/>
 
                         <Form.Input
                             label='Source Map File Name'
-                            disabled={!options.sourceMapSeparate}
+                            disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
                             onChange={(event, {value}) => dispatch(actions.setSourceMapFileName(value))}
                             value={options.sourceMapFileName}
                             placeholder='example'/>

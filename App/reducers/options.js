@@ -36,7 +36,7 @@ const initialState = {
 
     simplify: true,
 
-    stringArrayThreshold: 0.8,
+    stringArrayThreshold: 0.75,
     stringArrayThresholdEnabled: true,
 
     stringArrayEncoding: [
@@ -47,10 +47,9 @@ const initialState = {
     numbersToExpressions: false,
 
     sourceMap: false,
-    sourceMapMode: SOURCEMAP_OFF,
+    sourceMapMode: SOURCEMAP_SEPARATE,
     sourceMapBaseUrl: '',
     sourceMapFileName: '',
-    sourceMapSeparate: false,
 
     domainLock: [],
     domainLockEnabled: true,
@@ -203,13 +202,18 @@ export const options = (state = initialState, action) => {
                 stringArrayThreshold: action.threshold
             };
 
+        case types.TOGGLE_SOURCEMAP: {
+            return {
+                ...state,
+                sourceMap: !state.sourceMap
+            };
+        }
+
         case types.SET_SOURCEMAP_MODE: {
             const mode = action.mode;
             return {
                 ...state,
-                sourceMap: mode !== SOURCEMAP_OFF,
-                sourceMapMode: mode,
-                sourceMapSeparate: mode === SOURCEMAP_SEPARATE
+                sourceMapMode: mode
             };
         }
 
