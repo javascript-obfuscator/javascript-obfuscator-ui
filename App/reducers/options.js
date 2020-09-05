@@ -39,7 +39,9 @@ const initialState = {
     stringArrayThreshold: 0.8,
     stringArrayThresholdEnabled: true,
 
-    stringArrayEncoding: [],
+    stringArrayEncoding: [
+        STRING_ARRAY_ENCODING_NONE
+    ],
     stringArrayEncodingEnabled: true,
 
     numbersToExpressions: false,
@@ -97,6 +99,7 @@ export const options = (state = initialState, action) => {
         case types.SET_OPTIONS_PRESET: {
             return {
                 ...state,
+                ...action.options,
                 optionsPreset: action.optionsPreset
             };
         }

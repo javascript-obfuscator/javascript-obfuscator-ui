@@ -1,6 +1,10 @@
 import * as types from '../constants/ActionTypes';
+import {OPTIONS_PRESET_DEFAULT} from "../containers/OptionsContainer";
 
 const obfuscationWorker = new Worker('../workers/obfuscation-worker.js?v=' + new Date().getTime());
+
+export const OBFUSCATOR_WORKER_OBFUSCATE_EVENT = 'OBFUSCATOR_WORKER_OBFUSCATE_EVENT';
+export const OBFUSCATOR_WORKER_GET_OPTIONS_BY_PRESET_EVENT = 'OBFUSCATOR_WORKER_GET_OPTIONS_BY_PRESET_EVENT';
 
 export const updateCode = (code) => ({
     'type': types.UPDATE_CODE,
@@ -25,8 +29,11 @@ export const obfuscateCode = (code, options) => {
         }
 
         const message = {
-            code,
-            options
+            type: OBFUSCATOR_WORKER_OBFUSCATE_EVENT,
+            payload: {
+                code,
+                options
+            }
         };
 
         obfuscationWorker.postMessage(message);
@@ -39,36 +46,39 @@ export const obfuscateCode = (code, options) => {
 
                     resolve(result);
                 };
-            }),
+            })
         });
-
-        /**
-        const request = new Request('/obfuscate', {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body),
-        });
-
-        return {
-            type: types.OBFUSCATE,
-            payload: fetch(request).then((response) => response.json()),
-        }
-        */
     };
 };
 
-export const resetOptions = () => ({
-    'type': types.RESET_OPTIONS,
-});
+export const resetOptions = () => {
+    return (dispatch) => {
+        dispatch({
+            'type': types.RESET_OPTIONS,
+        });
+        setOptionsPreset(OPTIONS_PRESET_DEFAULT);
+    };
+};
 
-export const setOptionsPreset = (optionsPreset) => ({
-    'type': types.SET_OPTIONS_PRESET,
-    optionsPreset
-});
+export const setOptionsPreset = (optionsPreset) => {
+    return (dispatch) => {
+        const message = {
+            type: OBFUSCATOR_WORKER_GET_OPTIONS_BY_PRESET_EVENT,
+            payload: { optionsPreset }
+        };
+
+        obfuscationWorker.postMessage(message);
+        obfuscationWorker.onmessage = function (event) {
+            const options = JSON.parse(event.data);
+
+            dispatch({
+                type: types.SET_OPTIONS_PRESET,
+                optionsPreset,
+                options
+            });
+        };
+    };
+};
 
 export const toggleOption = (optionType) => ({
     'type': optionType

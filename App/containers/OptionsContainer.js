@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
@@ -64,299 +64,309 @@ const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
     {text: 'mangled-shuffled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED_SHUFFLED},
 ];
 
-const Options = ({dispatch, options}) =>
-    <Form className="OptionsForm">
-        <Grid columns={4} relaxed stackable doubling>
-            <Grid.Column style={{display: 'block'}}>
-                <Segment basic>
-                    <Button
-                        fluid
-                        onClick={() => dispatch(actions.resetOptions())}
-                    >
-                        Reset options
-                    </Button>
+const Options = ({dispatch, options}) => {
+    useEffect(
+        () => {
+            actions.setOptionsPreset(OPTIONS_PRESET_DEFAULT)
+        },
+        []
+    );
 
-                    <Divider/>
+    return (
+        <Form className="OptionsForm">
+            <Grid columns={4} relaxed stackable doubling>
+                <Grid.Column style={{display: 'block'}}>
+                    <Segment basic>
+                        <Button
+                            fluid
+                            onClick={() => dispatch(actions.resetOptions())}
+                        >
+                            Reset options
+                        </Button>
 
-                    <Form.Select
-                        label='Options Preset'
-                        value={options.optionsPreset}
-                        fluid
-                        onChange={(event, {value}) => dispatch(actions.setOptionsPreset(value))}
-                        options={OPTIONS_PRESET_OPTIONS}/>
+                        <Divider/>
 
-                    <Divider/>
+                        <Form.Select
+                            label='Options Preset'
+                            value={options.optionsPreset}
+                            fluid
+                            onChange={(event, {value}) => dispatch(actions.setOptionsPreset(value))}
+                            options={OPTIONS_PRESET_OPTIONS}/>
 
-                    <Form.Checkbox
-                        label='Compact code'
-                        checked={options.compact}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE))}/>
+                        <Divider/>
 
-                    <Form.Select
-                        label='Identifier Names Generator'
-                        value={options.identifierNamesGenerator}
-                        fluid
-                        onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value))}
-                        options={IDENTIFIER_NAMES_GENERATOR_OPTIONS}/>
+                        <Form.Checkbox
+                            label='Compact code'
+                            checked={options.compact}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE))}/>
 
-                    <EntryInputContainer
-                        label='Identifiers Dictionary'
-                        disabled={options.identifierNamesGenerator !== IDENTIFIER_NAMES_GENERATOR_DICTIONARY}
-                        actionAddEntryToState={(name) => dispatch(actions.addDictionaryIdentifier(name))}
-                        actionRemoveEntryFromState={(name) => dispatch(actions.removeDictionaryIdentifier(name))}
-                        placeholder="foo"
-                        entries={options.identifiersDictionary}
-                        buttonIcon="plus"/>
+                        <Form.Select
+                            label='Identifier Names Generator'
+                            value={options.identifierNamesGenerator}
+                            fluid
+                            onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value))}
+                            options={IDENTIFIER_NAMES_GENERATOR_OPTIONS}/>
 
-                    <Form.Input
-                        label='Identifiers Prefix'
-                        value={options.identifiersPrefix}
-                        placeholder=''
-                        onChange={(event, {value}) => dispatch(actions.setIdentifiersPrefix(value))}
-                    />
+                        <EntryInputContainer
+                            label='Identifiers Dictionary'
+                            disabled={options.identifierNamesGenerator !== IDENTIFIER_NAMES_GENERATOR_DICTIONARY}
+                            actionAddEntryToState={(name) => dispatch(actions.addDictionaryIdentifier(name))}
+                            actionRemoveEntryFromState={(name) => dispatch(actions.removeDictionaryIdentifier(name))}
+                            placeholder="foo"
+                            entries={options.identifiersDictionary}
+                            buttonIcon="plus"/>
 
-                    <Form.Checkbox
-                        label='Rename Globals'
-                        checked={options.renameGlobals}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS))}/>
+                        <Form.Input
+                            label='Identifiers Prefix'
+                            value={options.identifiersPrefix}
+                            placeholder=''
+                            onChange={(event, {value}) => dispatch(actions.setIdentifiersPrefix(value))}
+                        />
 
-                    <Form.Checkbox
-                        label='Rename Properties'
-                        checked={options.renameProperties}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_PROPERTIES))}/>
+                        <Form.Checkbox
+                            label='Rename Globals'
+                            checked={options.renameGlobals}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS))}/>
 
-                    <Divider/>
+                        <Form.Checkbox
+                            label='Rename Properties'
+                            checked={options.renameProperties}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_PROPERTIES))}/>
 
-                    <Form.Checkbox
-                        label='Simplify'
-                        checked={options.simplify}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SIMPLIFY))}/>
+                        <Divider/>
 
-                    <Divider/>
+                        <Form.Checkbox
+                            label='Simplify'
+                            checked={options.simplify}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SIMPLIFY))}/>
 
-                    <Form.Checkbox
-                        label='Control Flow Flattening'
-                        checked={options.controlFlowFlattening}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_CONTROL_FLOW_FLATTENING))}/>
+                        <Divider/>
 
-                    <Form.Input
-                        type='number'
-                        label='Control Flow Flattening Threshold'
-                        value={options.controlFlowFlatteningThreshold}
-                        min="0"
-                        max="1"
-                        step="0.1"
-                        onChange={(event, {value}) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(value)))}
-                        disabled={!options.controlFlowFlattening}/>
+                        <Form.Checkbox
+                            label='Control Flow Flattening'
+                            checked={options.controlFlowFlattening}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_CONTROL_FLOW_FLATTENING))}/>
 
-                    <Divider/>
+                        <Form.Input
+                            type='number'
+                            label='Control Flow Flattening Threshold'
+                            value={options.controlFlowFlatteningThreshold}
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            onChange={(event, {value}) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(value)))}
+                            disabled={!options.controlFlowFlattening}/>
 
-                    <Form.Checkbox
-                        label='Dead Code Injection'
-                        checked={options.deadCodeInjection}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEAD_CODE_INJECTION))}/>
+                        <Divider/>
 
-                    <Form.Input
-                        type='number'
-                        label='Dead Code Injection Threshold'
-                        value={options.deadCodeInjectionThreshold}
-                        min="0"
-                        max="1"
-                        step="0.1"
-                        onChange={(event, {value}) => dispatch(actions.setDeadCodeInjectionThreshold(parseFloat(value)))}
-                        disabled={!options.deadCodeInjection}/>
+                        <Form.Checkbox
+                            label='Dead Code Injection'
+                            checked={options.deadCodeInjection}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEAD_CODE_INJECTION))}/>
+
+                        <Form.Input
+                            type='number'
+                            label='Dead Code Injection Threshold'
+                            value={options.deadCodeInjectionThreshold}
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            onChange={(event, {value}) => dispatch(actions.setDeadCodeInjectionThreshold(parseFloat(value)))}
+                            disabled={!options.deadCodeInjection}/>
 
 
-                </Segment>
-            </Grid.Column>
+                    </Segment>
+                </Grid.Column>
 
-            <Grid.Column>
-                <Segment basic>
+                <Grid.Column>
+                    <Segment basic>
 
-                    <Form.Checkbox
-                        label='String Array'
-                        checked={options.stringArray}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY))}/>
+                        <Form.Checkbox
+                            label='String Array'
+                            checked={options.stringArray}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY))}/>
 
-                    <Form.Checkbox
-                        label='Rotate String Array'
-                        checked={options.rotateStringArray}
-                        disabled={!options.rotateStringArrayEnabled}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ROTATE_STRING_ARRAY))}/>
+                        <Form.Checkbox
+                            label='Rotate String Array'
+                            checked={options.rotateStringArray}
+                            disabled={!options.rotateStringArrayEnabled}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ROTATE_STRING_ARRAY))}/>
 
-                    <Form.Checkbox
-                        label='Shuffle String Array'
-                        checked={options.shuffleStringArray}
-                        disabled={!options.shuffleStringArrayEnabled}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SHUFFLE_STRING_ARRAY))}/>
+                        <Form.Checkbox
+                            label='Shuffle String Array'
+                            checked={options.shuffleStringArray}
+                            disabled={!options.shuffleStringArrayEnabled}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SHUFFLE_STRING_ARRAY))}/>
 
-                    <Form.Select
-                        disabled={!options.stringArrayEncodingEnabled}
-                        label='String Array Encoding'
-                        fluid
-                        multiple
-                        placeholder={STRING_ARRAY_ENCODING_NONE}
-                        value={options.stringArrayEncoding}
-                        onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
-                        options={STRING_ARRAY_ENCODING_OPTIONS}/>
+                        <Form.Select
+                            disabled={!options.stringArrayEncodingEnabled}
+                            label='String Array Encoding'
+                            fluid
+                            multiple
+                            placeholder={STRING_ARRAY_ENCODING_NONE}
+                            value={options.stringArrayEncoding}
+                            onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
+                            options={STRING_ARRAY_ENCODING_OPTIONS}/>
 
-                    <Form.Input
-                        type='number'
-                        label='String Array Threshold'
-                        value={options.stringArrayThreshold}
-                        min="0"
-                        max="1"
-                        step="0.1"
-                        onChange={(event, {value}) => dispatch(actions.setStringArrayThreshold(parseFloat(value)))}
-                        disabled={!options.stringArrayThresholdEnabled}/>
+                        <Form.Input
+                            type='number'
+                            label='String Array Threshold'
+                            value={options.stringArrayThreshold}
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            onChange={(event, {value}) => dispatch(actions.setStringArrayThreshold(parseFloat(value)))}
+                            disabled={!options.stringArrayThresholdEnabled}/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <Form.Checkbox
-                        label='Split Strings'
-                        checked={options.splitStrings}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SPLIT_STRINGS))}/>
+                        <Form.Checkbox
+                            label='Split Strings'
+                            checked={options.splitStrings}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SPLIT_STRINGS))}/>
 
-                    <Form.Input
-                        type='number'
-                        label='Split Strings Chunk Length'
-                        value={options.splitStringsChunkLength}
-                        min="1"
-                        step="1"
-                        onChange={(event, {value}) => dispatch(actions.setSplitStringsChunkLength(parseInt(value)))}
-                        disabled={!options.splitStringsChunkLengthEnabled}/>
+                        <Form.Input
+                            type='number'
+                            label='Split Strings Chunk Length'
+                            value={options.splitStringsChunkLength}
+                            min="1"
+                            step="1"
+                            onChange={(event, {value}) => dispatch(actions.setSplitStringsChunkLength(parseInt(value)))}
+                            disabled={!options.splitStringsChunkLengthEnabled}/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <Form.Checkbox
-                        label='Transform Object Keys'
-                        checked={options.transformObjectKeys}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_TRANSFORM_OBJECT_KEYS))}/>
+                        <Form.Checkbox
+                            label='Transform Object Keys'
+                            checked={options.transformObjectKeys}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_TRANSFORM_OBJECT_KEYS))}/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <Form.Checkbox
-                        label='Numbers To Expressions'
-                        checked={options.numbersToExpressions}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_NUMBERS_TO_EXPRESSIONS))}/>
+                        <Form.Checkbox
+                            label='Numbers To Expressions'
+                            checked={options.numbersToExpressions}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_NUMBERS_TO_EXPRESSIONS))}/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <Form.Checkbox
-                        label='Unicode Escape Sequence'
-                        checked={options.unicodeEscapeSequence}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE))}/>
+                        <Form.Checkbox
+                            label='Unicode Escape Sequence'
+                            checked={options.unicodeEscapeSequence}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE))}/>
 
-                </Segment>
-            </Grid.Column>
+                    </Segment>
+                </Grid.Column>
 
-            <Grid.Column>
-                <Segment basic>
+                <Grid.Column>
+                    <Segment basic>
 
-                    <Form.Checkbox
-                        label='Disable Console Output'
-                        checked={options.disableConsoleOutput}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT))}/>
+                        <Form.Checkbox
+                            label='Disable Console Output'
+                            checked={options.disableConsoleOutput}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT))}/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <Form.Checkbox
-                        label='Self Defending'
-                        checked={options.selfDefending}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING))}/>
+                        <Form.Checkbox
+                            label='Self Defending'
+                            checked={options.selfDefending}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING))}/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <Form.Checkbox
-                        label='Debug Protection'
-                        checked={options.debugProtection}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION))}/>
+                        <Form.Checkbox
+                            label='Debug Protection'
+                            checked={options.debugProtection}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION))}/>
 
-                    <Form.Checkbox
-                        label='Debug Protection Interval'
-                        checked={options.debugProtectionInterval}
-                        disabled={!options.debugProtection}
-                        onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL))}/>
+                        <Form.Checkbox
+                            label='Debug Protection Interval'
+                            checked={options.debugProtectionInterval}
+                            disabled={!options.debugProtection}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL))}/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <EntryInputContainer
-                        label='Domain lock'
-                        disabled={!options.domainLockEnabled}
-                        actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain))}
-                        actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain))}
-                        placeholder="domain.com"
-                        entries={options.domainLock}
-                        buttonIcon="plus"/>
+                        <EntryInputContainer
+                            label='Domain lock'
+                            disabled={!options.domainLockEnabled}
+                            actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain))}
+                            actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain))}
+                            placeholder="domain.com"
+                            entries={options.domainLock}
+                            buttonIcon="plus"/>
 
-                    <EntryInputContainer
-                        label='Reserved Names'
-                        actionAddEntryToState={(name) => dispatch(actions.addReservedName(name))}
-                        actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name))}
-                        placeholder="^someVariable *or *RegExp"
-                        entries={options.reservedNames}
-                        buttonIcon="plus"/>
+                        <EntryInputContainer
+                            label='Reserved Names'
+                            actionAddEntryToState={(name) => dispatch(actions.addReservedName(name))}
+                            actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name))}
+                            placeholder="^someVariable *or *RegExp"
+                            entries={options.reservedNames}
+                            buttonIcon="plus"/>
 
-                    <EntryInputContainer
-                        label='Reserved Strings'
-                        actionAddEntryToState={(string) => dispatch(actions.addReservedString(string))}
-                        actionRemoveEntryFromState={(string) => dispatch(actions.removeReservedString(string))}
-                        placeholder="^some *string *or RegExp"
-                        entries={options.reservedStrings}
-                        buttonIcon="plus"/>
+                        <EntryInputContainer
+                            label='Reserved Strings'
+                            actionAddEntryToState={(string) => dispatch(actions.addReservedString(string))}
+                            actionRemoveEntryFromState={(string) => dispatch(actions.removeReservedString(string))}
+                            placeholder="^some *string *or RegExp"
+                            entries={options.reservedStrings}
+                            buttonIcon="plus"/>
 
-                </Segment>
-            </Grid.Column>
+                    </Segment>
+                </Grid.Column>
 
-            <Grid.Column>
-                <Segment basic>
+                <Grid.Column>
+                    <Segment basic>
 
-                    <Form.Select
-                        label='Sourcemaps'
-                        value={options.sourceMapMode}
-                        fluid
-                        onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value))}
-                        options={SOURCEMAP_OPTIONS}/>
+                        <Form.Select
+                            label='Sourcemaps'
+                            value={options.sourceMapMode}
+                            fluid
+                            onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value))}
+                            options={SOURCEMAP_OPTIONS}/>
 
-                    <Form.Input
-                        label='Source Map Base URL'
-                        disabled={!options.sourceMapSeparate}
-                        onChange={(event, {value}) => dispatch(actions.setSourceMapBaseUrl(value))}
-                        value={options.sourceMapBaseUrl}
-                        placeholder='http://localhost:3000'/>
+                        <Form.Input
+                            label='Source Map Base URL'
+                            disabled={!options.sourceMapSeparate}
+                            onChange={(event, {value}) => dispatch(actions.setSourceMapBaseUrl(value))}
+                            value={options.sourceMapBaseUrl}
+                            placeholder='http://localhost:3000'/>
 
-                    <Form.Input
-                        label='Source Map File Name'
-                        disabled={!options.sourceMapSeparate}
-                        onChange={(event, {value}) => dispatch(actions.setSourceMapFileName(value))}
-                        value={options.sourceMapFileName}
-                        placeholder='example'/>
+                        <Form.Input
+                            label='Source Map File Name'
+                            disabled={!options.sourceMapSeparate}
+                            onChange={(event, {value}) => dispatch(actions.setSourceMapFileName(value))}
+                            value={options.sourceMapFileName}
+                            placeholder='example'/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <Form.Input
-                        type='number'
-                        label='Seed'
-                        value={options.seed}
-                        min="0"
-                        max="99999999"
-                        step="1"
-                        onChange={(event, {value}) => dispatch(actions.setSeed(parseInt(value)))}/>
+                        <Form.Input
+                            type='number'
+                            label='Seed'
+                            value={options.seed}
+                            min="0"
+                            max="99999999"
+                            step="1"
+                            onChange={(event, {value}) => dispatch(actions.setSeed(parseInt(value)))}/>
 
-                    <Divider/>
+                        <Divider/>
 
-                    <Form.Select
-                        label='Target'
-                        value={options.target}
-                        fluid
-                        onChange={(event, {value}) => dispatch(actions.setTarget(value))}
-                        options={TARGET_OPTIONS}/>
+                        <Form.Select
+                            label='Target'
+                            value={options.target}
+                            fluid
+                            onChange={(event, {value}) => dispatch(actions.setTarget(value))}
+                            options={TARGET_OPTIONS}/>
 
-                </Segment>
-            </Grid.Column>
+                    </Segment>
+                </Grid.Column>
 
-        </Grid>
-    </Form>;
+            </Grid>
+        </Form>
+    );
+};
 
 
 Options.propTypes = {
