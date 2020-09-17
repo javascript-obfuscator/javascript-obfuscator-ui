@@ -40,6 +40,14 @@ const STRING_ARRAY_ENCODING_OPTIONS = [
     {text: 'RC4', value: STRING_ARRAY_ENCODING_RC4},
 ];
 
+export const STRING_ARRAY_WRAPPERS_TYPE_VARIABLE = 'variable';
+export const STRING_ARRAY_WRAPPERS_TYPE_FUNCTION = 'function';
+
+const STRING_ARRAY_WRAPPERS_TYPE_OPTIONS = [
+    {text: 'Variable', value: STRING_ARRAY_WRAPPERS_TYPE_VARIABLE},
+    {text: 'Function', value: STRING_ARRAY_WRAPPERS_TYPE_FUNCTION},
+];
+
 export const TARGET_BROWSER = 'browser';
 export const TARGET_BROWSER_NO_EVAL = 'browser-no-eval';
 export const TARGET_NODE = 'node';
@@ -196,16 +204,6 @@ const Options = ({dispatch, options}) => {
                             disabled={!options.shuffleStringArrayEnabled}
                             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SHUFFLE_STRING_ARRAY))}/>
 
-                        <Form.Select
-                            disabled={!options.stringArrayEncodingEnabled}
-                            label='String Array Encoding'
-                            fluid
-                            multiple
-                            placeholder={STRING_ARRAY_ENCODING_NONE}
-                            value={options.stringArrayEncoding}
-                            onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
-                            options={STRING_ARRAY_ENCODING_OPTIONS}/>
-
                         <Form.Input
                             type='number'
                             label='String Array Threshold'
@@ -215,6 +213,41 @@ const Options = ({dispatch, options}) => {
                             step="0.05"
                             onChange={(event, {value}) => dispatch(actions.setStringArrayThreshold(parseFloat(value)))}
                             disabled={!options.stringArrayThresholdEnabled}/>
+
+                        <Form.Input
+                            type='number'
+                            label='String Array Wrappers Count'
+                            value={options.stringArrayWrappersCount}
+                            min="0"
+                            step="1"
+                            onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersCount(parseInt(value)))}
+                            disabled={!options.stringArray}/>
+
+                        <Form.Select
+                            label='String Array Wrappers Type'
+                            fluid
+                            placeholder={STRING_ARRAY_WRAPPERS_TYPE_VARIABLE}
+                            value={options.stringArrayWrappersType}
+                            onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersType(value))}
+                            options={STRING_ARRAY_WRAPPERS_TYPE_OPTIONS}
+                            disabled={!options.stringArray || !options.stringArrayWrappersCount}
+                        />
+
+                        <Form.Checkbox
+                            label='String Array Wrappers Chained Calls'
+                            checked={options.stringArrayWrappersChainedCalls}
+                            disabled={!options.stringArray || !options.stringArrayWrappersCount}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY_WRAPPERS_CHAINED_CALLS))}/>
+
+                        <Form.Select
+                            disabled={!options.stringArrayEncodingEnabled}
+                            label='String Array Encoding'
+                            fluid
+                            multiple
+                            placeholder={STRING_ARRAY_ENCODING_NONE}
+                            value={options.stringArrayEncoding}
+                            onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
+                            options={STRING_ARRAY_ENCODING_OPTIONS}/>
 
                         <Divider/>
 

@@ -139,6 +139,16 @@ export const setStringArrayEncoding = (encoding) => ({
     encoding
 });
 
+export const setStringArrayWrappersCount = (stringArrayWrappersCount) => ({
+    'type': types.SET_STRING_ARRAY_WRAPPERS_COUNT,
+    stringArrayWrappersCount
+});
+
+export const setStringArrayWrappersType = (stringArrayWrappersType) => ({
+    'type': types.SET_STRING_ARRAY_WRAPPERS_TYPE,
+    stringArrayWrappersType
+});
+
 export const setSourceMapMode = (mode) => ({
     'type': types.SET_SOURCEMAP_MODE,
     mode

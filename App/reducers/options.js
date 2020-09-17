@@ -2,13 +2,13 @@ import * as types from '../constants/ActionTypes';
 
 import {
     SOURCEMAP_SEPARATE,
-    SOURCEMAP_OFF,
     OPTIONS_PRESET_DEFAULT,
     IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL,
     TARGET_BROWSER,
     STRING_ARRAY_ENCODING_NONE,
     STRING_ARRAY_ENCODING_BASE64,
-    STRING_ARRAY_ENCODING_RC4
+    STRING_ARRAY_ENCODING_RC4,
+    STRING_ARRAY_WRAPPERS_TYPE_VARIABLE
 } from '../containers/OptionsContainer';
 
 const initialState = {
@@ -43,6 +43,10 @@ const initialState = {
         STRING_ARRAY_ENCODING_NONE
     ],
     stringArrayEncodingEnabled: true,
+
+    stringArrayWrappersCount: 1,
+    stringArrayWrappersChainedCalls: true,
+    stringArrayWrappersType: STRING_ARRAY_WRAPPERS_TYPE_VARIABLE,
 
     numbersToExpressions: false,
 
@@ -200,6 +204,24 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 stringArrayThreshold: action.threshold
+            };
+
+        case types.SET_STRING_ARRAY_WRAPPERS_COUNT:
+            return {
+                ...state,
+                stringArrayWrappersCount: action.stringArrayWrappersCount
+            };
+
+        case types.TOGGLE_STRING_ARRAY_WRAPPERS_CHAINED_CALLS:
+            return {
+                ...state,
+                stringArrayWrappersChainedCalls: !state.stringArrayWrappersChainedCalls
+            };
+
+        case types.SET_STRING_ARRAY_WRAPPERS_TYPE:
+            return {
+                ...state,
+                stringArrayWrappersType: action.stringArrayWrappersType
             };
 
         case types.TOGGLE_SOURCEMAP: {
