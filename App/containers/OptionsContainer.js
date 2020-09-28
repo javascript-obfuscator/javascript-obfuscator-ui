@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 
-import {Form, Grid, Segment, Divider, Button} from 'semantic-ui-react';
+import {Form, Grid, Header, Segment, Divider, Button} from 'semantic-ui-react';
 
 import EntryInputContainer from '../containers/EntryInputContainer';
 
@@ -16,10 +16,10 @@ export const OPTIONS_PRESET_MEDIUM_OBFUSCATION = 'medium-obfuscation';
 export const OPTIONS_PRESET_HIGH_OBFUSCATION = 'high-obfuscation';
 
 const OPTIONS_PRESET_OPTIONS = [
-    {text: 'default', value: OPTIONS_PRESET_DEFAULT},
-    {text: 'low', value: OPTIONS_PRESET_LOW_OBFUSCATION},
-    {text: 'medium', value: OPTIONS_PRESET_MEDIUM_OBFUSCATION},
-    {text: 'high', value: OPTIONS_PRESET_HIGH_OBFUSCATION},
+    {text: 'Default', value: OPTIONS_PRESET_DEFAULT},
+    {text: 'Low', value: OPTIONS_PRESET_LOW_OBFUSCATION},
+    {text: 'Medium', value: OPTIONS_PRESET_MEDIUM_OBFUSCATION},
+    {text: 'High', value: OPTIONS_PRESET_HIGH_OBFUSCATION},
 ];
 
 export const SOURCEMAP_INLINE = 'inline';
@@ -64,10 +64,10 @@ export const IDENTIFIER_NAMES_GENERATOR_MANGLED = 'mangled';
 export const IDENTIFIER_NAMES_GENERATOR_MANGLED_SHUFFLED = 'mangled-shuffled';
 
 const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
-    {text: 'dictionary', value: IDENTIFIER_NAMES_GENERATOR_DICTIONARY},
-    {text: 'hexadecimal', value: IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL},
-    {text: 'mangled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED},
-    {text: 'mangled-shuffled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED_SHUFFLED},
+    {text: 'Dictionary', value: IDENTIFIER_NAMES_GENERATOR_DICTIONARY},
+    {text: 'Hexadecimal', value: IDENTIFIER_NAMES_GENERATOR_HEXADECIMAL},
+    {text: 'Mangled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED},
+    {text: 'Mangled-shuffled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED_SHUFFLED},
 ];
 
 const Options = ({dispatch, options}) => {
@@ -101,91 +101,101 @@ const Options = ({dispatch, options}) => {
 
                         <Divider/>
 
-                        <Form.Checkbox
-                            label='Compact code'
-                            checked={options.compact}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE))}/>
-
                         <Form.Select
-                            label='Identifier Names Generator'
-                            value={options.identifierNamesGenerator}
+                            label='Target'
+                            value={options.target}
                             fluid
-                            onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value))}
-                            options={IDENTIFIER_NAMES_GENERATOR_OPTIONS}/>
+                            onChange={(event, {value}) => dispatch(actions.setTarget(value))}
+                            options={TARGET_OPTIONS}/>
+
+                        <Form.Input
+                            type='number'
+                            label='Seed'
+                            value={options.seed}
+                            min="0"
+                            max="99999999"
+                            step="1"
+                            onChange={(event, {value}) => dispatch(actions.setSeed(parseInt(value)))}/>
+
+                        <Divider/>
+
+                        <Form.Checkbox
+                            label='Disable Console Output'
+                            checked={options.disableConsoleOutput}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT))}/>
+
+                        <Divider/>
+
+                        <Form.Checkbox
+                            label='Self Defending'
+                            checked={options.selfDefending}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING))}/>
+
+                        <Divider/>
+
+                        <Form.Checkbox
+                            label='Debug Protection'
+                            checked={options.debugProtection}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION))}/>
+
+                        <Form.Checkbox
+                            label='Debug Protection Interval'
+                            checked={options.debugProtectionInterval}
+                            disabled={!options.debugProtection}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL))}/>
+
+                        <Divider/>
 
                         <EntryInputContainer
-                            label='Identifiers Dictionary'
-                            disabled={options.identifierNamesGenerator !== IDENTIFIER_NAMES_GENERATOR_DICTIONARY}
-                            actionAddEntryToState={(name) => dispatch(actions.addDictionaryIdentifier(name))}
-                            actionRemoveEntryFromState={(name) => dispatch(actions.removeDictionaryIdentifier(name))}
-                            placeholder="foo"
-                            entries={options.identifiersDictionary}
+                            label='Domain lock'
+                            disabled={!options.domainLockEnabled}
+                            actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain))}
+                            actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain))}
+                            placeholder="domain.com"
+                            entries={options.domainLock}
                             buttonIcon="plus"/>
 
-                        <Form.Input
-                            label='Identifiers Prefix'
-                            value={options.identifiersPrefix}
-                            placeholder=''
-                            onChange={(event, {value}) => dispatch(actions.setIdentifiersPrefix(value))}
-                        />
-
-                        <Form.Checkbox
-                            label='Rename Globals'
-                            checked={options.renameGlobals}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS))}/>
-
-                        <Form.Checkbox
-                            label='Rename Properties'
-                            checked={options.renameProperties}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_PROPERTIES))}/>
-
                         <Divider/>
 
                         <Form.Checkbox
-                            label='Simplify'
-                            checked={options.simplify}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SIMPLIFY))}/>
+                            label='Enable Source Map'
+                            checked={options.sourceMap}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SOURCEMAP))}/>
 
-                        <Divider/>
-
-                        <Form.Checkbox
-                            label='Control Flow Flattening'
-                            checked={options.controlFlowFlattening}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_CONTROL_FLOW_FLATTENING))}/>
-
-                        <Form.Input
-                            type='number'
-                            label='Control Flow Flattening Threshold'
-                            value={options.controlFlowFlatteningThreshold}
-                            min="0"
-                            max="1"
-                            step="0.1"
-                            onChange={(event, {value}) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(value)))}
-                            disabled={!options.controlFlowFlattening}/>
-
-                        <Divider/>
-
-                        <Form.Checkbox
-                            label='Dead Code Injection'
-                            checked={options.deadCodeInjection}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEAD_CODE_INJECTION))}/>
+                        <Form.Select
+                            label='Source Map Mode'
+                            value={options.sourceMapMode}
+                            disabled={!options.sourceMap}
+                            fluid
+                            onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value))}
+                            options={SOURCEMAP_OPTIONS}/>
 
                         <Form.Input
-                            type='number'
-                            label='Dead Code Injection Threshold'
-                            value={options.deadCodeInjectionThreshold}
-                            min="0"
-                            max="1"
-                            step="0.1"
-                            onChange={(event, {value}) => dispatch(actions.setDeadCodeInjectionThreshold(parseFloat(value)))}
-                            disabled={!options.deadCodeInjection}/>
+                            label='Source Map Base URL'
+                            disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
+                            onChange={(event, {value}) => dispatch(actions.setSourceMapBaseUrl(value))}
+                            value={options.sourceMapBaseUrl}
+                            placeholder='http://localhost:3000'/>
 
+                        <Form.Input
+                            label='Source Map File Name'
+                            disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
+                            onChange={(event, {value}) => dispatch(actions.setSourceMapFileName(value))}
+                            value={options.sourceMapFileName}
+                            placeholder='example'/>
 
                     </Segment>
                 </Grid.Column>
 
                 <Grid.Column>
                     <Segment basic>
+                        <Header as='h4'>
+                            <Header.Content>
+                                Strings Transformations
+                            </Header.Content>
+                        </Header>
+
+                        <Divider/>
 
                         <Form.Checkbox
                             label='String Array'
@@ -268,75 +278,9 @@ const Options = ({dispatch, options}) => {
                         <Divider/>
 
                         <Form.Checkbox
-                            label='Transform Object Keys'
-                            checked={options.transformObjectKeys}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_TRANSFORM_OBJECT_KEYS))}/>
-
-                        <Divider/>
-
-                        <Form.Checkbox
-                            label='Numbers To Expressions'
-                            checked={options.numbersToExpressions}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_NUMBERS_TO_EXPRESSIONS))}/>
-
-                        <Divider/>
-
-                        <Form.Checkbox
                             label='Unicode Escape Sequence'
                             checked={options.unicodeEscapeSequence}
                             onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE))}/>
-
-                    </Segment>
-                </Grid.Column>
-
-                <Grid.Column>
-                    <Segment basic>
-
-                        <Form.Checkbox
-                            label='Disable Console Output'
-                            checked={options.disableConsoleOutput}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DISABLE_CONSOLE_OUTPUT))}/>
-
-                        <Divider/>
-
-                        <Form.Checkbox
-                            label='Self Defending'
-                            checked={options.selfDefending}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SELF_DEFENDING))}/>
-
-                        <Divider/>
-
-                        <Form.Checkbox
-                            label='Debug Protection'
-                            checked={options.debugProtection}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION))}/>
-
-                        <Form.Checkbox
-                            label='Debug Protection Interval'
-                            checked={options.debugProtectionInterval}
-                            disabled={!options.debugProtection}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL))}/>
-
-                        <Divider/>
-
-                        <EntryInputContainer
-                            label='Domain lock'
-                            disabled={!options.domainLockEnabled}
-                            actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain))}
-                            actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain))}
-                            placeholder="domain.com"
-                            entries={options.domainLock}
-                            buttonIcon="plus"/>
-
-                        <Divider/>
-
-                        <EntryInputContainer
-                            label='Reserved Names'
-                            actionAddEntryToState={(name) => dispatch(actions.addReservedName(name))}
-                            actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name))}
-                            placeholder="^someVariable *or *RegExp"
-                            entries={options.reservedNames}
-                            buttonIcon="plus"/>
 
                         <Divider/>
 
@@ -361,53 +305,128 @@ const Options = ({dispatch, options}) => {
 
                 <Grid.Column>
                     <Segment basic>
-
-                        <Form.Checkbox
-                            label='Enable Source Map'
-                            checked={options.sourceMap}
-                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SOURCEMAP))}/>
-
-                        <Form.Select
-                            label='Source Map Mode'
-                            value={options.sourceMapMode}
-                            disabled={!options.sourceMap}
-                            fluid
-                            onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value))}
-                            options={SOURCEMAP_OPTIONS}/>
-
-                        <Form.Input
-                            label='Source Map Base URL'
-                            disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
-                            onChange={(event, {value}) => dispatch(actions.setSourceMapBaseUrl(value))}
-                            value={options.sourceMapBaseUrl}
-                            placeholder='http://localhost:3000'/>
-
-                        <Form.Input
-                            label='Source Map File Name'
-                            disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
-                            onChange={(event, {value}) => dispatch(actions.setSourceMapFileName(value))}
-                            value={options.sourceMapFileName}
-                            placeholder='example'/>
+                        <Header as='h4'>
+                            <Header.Content>
+                                Identifiers Transformations
+                            </Header.Content>
+                        </Header>
 
                         <Divider/>
+
+                        <Form.Select
+                            label='Identifier Names Generator'
+                            value={options.identifierNamesGenerator}
+                            fluid
+                            onChange={(event, {value}) => dispatch(actions.setIdentifierNamesGenerator(value))}
+                            options={IDENTIFIER_NAMES_GENERATOR_OPTIONS}/>
+
+                        <EntryInputContainer
+                            label='Identifiers Dictionary'
+                            disabled={options.identifierNamesGenerator !== IDENTIFIER_NAMES_GENERATOR_DICTIONARY}
+                            actionAddEntryToState={(name) => dispatch(actions.addDictionaryIdentifier(name))}
+                            actionRemoveEntryFromState={(name) => dispatch(actions.removeDictionaryIdentifier(name))}
+                            placeholder="foo"
+                            entries={options.identifiersDictionary}
+                            buttonIcon="plus"/>
+
+                        <Form.Input
+                            label='Identifiers Prefix'
+                            value={options.identifiersPrefix}
+                            placeholder=''
+                            onChange={(event, {value}) => dispatch(actions.setIdentifiersPrefix(value))}
+                        />
+
+                        <Divider/>
+
+                        <Form.Checkbox
+                            label='Rename Globals'
+                            checked={options.renameGlobals}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS))}/>
+
+                        <Form.Checkbox
+                            label='Rename Properties'
+                            checked={options.renameProperties}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_PROPERTIES))}/>
+
+                        <Divider/>
+
+                        <EntryInputContainer
+                            label='Reserved Names'
+                            actionAddEntryToState={(name) => dispatch(actions.addReservedName(name))}
+                            actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name))}
+                            placeholder="^someVariable *or *RegExp"
+                            entries={options.reservedNames}
+                            buttonIcon="plus"/>
+                    </Segment>
+                </Grid.Column>
+
+                <Grid.Column>
+                    <Segment basic>
+                        <Header as='h4'>
+                            <Header.Content>
+                                Other Transformations
+                            </Header.Content>
+                        </Header>
+
+                        <Divider/>
+
+                        <Form.Checkbox
+                            label='Compact code'
+                            checked={options.compact}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_COMPACT_CODE))}/>
+
+                        <Form.Checkbox
+                            label='Simplify code'
+                            checked={options.simplify}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SIMPLIFY))}/>
+
+                        <Divider/>
+
+                        <Form.Checkbox
+                            label='Transform Object Keys'
+                            checked={options.transformObjectKeys}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_TRANSFORM_OBJECT_KEYS))}/>
+
+                        <Divider/>
+
+                        <Form.Checkbox
+                            label='Numbers To Expressions'
+                            checked={options.numbersToExpressions}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_NUMBERS_TO_EXPRESSIONS))}/>
+
+                        <Divider/>
+
+                        <Form.Checkbox
+                            label='Control Flow Flattening'
+                            checked={options.controlFlowFlattening}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_CONTROL_FLOW_FLATTENING))}/>
 
                         <Form.Input
                             type='number'
-                            label='Seed'
-                            value={options.seed}
+                            label='Control Flow Flattening Threshold'
+                            value={options.controlFlowFlatteningThreshold}
                             min="0"
-                            max="99999999"
-                            step="1"
-                            onChange={(event, {value}) => dispatch(actions.setSeed(parseInt(value)))}/>
+                            max="1"
+                            step="0.1"
+                            onChange={(event, {value}) => dispatch(actions.setControlFlowFlatteningThreshold(parseFloat(value)))}
+                            disabled={!options.controlFlowFlattening}/>
 
                         <Divider/>
 
-                        <Form.Select
-                            label='Target'
-                            value={options.target}
-                            fluid
-                            onChange={(event, {value}) => dispatch(actions.setTarget(value))}
-                            options={TARGET_OPTIONS}/>
+                        <Form.Checkbox
+                            label='Dead Code Injection'
+                            checked={options.deadCodeInjection}
+                            onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEAD_CODE_INJECTION))}/>
+
+                        <Form.Input
+                            type='number'
+                            label='Dead Code Injection Threshold'
+                            value={options.deadCodeInjectionThreshold}
+                            min="0"
+                            max="1"
+                            step="0.1"
+                            onChange={(event, {value}) => dispatch(actions.setDeadCodeInjectionThreshold(parseFloat(value)))}
+                            disabled={!options.deadCodeInjection}/>
 
                     </Segment>
                 </Grid.Column>
