@@ -104,6 +104,16 @@ export const removeReservedName = (name) => ({
     name
 });
 
+export const addForceTransformString = (string) => ({
+    'type': types.ADD_FORCE_TRANSFORM_STRING,
+    string
+});
+
+export const removeForceTransformString = (string) => ({
+    'type': types.REMOVE_FORCE_TRANSFORM_STRING,
+    string
+});
+
 export const addReservedString = (string) => ({
     'type': types.ADD_RESERVED_STRING,
     string

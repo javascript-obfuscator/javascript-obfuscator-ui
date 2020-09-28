@@ -57,6 +57,8 @@ const initialState = {
 
     domainLock: [],
     domainLockEnabled: true,
+
+    forceTransformStrings: [],
     reservedNames: [],
     reservedStrings: [],
 
@@ -284,6 +286,24 @@ export const options = (state = initialState, action) => {
                 ...state,
                 reservedNames: state.reservedNames.filter((name) => name !== action.name),
             };
+
+        case types.ADD_FORCE_TRANSFORM_STRING: {
+            const string = action.string;
+            if (state.forceTransformStrings.indexOf(name) !== -1)
+                return state;
+
+            return {
+                ...state,
+                forceTransformStrings: [...state.forceTransformStrings, string],
+            };
+        }
+
+        case types.REMOVE_FORCE_TRANSFORM_STRING: {
+            return {
+                ...state,
+                forceTransformStrings: state.forceTransformStrings.filter((string) => string !== action.string)
+            };
+        }
 
         case types.ADD_RESERVED_STRING: {
             const string = action.string;

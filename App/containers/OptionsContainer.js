@@ -328,12 +328,24 @@ const Options = ({dispatch, options}) => {
                             entries={options.domainLock}
                             buttonIcon="plus"/>
 
+                        <Divider/>
+
                         <EntryInputContainer
                             label='Reserved Names'
                             actionAddEntryToState={(name) => dispatch(actions.addReservedName(name))}
                             actionRemoveEntryFromState={(name) => dispatch(actions.removeReservedName(name))}
                             placeholder="^someVariable *or *RegExp"
                             entries={options.reservedNames}
+                            buttonIcon="plus"/>
+
+                        <Divider/>
+
+                        <EntryInputContainer
+                            label='Force Transform Strings'
+                            actionAddEntryToState={(string) => dispatch(actions.addForceTransformString(string))}
+                            actionRemoveEntryFromState={(string) => dispatch(actions.removeForceTransformString(string))}
+                            placeholder="^some *string *or RegExp"
+                            entries={options.forceTransformStrings}
                             buttonIcon="plus"/>
 
                         <EntryInputContainer
