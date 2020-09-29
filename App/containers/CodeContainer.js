@@ -257,14 +257,12 @@ class CodeContainer extends Component {
         const tabIndex = this.state.selectedTabIndex;
 
         return (
-            <div>
-                <Tab
-                    activeIndex={tabIndex}
-                    menu={{attached: 'top', stackable: true, widths: 'three'}}
-                    panes={this.buildPanes()}
-                    onTabChange={(event, data) => this.onTabClick(data.activeIndex)}
-                />
-            </div>
+            <Tab
+                activeIndex={tabIndex}
+                menu={{attached: 'top', stackable: true, widths: 'three'}}
+                panes={this.buildPanes()}
+                onTabChange={(event, data) => this.onTabClick(data.activeIndex)}
+            />
         );
     }
 }

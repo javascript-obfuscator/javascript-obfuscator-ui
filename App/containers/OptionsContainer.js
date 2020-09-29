@@ -7,7 +7,9 @@ const ReactMarkdown = require('react-markdown')
 import {Container, Form, Grid, Header, Segment, Divider, Button} from 'semantic-ui-react';
 
 import EntryInputContainer from '../containers/EntryInputContainer';
-import {emojiSupportRenderer, getOptionsMarkdown, headingRenderer} from "../util/get-options-markdown";
+import {getOptionsMarkdown} from '../util/get-options-markdown';
+import {getHeadingRenderer} from '../util/get-heading-renderer';
+import {getEmojiSupportRenderer} from '../util/get-emoji-support-renderer';
 
 import * as types from '../constants/ActionTypes';
 import * as actions from '../actions';
@@ -433,11 +435,10 @@ const Options = ({dispatch, options}) => {
 
                         </Segment>
                     </Grid.Column>
-
                 </Grid>
             </Form>
 
-            <Container>
+            <Segment secondary>
                 <Header as="h2">
                     Available Options:
                 </Header>
@@ -445,11 +446,11 @@ const Options = ({dispatch, options}) => {
                 <ReactMarkdown
                     source={getOptionsMarkdown()}
                     renderers={{
-                        heading: headingRenderer,
-                        text: emojiSupportRenderer
+                        heading: getHeadingRenderer,
+                        text: getEmojiSupportRenderer
                     }}
                 />
-            </Container>
+            </Segment>
         </React.Fragment>
     );
 };

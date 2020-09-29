@@ -67,8 +67,7 @@ class App extends Component {
         const hasObfuscatedCode = obfuscatedCode.length !== 0;
 
         return (
-            <div>
-
+            <React.Fragment>
                 <CodeContainer
                     code={code}
                     obfuscatedCode={obfuscatedCode}
@@ -83,13 +82,8 @@ class App extends Component {
                     hasObfuscatedCode={hasObfuscatedCode}
                 />
 
-                <div className="ui grid">
-                    <div className="column">
-                        <OptionsContainer/>
-                    </div>
-                </div>
-
-            </div>
+                <OptionsContainer/>
+            </React.Fragment>
         );
     }
 

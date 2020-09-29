@@ -2791,19 +2791,19 @@ eslint-plugin-react@7.7.0:
     jsx-ast-utils "^2.0.1"
     prop-types "^15.6.0"
 
-eslint-scope@^3.7.1, eslint-scope@~3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
-  dependencies:
-    esrecurse "^4.1.0"
-    estraverse "^4.1.1"
-
-eslint-scope@^5.1.1:
+eslint-scope@5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-5.1.1.tgz#e786e59a66cb92b3f6c1fb0d508aab174848f48c"
   integrity sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==
   dependencies:
     esrecurse "^4.3.0"
+    estraverse "^4.1.1"
+
+eslint-scope@^3.7.1, eslint-scope@~3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-3.7.1.tgz#3d63c3edfda02e06e01a452ad88caacc7cdcb6e8"
+  dependencies:
+    esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
 eslint-visitor-keys@^1.0.0:
@@ -4341,10 +4341,10 @@ iterate-object@^1.3.0, iterate-object@^1.3.1:
   resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.4.tgz#fa50b1d9e58e340a7dd6b4c98c8a5e182e790096"
   integrity sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==
 
-javascript-obfuscator@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.4.0.tgz#f907723cb5193ac8d9ba52d6595d11fab48056e0"
-  integrity sha512-KYclayLFyw3XtMXx56axp82d6cGOaUDd5O5DxtpBaDSb+4wWT/wnG9Ecws0pfUXAL338lRoy/kkKeomQUglr/Q==
+javascript-obfuscator@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.4.1.tgz#04931775ef96dd18a42afd1e5cbd7d3f8d2b9d48"
+  integrity sha512-+yQruRVl21PKtJGp/gXC3Y9VFdCajpYGY6E2jARVIo2m8hMlr0vB+GGOJXZcF9gOE0Ely4opbz7KKaXfeJWiGg==
   dependencies:
     "@gradecam/tsenum" "1.2.0"
     "@nuxtjs/opencollective" "0.2.2"
@@ -4354,7 +4354,7 @@ javascript-obfuscator@2.4.0:
     class-validator "0.12.2"
     commander "6.1.0"
     escodegen "2.0.0"
-    eslint-scope "^5.1.1"
+    eslint-scope "5.1.1"
     estraverse "5.2.0"
     eventemitter3 "4.0.7"
     fast-deep-equal "3.1.3"
