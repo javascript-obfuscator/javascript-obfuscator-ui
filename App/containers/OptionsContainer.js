@@ -439,7 +439,7 @@ const Options = ({dispatch, options}) => {
             </Form>
 
             <Segment secondary>
-                <Header as="h2">
+                <Header as="h2" id="Options">
                     Available Options:
                 </Header>
 
