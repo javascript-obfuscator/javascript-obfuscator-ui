@@ -1982,10 +1982,10 @@ commander@2.17.x:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commander@6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-6.1.0.tgz#f8d722b78103141006b66f4c7ba1e97315ba75bc"
-  integrity sha512-wl7PNrYWd2y5mp1OK/LhTlv8Ff4kQJQRXXAvF+uU/TPNiVJUxZLRYGj/B0y/lPGAVcSbJqH2Za/cvHmrPMC8mA==
+commander@6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.0.tgz#b990bfb8ac030aedc6d11bc04d1488ffef56db75"
+  integrity sha512-zP4jEKbe8SHzKJYQmq8Y9gYjtO/POJLgIdKgV7B9qNmABVFVc+ctqSX6iXh4mCpJfRBOabiZ2YKPg8ciDw6C+Q==
 
 commander@~2.13.0:
   version "2.13.0"
@@ -4447,10 +4447,10 @@ iterate-object@^1.3.0, iterate-object@^1.3.1:
   resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.4.tgz#fa50b1d9e58e340a7dd6b4c98c8a5e182e790096"
   integrity sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==
 
-javascript-obfuscator@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.6.1.tgz#c7b417de1457df3ab0bddee1db541074a6a1133c"
-  integrity sha512-CU2ywvvVGsxX804/+1HwbELtczpWS6Es9Q2V6wT/WeqkDNlGfLq+RmFnaO46oPI8+mDvDBpd5dbv3PGARV0kyQ==
+javascript-obfuscator@2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.6.3.tgz#6796c16cd7b360542e3408361847e9f32abed576"
+  integrity sha512-7WN/ZgGEyMHPdOqomQCaxT1Fpk0s/p2dehnmj1dqV0R1PN9nI0k+bwVyvDm9qdM0TLp5CD4KYpGJ3Nt5OcDEVQ==
   dependencies:
     "@nuxtjs/opencollective" "0.2.2"
     acorn "8.0.4"
@@ -4458,7 +4458,7 @@ javascript-obfuscator@2.6.1:
     chalk "4.1.0"
     chance "1.1.7"
     class-validator "0.12.2"
-    commander "6.1.0"
+    commander "6.2.0"
     escodegen "2.0.0"
     eslint-scope "5.1.1"
     estraverse "5.2.0"
