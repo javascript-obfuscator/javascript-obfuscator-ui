@@ -4447,10 +4447,10 @@ iterate-object@^1.3.0, iterate-object@^1.3.1:
   resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.4.tgz#fa50b1d9e58e340a7dd6b4c98c8a5e182e790096"
   integrity sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==
 
-javascript-obfuscator@2.6.3:
-  version "2.6.3"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.6.3.tgz#6796c16cd7b360542e3408361847e9f32abed576"
-  integrity sha512-7WN/ZgGEyMHPdOqomQCaxT1Fpk0s/p2dehnmj1dqV0R1PN9nI0k+bwVyvDm9qdM0TLp5CD4KYpGJ3Nt5OcDEVQ==
+javascript-obfuscator@2.6.4:
+  version "2.6.4"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.6.4.tgz#b39dde1676a116e19ed2aac3b5c8bb28f080f12f"
+  integrity sha512-f4eaJuNwB8fTZZjhi1Gtaau4079Moyso2vl04etmZDnwcEpR2OArMWez7zIMifsX150mPcTOVNsxnz9TR/XilA==
   dependencies:
     "@nuxtjs/opencollective" "0.2.2"
     acorn "8.0.4"
