@@ -78,10 +78,10 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@javascript-obfuscator/escodegen@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@javascript-obfuscator/escodegen/-/escodegen-2.1.0.tgz#9ef8ea4966c41d1008932463a15395a37278b813"
-  integrity sha512-I9SEQcMWOrBp35/SScSB75QQd1BuYjZuLZnAgwwNOPudPsN8J9+rnS+InHGUsxho/Q7/sttaw/5MWH/qz2oElg==
+"@javascript-obfuscator/escodegen@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@javascript-obfuscator/escodegen/-/escodegen-2.1.1.tgz#a79c3ab3a13cd87f4921003f0f821a09fc0f5d93"
+  integrity sha512-d5TIrhngNyqphUPgjWRVcepw55+aIrN2YX6BHy+4XOTq3/6AZCFj18Ym0tYSDm8T7+hLN6Culif18cepF/NpDQ==
   dependencies:
     esprima "^4.0.1"
     estraverse "^5.2.0"
@@ -4447,12 +4447,12 @@ iterate-object@^1.3.0, iterate-object@^1.3.1:
   resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.4.tgz#fa50b1d9e58e340a7dd6b4c98c8a5e182e790096"
   integrity sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==
 
-javascript-obfuscator@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.7.0.tgz#427062bd3dc432b8c864ed479e6afa2def077ca4"
-  integrity sha512-qq/sPl6GOUDjd2l3TBFxze7dFbWwW0m5WBIJQchwQWkvorku3P6POuFaBLLXNnhpZO3LbOrc1kCH0Dnl9BMUkg==
+javascript-obfuscator@2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.7.1.tgz#0b94492cfe412af17082f8153fc226b983d35836"
+  integrity sha512-MlTMR4R8O7KZV9QnSwH4FFYjv+ay5oHN7Be2Rhc3AfFHnlLqHVUq4RRuGnrw8DV2QOe/B9hWMqdeb1Z3/g+GJA==
   dependencies:
-    "@javascript-obfuscator/escodegen" "2.1.0"
+    "@javascript-obfuscator/escodegen" "2.1.1"
     "@nuxtjs/opencollective" "0.3.2"
     acorn "8.0.4"
     assert "2.0.0"
