@@ -83,6 +83,8 @@ const initialState = {
 
     transformObjectKeys: false,
 
+    ignoreRequireImports: false
+
 };
 
 export const options = (state = initialState, action) => {
@@ -430,6 +432,12 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 transformObjectKeys: !state.transformObjectKeys
+            };
+
+        case types.TOGGLE_IGNORE_REQUIRE_IMPORTS:
+            return {
+                ...state,
+                ignoreRequireImports: !state.ignoreRequireImports
             };
 
         default:

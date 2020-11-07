@@ -305,6 +305,11 @@ const Options = ({dispatch, options}) => {
                                 entries={options.reservedStrings}
                                 buttonIcon="plus"/>
 
+                            <Form.Checkbox
+                                label='Ignore Require Imports'
+                                checked={options.ignoreRequireImports}
+                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_IGNORE_REQUIRE_IMPORTS))}/>
+
                         </Segment>
                     </Grid.Column>
 
