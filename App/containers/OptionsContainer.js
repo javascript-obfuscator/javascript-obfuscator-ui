@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 const ReactMarkdown = require('react-markdown')
 
-import {Container, Form, Grid, Header, Segment, Divider, Button} from 'semantic-ui-react';
+import {Form, Grid, Header, Segment, Divider, Button} from 'semantic-ui-react';
 
 import EntryInputContainer from '../containers/EntryInputContainer';
 import {getOptionsMarkdown} from '../util/get-options-markdown';
@@ -32,6 +32,14 @@ export const SOURCEMAP_SEPARATE = 'separate';
 const SOURCEMAP_OPTIONS = [
     {text: 'Inline', value: SOURCEMAP_INLINE},
     {text: 'Separate', value: SOURCEMAP_SEPARATE},
+];
+
+export const STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER = 'hexadecimal-number';
+export const STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMERIC_STRING = 'hexadecimal-numeric-string';
+
+const STRING_ARRAY_INDEXES_TYPE_OPTIONS = [
+    {text: 'Hexadecimal Number', value: STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER},
+    {text: 'Hexadecimal Numeric String', value: STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMERIC_STRING}
 ];
 
 export const STRING_ARRAY_ENCODING_NONE = 'none';
@@ -228,6 +236,22 @@ const Options = ({dispatch, options}) => {
                                 step="0.05"
                                 onChange={(event, {value}) => dispatch(actions.setStringArrayThreshold(parseFloat(value)))}
                                 disabled={!options.stringArrayThresholdEnabled}/>
+`
+                            <Form.Checkbox
+                                label='String Array Index Shift'
+                                checked={options.stringArrayIndexShift}
+                                disabled={!options.stringArray}
+                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY_INDEX_SHIFT))}/>
+
+                            <Form.Select
+                                disabled={!options.stringArrayIndexesType}
+                                label='String Array Indexes Type'
+                                fluid
+                                multiple
+                                placeholder="Select indexes type type"
+                                value={options.stringArrayIndexesType}
+                                onChange={(event, {value}) => dispatch(actions.setStringArrayIndexesType(value))}
+                                options={STRING_ARRAY_INDEXES_TYPE_OPTIONS}/>
 
                             <Form.Input
                                 type='number'
@@ -247,6 +271,15 @@ const Options = ({dispatch, options}) => {
                                 options={STRING_ARRAY_WRAPPERS_TYPE_OPTIONS}
                                 disabled={!options.stringArray || !options.stringArrayWrappersCount}
                             />
+
+                            <Form.Input
+                                type='number'
+                                label='String Array Wrappers Parameters Maximum Count'
+                                value={options.stringArrayWrappersParametersMaxCount}
+                                min="2"
+                                step="1"
+                                onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersParametersMaxCount(parseInt(value)))}
+                                disabled={options.stringArrayWrappersType !== STRING_ARRAY_WRAPPERS_TYPE_FUNCTION}/>
 
                             <Form.Checkbox
                                 label='String Array Wrappers Chained Calls'

@@ -144,6 +144,11 @@ export const setStringArrayThreshold = (threshold) => ({
     threshold
 });
 
+export const setStringArrayIndexesType = (indexesType) => ({
+    'type': types.SET_STRING_ARRAY_INDEXES_TYPE,
+    indexesType
+});
+
 export const setStringArrayEncoding = (encoding) => ({
     'type': types.SET_STRING_ARRAY_ENCODING,
     encoding
@@ -152,6 +157,11 @@ export const setStringArrayEncoding = (encoding) => ({
 export const setStringArrayWrappersCount = (stringArrayWrappersCount) => ({
     'type': types.SET_STRING_ARRAY_WRAPPERS_COUNT,
     stringArrayWrappersCount
+});
+
+export const setStringArrayWrappersParametersMaxCount = (stringArrayWrappersParametersMaxCount) => ({
+    'type': types.SET_STRING_ARRAY_WRAPPERS_PARAMETERS_MAX_COUNT,
+    stringArrayWrappersParametersMaxCount
 });
 
 export const setStringArrayWrappersType = (stringArrayWrappersType) => ({

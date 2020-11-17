@@ -8,7 +8,7 @@ import {
     STRING_ARRAY_ENCODING_NONE,
     STRING_ARRAY_ENCODING_BASE64,
     STRING_ARRAY_ENCODING_RC4,
-    STRING_ARRAY_WRAPPERS_TYPE_VARIABLE
+    STRING_ARRAY_WRAPPERS_TYPE_VARIABLE, STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER
 } from '../containers/OptionsContainer';
 
 const initialState = {
@@ -39,6 +39,10 @@ const initialState = {
     stringArrayThreshold: 0.75,
     stringArrayThresholdEnabled: true,
 
+    stringArrayIndexesType: STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER,
+
+    stringArrayIndexShift: true,
+
     stringArrayEncoding: [
         STRING_ARRAY_ENCODING_NONE
     ],
@@ -46,6 +50,7 @@ const initialState = {
 
     stringArrayWrappersCount: 1,
     stringArrayWrappersChainedCalls: true,
+    stringArrayWrappersParametersMaxCount: 2,
     stringArrayWrappersType: STRING_ARRAY_WRAPPERS_TYPE_VARIABLE,
 
     numbersToExpressions: false,
@@ -186,6 +191,12 @@ export const options = (state = initialState, action) => {
             };
         }
 
+        case types.TOGGLE_STRING_ARRAY_INDEX_SHIFT:
+            return {
+                ...state,
+                stringArrayIndexShift: !state.stringArrayIndexShift
+            };
+
         case types.TOGGLE_ROTATE_STRING_ARRAY:
             return {
                 ...state,
@@ -210,10 +221,22 @@ export const options = (state = initialState, action) => {
                 stringArrayThreshold: action.threshold
             };
 
+        case types.SET_STRING_ARRAY_INDEXES_TYPE:
+            return {
+                ...state,
+                stringArrayIndexesType: action.indexesType
+            };
+
         case types.SET_STRING_ARRAY_WRAPPERS_COUNT:
             return {
                 ...state,
                 stringArrayWrappersCount: action.stringArrayWrappersCount
+            };
+
+        case types.SET_STRING_ARRAY_WRAPPERS_PARAMETERS_MAX_COUNT:
+            return {
+                ...state,
+                stringArrayWrappersParametersMaxCount: action.stringArrayWrappersParametersMaxCount
             };
 
         case types.TOGGLE_STRING_ARRAY_WRAPPERS_CHAINED_CALLS:
