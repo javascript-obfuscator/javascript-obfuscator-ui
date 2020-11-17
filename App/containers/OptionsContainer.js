@@ -243,7 +243,7 @@ const Options = ({dispatch, options}) => {
                                 step="0.05"
                                 onChange={(event, {value}) => dispatch(actions.setStringArrayThreshold(parseFloat(value)))}
                                 disabled={!options.stringArrayThresholdEnabled}/>
-`
+
                             <Form.Checkbox
                                 label='String Array Index Shift'
                                 checked={options.stringArrayIndexShift}
