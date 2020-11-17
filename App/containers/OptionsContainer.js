@@ -159,6 +159,13 @@ const Options = ({dispatch, options}) => {
 
                             <Divider/>
 
+                            <Form.Checkbox
+                                label='Ignore Require Imports'
+                                checked={options.ignoreRequireImports}
+                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_IGNORE_REQUIRE_IMPORTS))}/>
+
+                            <Divider/>
+
                             <EntryInputContainer
                                 label='Domain lock'
                                 disabled={!options.domainLockEnabled}
@@ -337,11 +344,6 @@ const Options = ({dispatch, options}) => {
                                 placeholder="^some *string *or RegExp"
                                 entries={options.reservedStrings}
                                 buttonIcon="plus"/>
-
-                            <Form.Checkbox
-                                label='Ignore Require Imports'
-                                checked={options.ignoreRequireImports}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_IGNORE_REQUIRE_IMPORTS))}/>
 
                         </Segment>
                     </Grid.Column>
