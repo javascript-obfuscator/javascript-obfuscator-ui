@@ -39,7 +39,9 @@ const initialState = {
     stringArrayThreshold: 0.75,
     stringArrayThresholdEnabled: true,
 
-    stringArrayIndexesType: STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER,
+    stringArrayIndexesType: [
+        STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER
+    ],
 
     stringArrayIndexShift: true,
 
