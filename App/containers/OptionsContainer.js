@@ -286,7 +286,11 @@ const Options = ({dispatch, options}) => {
                                 min="2"
                                 step="1"
                                 onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersParametersMaxCount(parseInt(value)))}
-                                disabled={options.stringArrayWrappersType !== STRING_ARRAY_WRAPPERS_TYPE_FUNCTION}/>
+                                disabled={
+                                    !options.stringArray
+                                    || !options.stringArrayWrappersCount
+                                    || options.stringArrayWrappersType !== STRING_ARRAY_WRAPPERS_TYPE_FUNCTION
+                                }/>
 
                             <Form.Checkbox
                                 label='String Array Wrappers Chained Calls'
