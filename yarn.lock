@@ -1994,10 +1994,10 @@ commander@2.17.x:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commander@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.0.tgz#b990bfb8ac030aedc6d11bc04d1488ffef56db75"
-  integrity sha512-zP4jEKbe8SHzKJYQmq8Y9gYjtO/POJLgIdKgV7B9qNmABVFVc+ctqSX6iXh4mCpJfRBOabiZ2YKPg8ciDw6C+Q==
+commander@6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.1.tgz#0792eb682dfbc325999bb2b84fddddba110ac73c"
+  integrity sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
 
 commander@~2.13.0:
   version "2.13.0"
@@ -3000,11 +3000,6 @@ eventemitter2@~0.4.14:
   version "0.4.14"
   resolved "https://registry.yarnpkg.com/eventemitter2/-/eventemitter2-0.4.14.tgz#8f61b75cde012b2e9eb284d4545583b5643b61ab"
   integrity sha1-j2G3XN4BKy6esoTUVFWDtWQ7Yas=
-
-eventemitter3@4.0.7:
-  version "4.0.7"
-  resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
-  integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
 
 events@^1.0.0:
   version "1.1.1"
@@ -4014,10 +4009,10 @@ invariant@^2.0.0, invariant@^2.2.0, invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
-inversify@5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/inversify/-/inversify-5.0.1.tgz#500d709b1434896ce5a0d58915c4a4210e34fb6e"
-  integrity sha512-Ieh06s48WnEYGcqHepdsJUIJUXpwH5o5vodAX+DK2JA/gjy4EbEcQZxw+uFfzysmKjiLXGYwNG3qDZsKVMcINQ==
+inversify@5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/inversify/-/inversify-5.0.5.tgz#bd1f8e6d8e0f739331acd8ba9bc954635aae0bbf"
+  integrity sha512-60QsfPz8NAU/GZqXu8hJ+BhNf/C/c+Hp0eDc6XMIJTxBiP36AQyyQKpBkOVTLWBFDQWYVHpbbEuIsHu9dLuJDA==
 
 invert-kv@^1.0.0:
   version "1.0.0"
@@ -4447,10 +4442,10 @@ iterate-object@^1.3.0, iterate-object@^1.3.1:
   resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.4.tgz#fa50b1d9e58e340a7dd6b4c98c8a5e182e790096"
   integrity sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==
 
-javascript-obfuscator@2.9.4:
-  version "2.9.4"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.9.4.tgz#69a212d31c0d1cd354a295e8b8383f09c8bb529a"
-  integrity sha512-isaI1E9BkqUI7cgG7RKmzzqe8GrmIr3E+AJBCJ+Q78dEZk4RByPHq65tkCUdKKRT8pZ1y729prPa5UAme2B4Ug==
+javascript-obfuscator@2.9.5:
+  version "2.9.5"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.9.5.tgz#3ca36699213b5901f047386283469369da90e384"
+  integrity sha512-XLO08ixLdkYhEJ+ALKWUf2XLfBv1EToRxVr9hXehevKUlMzzwffhzFkDJDHde8ojO6JKCC9zZZu9w8DUJcaTUQ==
   dependencies:
     "@javascript-obfuscator/escodegen" "2.1.1"
     "@nuxtjs/opencollective" "0.3.2"
@@ -4459,12 +4454,11 @@ javascript-obfuscator@2.9.4:
     chalk "4.1.0"
     chance "1.1.7"
     class-validator "0.12.2"
-    commander "6.2.0"
+    commander "6.2.1"
     eslint-scope "5.1.1"
     estraverse "5.2.0"
-    eventemitter3 "4.0.7"
     fast-deep-equal "3.1.3"
-    inversify "5.0.1"
+    inversify "5.0.5"
     js-string-escape "1.0.1"
     md5 "2.3.0"
     mkdirp "1.0.4"
