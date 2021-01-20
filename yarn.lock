@@ -4436,10 +4436,10 @@ iterate-object@^1.3.0, iterate-object@^1.3.1:
   resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.4.tgz#fa50b1d9e58e340a7dd6b4c98c8a5e182e790096"
   integrity sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==
 
-javascript-obfuscator@2.10.2:
-  version "2.10.2"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.10.2.tgz#bcbc5b0af25067a04599b26aaa9cf8aed6f9f947"
-  integrity sha512-2mzs63ji0v1HEWCC36tAvv9Rxuxwnt5Ob1HZ+UgyZ+er3BA8eYIWu4Gasagm09zMyiO9NxZ9Lu4USFF2x/X/Zg==
+javascript-obfuscator@2.10.3:
+  version "2.10.3"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.10.3.tgz#d7dd7278a2f9431ca541c941fdc9c0e157ee1b36"
+  integrity sha512-zyP8KmjGnCkKNE1PYCJ69AkgOXCqiO/kci7fHJc73U9D9Se2E5V5vFd4ftBYihAXovudpJ3tpzbrxaK4IuAZRg==
   dependencies:
     "@javascript-obfuscator/escodegen" "2.1.1"
     "@nuxtjs/opencollective" "0.3.2"
