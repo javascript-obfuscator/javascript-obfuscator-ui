@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const { spawn, Worker } = require('threads/dist');
+const { spawn, Worker } = require('threads');
 
 const app = express();
 

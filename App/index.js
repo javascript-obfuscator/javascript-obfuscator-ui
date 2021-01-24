@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 
 import {createLogger} from 'redux-logger'
 import thunk from 'redux-thunk'
-import promiseMiddleware from 'redux-promise-middleware';
+import promise from 'redux-promise-middleware';
 
 import {loadState, saveState} from './localStorage';
 
@@ -18,7 +18,7 @@ import "./styles/main.less";
 import {sanitizePersistedOptions} from "./reducers/options";
 
 
-const middleware = [thunk, promiseMiddleware()];
+const middleware = [thunk, promise];
 if (process.env.NODE_ENV !== 'production') {
     middleware.push(createLogger());
 }

@@ -192,9 +192,15 @@ class CodeContainer extends Component {
                         <Dropzone
                             onDrop={::this.onDrop}
                             multiple={false}
-                            className="DropZone"
                         >
-                            <div>Try dropping some file here, or click to select file to upload.</div>
+                            {({getRootProps, getInputProps}) => (
+                                <section>
+                                    <div {...getRootProps({className: 'DropZone'})}>
+                                        <input {...getInputProps()} />
+                                        <div>Try dropping some file here, or click to select file to upload.</div>
+                                    </div>
+                                </section>
+                            )}
                         </Dropzone>
                     </Pane>
                 )

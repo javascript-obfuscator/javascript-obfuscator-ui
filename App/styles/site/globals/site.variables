@@ -9,5 +9,5 @@
 @fontSize : 16px;
 
 
-@imagePath : '/static/semantic/assets/images';
-@fontPath  : '/static/semantic/assets/fonts';
+@imagePath : '../assets/images';
+@fontPath  : '../assets/fonts';
