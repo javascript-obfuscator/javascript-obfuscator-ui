@@ -26,6 +26,14 @@ const OPTIONS_PRESET_OPTIONS = [
     {text: 'High', value: OPTIONS_PRESET_HIGH_OBFUSCATION},
 ];
 
+export const RENAME_PROPERTIES_MODE_SAFE = 'safe';
+export const RENAME_PROPERTIES_MODE_UNSAFE = 'unsafe';
+
+const RENAME_PROPERTIES_MODE_OPTIONS = [
+    {text: 'Safe', value: RENAME_PROPERTIES_MODE_SAFE},
+    {text: 'Unsafe', value: RENAME_PROPERTIES_MODE_UNSAFE},
+];
+
 export const SOURCEMAP_INLINE = 'inline';
 export const SOURCEMAP_SEPARATE = 'separate';
 
@@ -392,10 +400,20 @@ const Options = ({dispatch, options}) => {
                                 checked={options.renameGlobals}
                                 onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_GLOBALS))}/>
 
+                            <Divider/>
+
                             <Form.Checkbox
                                 label='Rename Properties'
                                 checked={options.renameProperties}
                                 onChange={() => dispatch(actions.toggleOption(types.TOGGLE_RENAME_PROPERTIES))}/>
+
+                            <Form.Select
+                                label='Rename Properties Mode'
+                                value={options.renamePropertiesMode}
+                                disabled={!options.renameProperties}
+                                fluid
+                                onChange={(event, {value}) => dispatch(actions.setRenamePropertiesMode(value))}
+                                options={RENAME_PROPERTIES_MODE_OPTIONS}/>
 
                             <Divider/>
 

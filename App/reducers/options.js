@@ -8,7 +8,8 @@ import {
     STRING_ARRAY_ENCODING_NONE,
     STRING_ARRAY_ENCODING_BASE64,
     STRING_ARRAY_ENCODING_RC4,
-    STRING_ARRAY_WRAPPERS_TYPE_VARIABLE, STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER
+    STRING_ARRAY_WRAPPERS_TYPE_VARIABLE,
+    STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER, RENAME_PROPERTIES_MODE_SAFE
 } from '../containers/OptionsContainer';
 
 const initialState = {
@@ -80,7 +81,9 @@ const initialState = {
     unicodeEscapeSequence: false,
 
     renameGlobals: false,
+
     renameProperties: false,
+    renamePropertiesMode: RENAME_PROPERTIES_MODE_SAFE,
 
     target: TARGET_BROWSER,
 
@@ -424,6 +427,12 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 renameProperties: !state.renameProperties
+            };
+
+        case types.SET_RENAME_PROPERTIES_MODE:
+            return {
+                ...state,
+                renamePropertiesMode: action.renamePropertiesMode
             };
 
         case types.SET_TARGET: {

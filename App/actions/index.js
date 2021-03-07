@@ -134,6 +134,11 @@ export const removeDictionaryIdentifier = (name) => ({
     name
 });
 
+export const setRenamePropertiesMode = (renamePropertiesMode) => ({
+    'type': types.SET_RENAME_PROPERTIES_MODE,
+    renamePropertiesMode
+});
+
 export const setSplitStringsChunkLength = (chunkLength) => ({
     'type': types.SET_SPLIT_STRINGS_CHUNK_LENGTH,
     chunkLength
