@@ -1348,17 +1348,22 @@
     "@babel/runtime" "^7.10.4"
     react-is "^16.6.3"
 
-"@javascript-obfuscator/escodegen@2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@javascript-obfuscator/escodegen/-/escodegen-2.1.1.tgz#a79c3ab3a13cd87f4921003f0f821a09fc0f5d93"
-  integrity sha512-d5TIrhngNyqphUPgjWRVcepw55+aIrN2YX6BHy+4XOTq3/6AZCFj18Ym0tYSDm8T7+hLN6Culif18cepF/NpDQ==
+"@javascript-obfuscator/escodegen@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@javascript-obfuscator/escodegen/-/escodegen-2.2.0.tgz#c09fc83a9e3ff7b5555e37b9ac23947221dc8257"
+  integrity sha512-vyBqXZqAHWe40dA5tVsXC85KJ0eWgTwPrxZdOtaHH0di7tkb8G8x8MEQs0HbbDdONN7M5M45fyVpEF5aR1++Dw==
   dependencies:
+    "@javascript-obfuscator/estraverse" "^5.3.0"
     esprima "^4.0.1"
-    estraverse "^5.2.0"
     esutils "^2.0.2"
     optionator "^0.8.1"
   optionalDependencies:
     source-map "~0.6.1"
+
+"@javascript-obfuscator/estraverse@5.3.0", "@javascript-obfuscator/estraverse@^5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@javascript-obfuscator/estraverse/-/estraverse-5.3.0.tgz#eadd3c00ede6a05b75aa585c7b7a3ac58adb1755"
+  integrity sha512-SxIFtV5/wlXYS7G3zLVj7CddLolX8Bm/hr68fiyNL3MyG2k4FwF9B5Z5GTpVLhw2EELYNwyoYBvFlR4gGnQPdw==
 
 "@nuxtjs/opencollective@0.3.2":
   version "0.3.2"
@@ -1739,10 +1744,10 @@ acorn-jsx@^5.3.1:
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.1.tgz#fc8661e11b7ac1539c47dbfea2e72b3af34d267b"
   integrity sha512-K0Ptm/47OKfQRpNQ2J/oIN/3QYiK6FwW+eJbILhsdxh2WTLdl+30o8aGdTbm5JbffpFFAg/g+zi1E+jvJha5ng==
 
-acorn@8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.1.0.tgz#52311fd7037ae119cbb134309e901aa46295b3fe"
-  integrity sha512-LWCF/Wn0nfHOmJ9rzQApGnxnvgfROzGilS8936rqN/lfcYkY9MYZzdMqN+2NJ4SlTc+m5HiSa+kNfDtI64dwUA==
+acorn@8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.3.0.tgz#1193f9b96c4e8232f00b11a9edff81b2c8b98b88"
+  integrity sha512-tqPKHZ5CaBJw0Xmy0ZZvLs1qTV+BNFSyvn77ASXkpBNfIRk8ev26fKrD9iLGwGA9zedPao52GSHzq8lyZG0NUw==
 
 acorn@^7.4.0:
   version "7.4.1"
@@ -2196,10 +2201,10 @@ caniuse-lite@^1.0.30001173:
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001179.tgz#b0803883b4471a6c62066fb1752756f8afc699c8"
   integrity sha512-blMmO0QQujuUWZKyVrD1msR4WNDAqb/UPO1Sw2WWsQ7deoM5bJiicKnWJ1Y0NS/aGINSnKPIWBMw5luX+NDUCA==
 
-chalk@4.1.0, chalk@^4.0.0, chalk@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
-  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
+chalk@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.1.tgz#c80b3fab28bf6371e6863325eee67e618b77e6ad"
+  integrity sha512-diHzdDKxcU+bAsUboHLPEDQiw0qEe0qd7SYUn3HgcFlWgbDcfLGswOHYeGrHKzG9z6UYf01d9VFMfZxPM1xZSg==
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
@@ -2231,6 +2236,14 @@ chalk@^2.3.2, chalk@^2.4.1:
     ansi-styles "^3.2.1"
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
+
+chalk@^4.0.0, chalk@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
+  integrity sha512-qwx12AxXe2Q5xQ43Ac//I6v5aXTipYrSESdOgzrN+9XjgEpyjpKuvSGaN4qE93f7TQTlerQQ8S+EQ0EyDoVL1A==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
 
 chance@1.1.7:
   version "1.1.7"
@@ -3114,11 +3127,6 @@ esrecurse@^4.1.0, esrecurse@^4.3.0:
   dependencies:
     estraverse "^5.2.0"
 
-estraverse@5.2.0, estraverse@^5.1.0, estraverse@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-5.2.0.tgz#307df42547e6cc7324d3cf03c155d5cdb8c53880"
-  integrity sha512-BxbNGGNm0RyRYvUdHpIwv9IWzeM9XClbOxwoATuFdOE7ZE6wHL+HQ5T8hoPM+zHvmKzzsEqhgy0GrQ5X13afiQ==
-
 estraverse@^4.1.1:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
@@ -3127,6 +3135,11 @@ estraverse@^4.2.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.3.0.tgz#398ad3f3c5a24948be7725e83d11a7de28cdbd1d"
   integrity sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==
+
+estraverse@^5.1.0, estraverse@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-5.2.0.tgz#307df42547e6cc7324d3cf03c155d5cdb8c53880"
+  integrity sha512-BxbNGGNm0RyRYvUdHpIwv9IWzeM9XClbOxwoATuFdOE7ZE6wHL+HQ5T8hoPM+zHvmKzzsEqhgy0GrQ5X13afiQ==
 
 esutils@^2.0.2:
   version "2.0.2"
@@ -3819,10 +3832,10 @@ invariant@^2.2.0:
   dependencies:
     loose-envify "^1.0.0"
 
-inversify@5.0.5:
-  version "5.0.5"
-  resolved "https://registry.yarnpkg.com/inversify/-/inversify-5.0.5.tgz#bd1f8e6d8e0f739331acd8ba9bc954635aae0bbf"
-  integrity sha512-60QsfPz8NAU/GZqXu8hJ+BhNf/C/c+Hp0eDc6XMIJTxBiP36AQyyQKpBkOVTLWBFDQWYVHpbbEuIsHu9dLuJDA==
+inversify@5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/inversify/-/inversify-5.1.1.tgz#6fbd668c591337404e005a1946bfe0d802c08730"
+  integrity sha512-j8grHGDzv1v+8T1sAQ+3boTCntFPfvxLCkNcxB1J8qA0lUN+fAlSyYd+RXKvaPRL4AGyPxViutBEJHNXOyUdFQ==
 
 ip@1.1.5, ip@^1.1.5:
   version "1.1.5"
@@ -4104,23 +4117,23 @@ iterate-object@^1.3.0, iterate-object@^1.3.1:
   resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.4.tgz#fa50b1d9e58e340a7dd6b4c98c8a5e182e790096"
   integrity sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==
 
-javascript-obfuscator@2.12.0:
-  version "2.12.0"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.12.0.tgz#f9e2bed722e7236e6d5c9008890807a8e410331e"
-  integrity sha512-i1TumGPtwilIB4a7m5z02HGCGqyigYBNtbV7moPBefRJ8ewpMX0B98Y1qh3eMBHOtMHEu7pYZAv6KvTeMYYy7Q==
+javascript-obfuscator@2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-2.14.0.tgz#1f36ee9434c9eeee361b1d4f990f9225967f1cb4"
+  integrity sha512-l2trWgW0bpa+Vt+37Y0FP1a2FJ23ITzWLSwD3Euup2ZdEG48qhR3sCWgINEYipPNMQTFRG3Y+2OTEifW7UIzpQ==
   dependencies:
-    "@javascript-obfuscator/escodegen" "2.1.1"
+    "@javascript-obfuscator/escodegen" "2.2.0"
+    "@javascript-obfuscator/estraverse" "5.3.0"
     "@nuxtjs/opencollective" "0.3.2"
-    acorn "8.1.0"
+    acorn "8.3.0"
     assert "2.0.0"
-    chalk "4.1.0"
+    chalk "4.1.1"
     chance "1.1.7"
     class-validator "0.13.1"
     commander "7.2.0"
     eslint-scope "5.1.1"
-    estraverse "5.2.0"
     fast-deep-equal "3.1.3"
-    inversify "5.0.5"
+    inversify "5.1.1"
     js-string-escape "1.0.1"
     md5 "2.3.0"
     mkdirp "1.0.4"
