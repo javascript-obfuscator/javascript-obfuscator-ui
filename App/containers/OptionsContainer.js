@@ -90,7 +90,7 @@ const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
     {text: 'Mangled-shuffled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED_SHUFFLED},
 ];
 
-export const DOMAIN_DEST_ABOUT_BLANK = 'about:blank';
+export const DOMAIN_LOCK_REDIRECT_URL_ABOUT_BLANK = 'about:blank';
 
 const Options = ({dispatch, options}) => {
     useEffect(
@@ -187,9 +187,9 @@ const Options = ({dispatch, options}) => {
 
                             <Form.Input
                                 type='string'
-                                label='Domain Lock Destination'
-                                value={options.domainDest}
-                                onChange={(event, {value}) => dispatch(actions.setDomainDest(value))}/>
+                                label='Domain Lock Redirect Url'
+                                value={options.domainLockRedirectUrl}
+                                onChange={(event, {value}) => dispatch(actions.setDomainLockRedirectUrl(value))}/>
 
                             <Divider/>
 

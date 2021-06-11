@@ -94,9 +94,9 @@ export const removeDomainLock = (domain) => ({
     domain
 });
 
-export const setDomainDest = (domainDest) => ({
-    'type': types.SET_DOMAIN_DEST,
-    domainDest
+export const setDomainLockRedirectUrl = (domainLockRedirectUrl) => ({
+    'type': types.SET_DOMAIN_LOCK_REDIRECT_URL,
+    domainLockRedirectUrl
 });
 export const addReservedName = (name) => ({
     'type': types.ADD_RESERVED_NAME,
