@@ -90,6 +90,8 @@ const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
     {text: 'Mangled-shuffled', value: IDENTIFIER_NAMES_GENERATOR_MANGLED_SHUFFLED},
 ];
 
+export const DOMAIN_DEST_ABOUT_BLANK = 'about:blank';
+
 const Options = ({dispatch, options}) => {
     useEffect(
         () => {
@@ -182,6 +184,12 @@ const Options = ({dispatch, options}) => {
                                 placeholder="domain.com"
                                 entries={options.domainLock}
                                 buttonIcon="plus"/>
+
+                            <Form.Input
+                                type='string'
+                                label='Domain Lock Destination'
+                                value={options.domainDest}
+                                onChange={(event, {value}) => dispatch(actions.setDomainDest(value))}/>
 
                             <Divider/>
 

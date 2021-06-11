@@ -9,7 +9,9 @@ import {
     STRING_ARRAY_ENCODING_BASE64,
     STRING_ARRAY_ENCODING_RC4,
     STRING_ARRAY_WRAPPERS_TYPE_VARIABLE,
-    STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER, RENAME_PROPERTIES_MODE_SAFE
+    STRING_ARRAY_INDEXES_TYPE_HEXADECIMAL_NUMBER,
+    RENAME_PROPERTIES_MODE_SAFE,
+    DOMAIN_DEST_ABOUT_BLANK
 } from '../containers/OptionsContainer';
 
 const initialState = {
@@ -64,6 +66,7 @@ const initialState = {
     sourceMapFileName: '',
 
     domainLock: [],
+    domainDest: DOMAIN_DEST_ABOUT_BLANK,
     domainLockEnabled: true,
 
     forceTransformStrings: [],
@@ -300,6 +303,12 @@ export const options = (state = initialState, action) => {
                 domainLock: state.domainLock.filter((domain) => domain !== action.domain),
             };
 
+        case types.SET_DOMAIN_DEST:
+            return {
+                ...state,
+                domainDest: action.domainDest
+            };
+
         case types.ADD_RESERVED_NAME: {
             const name = action.name;
             if (state.reservedNames.indexOf(name) !== -1)
@@ -444,7 +453,8 @@ export const options = (state = initialState, action) => {
                 ...state,
                 target,
                 ...isNodeTarget && {
-                    domainLock: []
+                    domainLock: [],
+                    domainDest: DOMAIN_DEST_ABOUT_BLANK
                 },
                 domainLockEnabled: !isNodeTarget
             };
