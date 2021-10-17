@@ -170,9 +170,9 @@ const Options = ({dispatch, options}) => {
                             <Divider/>
 
                             <Form.Checkbox
-                                label='Ignore Require Imports'
-                                checked={options.ignoreRequireImports}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_IGNORE_REQUIRE_IMPORTS))}/>
+                                label='Ignore Imports'
+                                checked={options.ignoreImports}
+                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_IGNORE_IMPORTS))}/>
 
                             <Divider/>
 
@@ -239,16 +239,16 @@ const Options = ({dispatch, options}) => {
                                 onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY))}/>
 
                             <Form.Checkbox
-                                label='Rotate String Array'
-                                checked={options.rotateStringArray}
-                                disabled={!options.rotateStringArrayEnabled}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_ROTATE_STRING_ARRAY))}/>
+                                label='String Array Rotate'
+                                checked={options.stringArrayRotate}
+                                disabled={!options.stringArrayRotateEnabled}
+                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY_ROTATE))}/>
 
                             <Form.Checkbox
-                                label='Shuffle String Array'
-                                checked={options.shuffleStringArray}
-                                disabled={!options.shuffleStringArrayEnabled}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SHUFFLE_STRING_ARRAY))}/>
+                                label='String Array Shuffle'
+                                checked={options.stringArrayShuffle}
+                                disabled={!options.stringArrayShuffleEnabled}
+                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY_SHUFFLE))}/>
 
                             <Form.Input
                                 type='number'

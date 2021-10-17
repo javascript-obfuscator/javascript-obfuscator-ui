@@ -31,11 +31,11 @@ const initialState = {
 
     stringArray: true,
 
-    rotateStringArray: true,
-    rotateStringArrayEnabled: true,
+    stringArrayRotate: true,
+    stringArrayRotateEnabled: true,
 
-    shuffleStringArray: true,
-    shuffleStringArrayEnabled: true,
+    stringArrayShuffle: true,
+    stringArrayShuffleEnabled: true,
 
     simplify: true,
 
@@ -96,7 +96,7 @@ const initialState = {
 
     transformObjectKeys: false,
 
-    ignoreRequireImports: false
+    ignoreImports: false
 
 };
 
@@ -192,8 +192,8 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 stringArray,
-                rotateStringArrayEnabled: stringArray,
-                shuffleStringArrayEnabled: stringArray,
+                stringArrayRotateEnabled: stringArray,
+                stringArrayShuffleEnabled: stringArray,
                 stringArrayThresholdEnabled: stringArray,
                 stringArrayEncodingEnabled: stringArray,
             };
@@ -205,16 +205,16 @@ export const options = (state = initialState, action) => {
                 stringArrayIndexShift: !state.stringArrayIndexShift
             };
 
-        case types.TOGGLE_ROTATE_STRING_ARRAY:
+        case types.TOGGLE_STRING_ARRAY_ROTATE:
             return {
                 ...state,
-                rotateStringArray: !state.rotateStringArray
+                stringArrayRotate: !state.stringArrayRotate
             };
 
-        case types.TOGGLE_SHUFFLE_STRING_ARRAY:
+        case types.TOGGLE_STRING_ARRAY_SHUFFLE:
             return {
                 ...state,
-                shuffleStringArray: !state.shuffleStringArray
+                stringArrayShuffle: !state.stringArrayShuffle
             };
 
         case types.SET_STRING_ARRAY_ENCODING:
@@ -408,7 +408,7 @@ export const options = (state = initialState, action) => {
                 ...state,
                 deadCodeInjection: deadCodeInjection,
                 stringArray,
-                rotateStringArrayEnabled: stringArray,
+                stringArrayRotateEnabled: stringArray,
                 stringArrayThresholdEnabled: stringArray,
                 stringArrayEncodingEnabled: stringArray
             };
@@ -478,10 +478,10 @@ export const options = (state = initialState, action) => {
                 transformObjectKeys: !state.transformObjectKeys
             };
 
-        case types.TOGGLE_IGNORE_REQUIRE_IMPORTS:
+        case types.TOGGLE_IGNORE_IMPORTS:
             return {
                 ...state,
-                ignoreRequireImports: !state.ignoreRequireImports
+                ignoreImports: !state.ignoreImports
             };
 
         default:
