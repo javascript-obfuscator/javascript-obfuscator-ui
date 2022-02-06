@@ -276,6 +276,21 @@ const Options = ({dispatch, options}) => {
                                 onChange={(event, {value}) => dispatch(actions.setStringArrayIndexesType(value))}
                                 options={STRING_ARRAY_INDEXES_TYPE_OPTIONS}/>
 
+                            <Form.Checkbox
+                                label='String Array Calls Transform'
+                                checked={options.stringArrayCallsTransform}
+                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY_CALLS_TRANSFORM))}/>
+
+                            <Form.Input
+                                type='number'
+                                label='String Array Calls Transform Threshold'
+                                value={options.stringArrayCallsTransformThreshold}
+                                min="0"
+                                max="1"
+                                step="0.1"
+                                onChange={(event, {value}) => dispatch(actions.setStringArrayCallsTransformThreshold(parseFloat(value)))}
+                                disabled={!options.stringArrayCallsTransform}/>
+
                             <Form.Input
                                 type='number'
                                 label='String Array Wrappers Count'

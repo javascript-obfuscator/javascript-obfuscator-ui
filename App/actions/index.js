@@ -158,6 +158,11 @@ export const setStringArrayIndexesType = (indexesType) => ({
     indexesType
 });
 
+export const setStringArrayCallsTransformThreshold = (threshold) => ({
+    'type': types.SET_STRING_ARRAY_CALLS_TRANSFORM_THRESHOLD,
+    threshold
+});
+
 export const setStringArrayEncoding = (encoding) => ({
     'type': types.SET_STRING_ARRAY_ENCODING,
     encoding

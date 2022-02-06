@@ -4129,10 +4129,10 @@ iterate-object@^1.3.0, iterate-object@^1.3.1:
   resolved "https://registry.yarnpkg.com/iterate-object/-/iterate-object-1.3.4.tgz#fa50b1d9e58e340a7dd6b4c98c8a5e182e790096"
   integrity sha512-4dG1D1x/7g8PwHS9aK6QV5V94+ZvyP4+d19qDv43EzImmrndysIl4prmJ1hWWIGCqrZHyaHBm6BSEWHOLnpoNw==
 
-javascript-obfuscator@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-3.1.0.tgz#bde30239639099747d5d196c73c8fe747a96b66f"
-  integrity sha512-rbv0lx4Zj4LQIE720eqbrh+9PmvUXJWXoQQC5bxqaQfV6WwBZTJlhNnfZFyEHPtdJpmgKfUgW0BB5lera2Msmw==
+javascript-obfuscator@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/javascript-obfuscator/-/javascript-obfuscator-3.2.1.tgz#111cce5b91e5508790144c60794a7c3c5c00b5a7"
+  integrity sha512-ePt2yO/4DsW5nsc1WlsFdUUqaxmczAPnx/oDxfcoL++DoVP4bRHaCikZUhVWNrZ9DeX4ZAPon+zKxwM1oUKBIw==
   dependencies:
     "@javascript-obfuscator/escodegen" "2.3.0"
     "@javascript-obfuscator/estraverse" "5.4.0"

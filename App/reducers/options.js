@@ -48,6 +48,9 @@ const initialState = {
 
     stringArrayIndexShift: true,
 
+    stringArrayCallsTransform: false,
+    stringArrayCallsTransformThreshold: 0.5,
+
     stringArrayEncoding: [
         STRING_ARRAY_ENCODING_NONE
     ],
@@ -233,6 +236,18 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 stringArrayIndexesType: action.indexesType
+            };
+
+        case types.SET_STRING_ARRAY_CALLS_TRANSFORM_THRESHOLD:
+            return {
+                ...state,
+                stringArrayCallsTransformThreshold: action.threshold
+            };
+
+        case types.TOGGLE_STRING_ARRAY_CALLS_TRANSFORM:
+            return {
+                ...state,
+                stringArrayCallsTransform: !state.stringArrayCallsTransform
             };
 
         case types.SET_STRING_ARRAY_WRAPPERS_COUNT:
