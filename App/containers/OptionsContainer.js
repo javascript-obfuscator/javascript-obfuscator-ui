@@ -161,11 +161,14 @@ const Options = ({dispatch, options}) => {
                                 checked={options.debugProtection}
                                 onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION))}/>
 
-                            <Form.Checkbox
+                            <Form.Input
+                                type='number'
                                 label='Debug Protection Interval'
-                                checked={options.debugProtectionInterval}
-                                disabled={!options.debugProtection}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_DEBUG_PROTECTION_INTERVAL))}/>
+                                value={options.debugProtectionInterval}
+                                min="0"
+                                step="1000"
+                                onChange={(event, {value}) => dispatch(actions.setDebugProtectionInterval(parseInt(value)))}
+                                disabled={!options.debugProtection}/>
 
                             <Divider/>
 

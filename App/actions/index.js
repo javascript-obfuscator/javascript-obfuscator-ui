@@ -227,3 +227,8 @@ export const setIdentifiersPrefix = (identifiersPrefix) => ({
     'type': types.SET_IDENTIFIERS_PREFIX,
     identifiersPrefix
 });
+
+export const setDebugProtectionInterval = (debugProtectionInterval) => ({
+    'type': types.SET_DEBUG_PROTECTION_INTERVAL,
+    debugProtectionInterval
+});

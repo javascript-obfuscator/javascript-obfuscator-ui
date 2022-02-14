@@ -22,7 +22,7 @@ const initialState = {
     disableConsoleOutput: false,
 
     debugProtection: false,
-    debugProtectionInterval: false,
+    debugProtectionInterval: 0,
 
     splitStrings: false,
 
@@ -163,7 +163,16 @@ export const options = (state = initialState, action) => {
             return {
                 ...state,
                 debugProtection,
-                debugProtectionInterval: state.debugProtectionInterval && debugProtection,
+                debugProtectionInterval: debugProtection
+                    ? state.debugProtectionInterval
+                    : initialState.debugProtectionInterval,
+            }
+        }
+
+        case types.SET_DEBUG_PROTECTION_INTERVAL: {
+            return {
+                ...state,
+                debugProtectionInterval: action.debugProtectionInterval
             }
         }
 
@@ -505,6 +514,10 @@ export const options = (state = initialState, action) => {
 };
 
 export function sanitizePersistedOptions(persistedOptions) {
+    if (typeof persistedOptions.debugProtectionInterval !== 'number') {
+        persistedOptions.debugProtectionInterval = initialState.debugProtectionInterval;
+    }
+
     if (!Array.isArray(persistedOptions.stringArrayEncoding)) {
         persistedOptions.stringArrayEncoding = initialState.stringArrayEncoding;
     } else {
