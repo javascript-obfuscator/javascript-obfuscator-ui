@@ -524,8 +524,8 @@ export function sanitizePersistedOptions(persistedOptions) {
         for (const value of persistedOptions.stringArrayEncoding) {
             if (
                 value !== STRING_ARRAY_ENCODING_NONE
-                || value !== STRING_ARRAY_ENCODING_BASE64
-                || value !== STRING_ARRAY_ENCODING_RC4
+                && value !== STRING_ARRAY_ENCODING_BASE64
+                && value !== STRING_ARRAY_ENCODING_RC4
             ) {
                 persistedOptions.stringArrayEncoding = initialState.stringArrayEncoding;
 
