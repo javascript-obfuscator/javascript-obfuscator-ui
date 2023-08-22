@@ -17,6 +17,7 @@ process.env.PWD = process.cwd();
     app.use('/workers', express.static(__dirname + '/dist/workers'));
     app.use('/static/images', express.static(__dirname + '/public/images'));
     app.use('/static/semantic', express.static(__dirname + '/public/semantic'));
+    app.use('/ads.txt', express.static(__dirname + '/public/ads.txt'));
 
     app.get('/', function (req, res) {
         res.sendFile(__dirname + '/dist/index.html');
