@@ -9,6 +9,7 @@ import * as actions from '../actions';
 
 import CodeContainer from './CodeContainer';
 import OptionsContainer from './OptionsContainer';
+import { AdComponent } from "./AdSlot";
 
 class App extends Component {
 
@@ -81,6 +82,12 @@ class App extends Component {
                     hasSourceMap={hasSourceMap}
                     hasObfuscatedCode={hasObfuscatedCode}
                 />
+
+                <div style={{
+                    marginTop: '14px'
+                }}>
+                    <AdComponent client='ca-pub-5000712498982649' slot='6184020653' />
+                </div>
 
                 <OptionsContainer/>
             </React.Fragment>
