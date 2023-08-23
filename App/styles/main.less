@@ -2,6 +2,19 @@
 @import (inline) "~codemirror/lib/codemirror.css";
 @import url('~semantic-ui-less/themes/default/globals/site.variables');
 
+#LeftAd {
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  width: 300px;
+
+  @media only screen and (max-width: 1800px) {
+    & {
+      display: none
+    }
+  }
+}
+
 #GithubBadges, #DonateBadges {
   display: flex;
 
