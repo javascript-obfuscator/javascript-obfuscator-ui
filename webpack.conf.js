@@ -31,7 +31,7 @@ module.exports = {
                     {
                         loader: MiniCssExtractPlugin.loader,
                         options : {
-                            publicPath : __dirname + '/dist'
+                            publicPath : '.'
                         }
                     },
                     'css-loader',
