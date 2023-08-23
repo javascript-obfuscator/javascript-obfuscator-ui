@@ -26,6 +26,7 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-es2015": "^7.0.0-beta.53",
     "@babel/preset-react": "^7.12.10",
+    "@ctrl/react-adsense": "1.7.0",
     "babel-loader": "8.2.2",
     "body-parser": "1.19.0",
     "classnames": "2.2.6",

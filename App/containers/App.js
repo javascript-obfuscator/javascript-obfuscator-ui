@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Adsense} from '@ctrl/react-adsense';
 
 import {connect} from 'react-redux';
 
@@ -81,6 +82,14 @@ class App extends Component {
                     hasSourceMap={hasSourceMap}
                     hasObfuscatedCode={hasObfuscatedCode}
                 />
+
+                <div style={{ width: '100%', marginTop: '14px' }}>
+                    <Adsense
+                      client="ca-pub-5000712498982649"
+                      slot="6184020653"
+                      format="auto"
+                    />
+                </div>
 
                 <OptionsContainer/>
             </React.Fragment>
