@@ -102,7 +102,15 @@ const shouldShowAd = (level, headingIndex) => {
         return false;
     }
 
-    return headingIndex !== 0 && ((headingIndex === 2) || ((headingIndex % 10) === 0))
+    if (headingIndex === 0) {
+        return false;
+    }
+
+    if (headingIndex === 2) {
+        return true;
+    }
+
+    return headingIndex % 14 === 0;
 }
 
 const Options = ({dispatch, options}) => {
@@ -561,8 +569,6 @@ const Options = ({dispatch, options}) => {
                             if (showAd) {
                                 ad = ads[readmeAdCounter.current]
                                 readmeAdCounter.current++
-                                
-                                console.log(ad);
                             }
                             
                             headingCounter.current++
