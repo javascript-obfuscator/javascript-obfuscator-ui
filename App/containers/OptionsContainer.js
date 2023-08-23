@@ -14,6 +14,7 @@ import {getEmojiSupportRenderer} from '../util/get-emoji-support-renderer';
 import * as types from '../constants/ActionTypes';
 import * as actions from '../actions';
 import { ads } from "../constants/Ads";
+import { Adsense } from "@ctrl/react-adsense";
 
 export const OPTIONS_PRESET_DEFAULT = 'default';
 export const OPTIONS_PRESET_LOW_OBFUSCATION = 'low-obfuscation';
@@ -106,7 +107,7 @@ const shouldShowAd = (level, headingIndex) => {
         return false;
     }
 
-    if (headingIndex === 2) {
+    if (headingIndex === 5) {
         return true;
     }
 
@@ -552,6 +553,14 @@ const Options = ({dispatch, options}) => {
                     </Grid.Column>
                 </Grid>
             </Form>
+
+            <div style={{ width: '100%', marginTop: '14px' }}>
+                <Adsense
+                  client="ca-pub-5000712498982649"
+                  slot="6184020653"
+                  format="horizontal"
+                />
+            </div>
 
             <Segment secondary>
                 <Header as="h2" id="Options">

@@ -83,14 +83,6 @@ class App extends Component {
                     hasObfuscatedCode={hasObfuscatedCode}
                 />
 
-                <div style={{ width: '100%', marginTop: '14px' }}>
-                    <Adsense
-                      client="ca-pub-5000712498982649"
-                      slot="6184020653"
-                      format="auto"
-                    />
-                </div>
-
                 <OptionsContainer/>
             </React.Fragment>
         );
