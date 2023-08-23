@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
@@ -13,6 +13,7 @@ import {getEmojiSupportRenderer} from '../util/get-emoji-support-renderer';
 
 import * as types from '../constants/ActionTypes';
 import * as actions from '../actions';
+import { ads } from "../constants/Ads";
 
 export const OPTIONS_PRESET_DEFAULT = 'default';
 export const OPTIONS_PRESET_LOW_OBFUSCATION = 'low-obfuscation';
@@ -92,7 +93,25 @@ const IDENTIFIER_NAMES_GENERATOR_OPTIONS = [
 
 export const DOMAIN_LOCK_REDIRECT_URL_ABOUT_BLANK = 'about:blank';
 
+const shouldShowAd = (level, headingIndex) => {
+    if (level !== 3) {
+        return false
+    }
+
+    if (headingIndex === null) {
+        return false;
+    }
+
+    return headingIndex !== 0 && (headingIndex === 2 || headingIndex % 8 === 0)
+}
+
 const Options = ({dispatch, options}) => {
+    const headingCounter = useRef(0)
+    const readmeAdCounter = useRef(0)
+
+    headingCounter.current = 0
+    readmeAdCounter.current = 0
+
     useEffect(
         () => {
             actions.setOptionsPreset(OPTIONS_PRESET_DEFAULT)
@@ -534,7 +553,25 @@ const Options = ({dispatch, options}) => {
                 <ReactMarkdown
                     source={getOptionsMarkdown()}
                     renderers={{
-                        heading: getHeadingRenderer,
+                        heading: (props) => {
+                            const showAd = shouldShowAd(props.level, headingCounter.current)
+
+                            let ad = null
+
+                            if (showAd) {
+                                ad = ads[readmeAdCounter.current]
+                                readmeAdCounter.current++
+                                
+                                console.log(ad);
+                            }
+                            
+                            headingCounter.current++
+
+                            return getHeadingRenderer({
+                                ...props,
+                                adData: showAd ? ad : null
+                            })
+                        },
                         text: getEmojiSupportRenderer
                     }}
                 />
