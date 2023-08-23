@@ -102,7 +102,7 @@ const shouldShowAd = (level, headingIndex) => {
         return false;
     }
 
-    return headingIndex !== 0 && (headingIndex === 2 || headingIndex % 8 === 0)
+    return headingIndex !== 0 && ((headingIndex === 2) || ((headingIndex % 10) === 0))
 }
 
 const Options = ({dispatch, options}) => {
