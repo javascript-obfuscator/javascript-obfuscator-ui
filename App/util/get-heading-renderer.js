@@ -18,7 +18,7 @@ export const getHeadingRenderer = (props) => {
 
     return (
        <>
-           {!!adData && (
+           {/*{!!adData && (
              <div style={{ width: '100%', marginBottom: '8px' }}>
                  <Adsense
                    client={adData.client}
@@ -27,7 +27,7 @@ export const getHeadingRenderer = (props) => {
                    layout="in-article"
                  />
              </div>
-           )}
+           )}*/}
 
           <Element id={slug}>
               {props.children}
