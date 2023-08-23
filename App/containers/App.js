@@ -83,12 +83,6 @@ class App extends Component {
                     hasObfuscatedCode={hasObfuscatedCode}
                 />
 
-                <div style={{
-                    marginTop: '14px'
-                }}>
-                    <AdComponent client='ca-pub-5000712498982649' slot='6184020653' />
-                </div>
-
                 <OptionsContainer/>
             </React.Fragment>
         );
