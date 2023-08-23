@@ -9,7 +9,6 @@ import * as actions from '../actions';
 
 import CodeContainer from './CodeContainer';
 import OptionsContainer from './OptionsContainer';
-import { AdComponent } from "./AdSlot";
 
 class App extends Component {
 
