@@ -87,7 +87,7 @@ class App extends Component {
                     <Adsense
                       client="ca-pub-5000712498982649"
                       slot="1666508371"
-                      format="horizontal"
+                      format="auto"
                     />
                 </div>
 
