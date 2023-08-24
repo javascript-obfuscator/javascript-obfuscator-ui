@@ -554,14 +554,6 @@ const Options = ({dispatch, options}) => {
                 </Grid>
             </Form>
 
-            <div style={{ width: '100%', marginTop: '14px' }}>
-                <Adsense
-                  client="ca-pub-5000712498982649"
-                  slot="6184020653"
-                  format="horizontal"
-                />
-            </div>
-
             <Segment secondary>
                 <Header as="h2" id="Options">
                     Available Options:
