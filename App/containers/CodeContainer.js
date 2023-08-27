@@ -9,6 +9,7 @@ import Dropzone from 'react-dropzone';
 
 import EditorContainer from '../containers/EditorContainer';
 import {DEFAULT_OUTPUT_FILE_NAME} from '../reducers/code';
+import { Adsense } from "@ctrl/react-adsense";
 
 const TAB_CODE = 0;
 const TAB_RESULTS = 2;
@@ -172,6 +173,15 @@ class CodeContainer extends Component {
                 render: () => (
                     <Pane>
                         <EditorContainer onBlur={::this.onCodeChange} value={code}/>
+
+                        <div style={{ width: '100%', marginTop: '16px' }}>
+                            <Adsense
+                              client="ca-pub-5000712498982649"
+                              slot="1666508371"
+                              format="horizontal"
+                            />
+                        </div>
+
                         <Segment basic>
                             <Button
                                 loading={pending}

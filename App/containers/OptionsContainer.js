@@ -199,58 +199,6 @@ const Options = ({dispatch, options}) => {
                                 disabled={!options.debugProtection}/>
 
                             <Divider/>
-
-                            <Form.Checkbox
-                                label='Ignore Imports'
-                                checked={options.ignoreImports}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_IGNORE_IMPORTS))}/>
-
-                            <Divider/>
-
-                            <EntryInputContainer
-                                label='Domain lock'
-                                disabled={!options.domainLockEnabled}
-                                actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain))}
-                                actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain))}
-                                placeholder="domain.com"
-                                entries={options.domainLock}
-                                buttonIcon="plus"/>
-
-                            <Form.Input
-                                type='string'
-                                label='Domain Lock Redirect Url'
-                                value={options.domainLockRedirectUrl}
-                                onChange={(event, {value}) => dispatch(actions.setDomainLockRedirectUrl(value))}/>
-
-                            <Divider/>
-
-                            <Form.Checkbox
-                                label='Enable Source Map'
-                                checked={options.sourceMap}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SOURCEMAP))}/>
-
-                            <Form.Select
-                                label='Source Map Mode'
-                                value={options.sourceMapMode}
-                                disabled={!options.sourceMap}
-                                fluid
-                                onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value))}
-                                options={SOURCEMAP_OPTIONS}/>
-
-                            <Form.Input
-                                label='Source Map Base URL'
-                                disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
-                                onChange={(event, {value}) => dispatch(actions.setSourceMapBaseUrl(value))}
-                                value={options.sourceMapBaseUrl}
-                                placeholder='http://localhost:3000'/>
-
-                            <Form.Input
-                                label='Source Map File Name'
-                                disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
-                                onChange={(event, {value}) => dispatch(actions.setSourceMapFileName(value))}
-                                value={options.sourceMapFileName}
-                                placeholder='example'/>
-
                         </Segment>
                     </Grid.Column>
 
@@ -291,6 +239,16 @@ const Options = ({dispatch, options}) => {
                                 onChange={(event, {value}) => dispatch(actions.setStringArrayThreshold(parseFloat(value)))}
                                 disabled={!options.stringArrayThresholdEnabled}/>
 
+                            <Form.Select
+                              disabled={!options.stringArrayEncodingEnabled}
+                              label='String Array Encoding'
+                              fluid
+                              multiple
+                              placeholder={STRING_ARRAY_ENCODING_NONE}
+                              value={options.stringArrayEncoding}
+                              onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
+                              options={STRING_ARRAY_ENCODING_OPTIONS}/>
+
                             <Form.Checkbox
                                 label='String Array Index Shift'
                                 checked={options.stringArrayIndexShift}
@@ -321,95 +279,6 @@ const Options = ({dispatch, options}) => {
                                 step="0.1"
                                 onChange={(event, {value}) => dispatch(actions.setStringArrayCallsTransformThreshold(parseFloat(value)))}
                                 disabled={!options.stringArrayCallsTransform}/>
-
-                            <Form.Input
-                                type='number'
-                                label='String Array Wrappers Count'
-                                value={options.stringArrayWrappersCount}
-                                min="0"
-                                step="1"
-                                onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersCount(parseInt(value)))}
-                                disabled={!options.stringArray}/>
-
-                            <Form.Select
-                                label='String Array Wrappers Type'
-                                fluid
-                                placeholder={STRING_ARRAY_WRAPPERS_TYPE_VARIABLE}
-                                value={options.stringArrayWrappersType}
-                                onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersType(value))}
-                                options={STRING_ARRAY_WRAPPERS_TYPE_OPTIONS}
-                                disabled={!options.stringArray || !options.stringArrayWrappersCount}
-                            />
-
-                            <Form.Input
-                                type='number'
-                                label='String Array Wrappers Parameters Maximum Count'
-                                value={options.stringArrayWrappersParametersMaxCount}
-                                min="2"
-                                step="1"
-                                onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersParametersMaxCount(parseInt(value)))}
-                                disabled={
-                                    !options.stringArray
-                                    || !options.stringArrayWrappersCount
-                                    || options.stringArrayWrappersType !== STRING_ARRAY_WRAPPERS_TYPE_FUNCTION
-                                }/>
-
-                            <Form.Checkbox
-                                label='String Array Wrappers Chained Calls'
-                                checked={options.stringArrayWrappersChainedCalls}
-                                disabled={!options.stringArray || !options.stringArrayWrappersCount}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY_WRAPPERS_CHAINED_CALLS))}/>
-
-                            <Form.Select
-                                disabled={!options.stringArrayEncodingEnabled}
-                                label='String Array Encoding'
-                                fluid
-                                multiple
-                                placeholder={STRING_ARRAY_ENCODING_NONE}
-                                value={options.stringArrayEncoding}
-                                onChange={(event, {value}) => dispatch(actions.setStringArrayEncoding(value))}
-                                options={STRING_ARRAY_ENCODING_OPTIONS}/>
-
-                            <Divider/>
-
-                            <Form.Checkbox
-                                label='Split Strings'
-                                checked={options.splitStrings}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SPLIT_STRINGS))}/>
-
-                            <Form.Input
-                                type='number'
-                                label='Split Strings Chunk Length'
-                                value={options.splitStringsChunkLength}
-                                min="1"
-                                step="1"
-                                onChange={(event, {value}) => dispatch(actions.setSplitStringsChunkLength(parseInt(value)))}
-                                disabled={!options.splitStringsChunkLengthEnabled}/>
-
-                            <Divider/>
-
-                            <Form.Checkbox
-                                label='Unicode Escape Sequence'
-                                checked={options.unicodeEscapeSequence}
-                                onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE))}/>
-
-                            <Divider/>
-
-                            <EntryInputContainer
-                                label='Force Transform Strings'
-                                actionAddEntryToState={(string) => dispatch(actions.addForceTransformString(string))}
-                                actionRemoveEntryFromState={(string) => dispatch(actions.removeForceTransformString(string))}
-                                placeholder="^some *string *or RegExp"
-                                entries={options.forceTransformStrings}
-                                buttonIcon="plus"/>
-
-                            <EntryInputContainer
-                                label='Reserved Strings'
-                                actionAddEntryToState={(string) => dispatch(actions.addReservedString(string))}
-                                actionRemoveEntryFromState={(string) => dispatch(actions.removeReservedString(string))}
-                                placeholder="^some *string *or RegExp"
-                                entries={options.reservedStrings}
-                                buttonIcon="plus"/>
 
                         </Segment>
                     </Grid.Column>
@@ -549,6 +418,156 @@ const Options = ({dispatch, options}) => {
                                 onChange={(event, {value}) => dispatch(actions.setDeadCodeInjectionThreshold(parseFloat(value)))}
                                 disabled={!options.deadCodeInjection}/>
 
+                        </Segment>
+                    </Grid.Column>
+                </Grid>
+
+                <div style={{ width: '100%', marginTop: '8px', marginBottom: '8px' }}>
+                    <Adsense
+                      client="ca-pub-5000712498982649"
+                      slot="8485307400"
+                      format="fluid"
+                      layout="in-article"
+                    />
+                </div>
+
+                <Grid columns={4} relaxed stackable doubling>
+                    <Grid.Column>
+                        <Segment basic>
+                            <Form.Checkbox
+                              label='Ignore Imports'
+                              checked={options.ignoreImports}
+                              onChange={() => dispatch(actions.toggleOption(types.TOGGLE_IGNORE_IMPORTS))}/>
+
+                            <Divider/>
+
+                            <EntryInputContainer
+                              label='Domain lock'
+                              disabled={!options.domainLockEnabled}
+                              actionAddEntryToState={(domain) => dispatch(actions.addDomainLock(domain))}
+                              actionRemoveEntryFromState={(domain) => dispatch(actions.removeDomainLock(domain))}
+                              placeholder="domain.com"
+                              entries={options.domainLock}
+                              buttonIcon="plus"/>
+
+                            <Form.Input
+                              type='string'
+                              label='Domain Lock Redirect Url'
+                              value={options.domainLockRedirectUrl}
+                              onChange={(event, {value}) => dispatch(actions.setDomainLockRedirectUrl(value))}/>
+
+                            <Divider/>
+
+                            <Form.Checkbox
+                              label='Enable Source Map'
+                              checked={options.sourceMap}
+                              onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SOURCEMAP))}/>
+
+                            <Form.Select
+                              label='Source Map Mode'
+                              value={options.sourceMapMode}
+                              disabled={!options.sourceMap}
+                              fluid
+                              onChange={(event, {value}) => dispatch(actions.setSourceMapMode(value))}
+                              options={SOURCEMAP_OPTIONS}/>
+
+                            <Form.Input
+                              label='Source Map Base URL'
+                              disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
+                              onChange={(event, {value}) => dispatch(actions.setSourceMapBaseUrl(value))}
+                              value={options.sourceMapBaseUrl}
+                              placeholder='http://localhost:3000'/>
+
+                            <Form.Input
+                              label='Source Map File Name'
+                              disabled={!options.sourceMap || options.sourceMapMode !== SOURCEMAP_SEPARATE}
+                              onChange={(event, {value}) => dispatch(actions.setSourceMapFileName(value))}
+                              value={options.sourceMapFileName}
+                              placeholder='example'/>
+
+                        </Segment>
+                    </Grid.Column>
+
+                    <Grid.Column>
+                        <Segment basic>
+                            <Form.Input
+                              type='number'
+                              label='String Array Wrappers Count'
+                              value={options.stringArrayWrappersCount}
+                              min="0"
+                              step="1"
+                              onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersCount(parseInt(value)))}
+                              disabled={!options.stringArray}/>
+
+                            <Form.Select
+                              label='String Array Wrappers Type'
+                              fluid
+                              placeholder={STRING_ARRAY_WRAPPERS_TYPE_VARIABLE}
+                              value={options.stringArrayWrappersType}
+                              onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersType(value))}
+                              options={STRING_ARRAY_WRAPPERS_TYPE_OPTIONS}
+                              disabled={!options.stringArray || !options.stringArrayWrappersCount}
+                            />
+
+                            <Form.Input
+                              type='number'
+                              label='String Array Wrappers Parameters Maximum Count'
+                              value={options.stringArrayWrappersParametersMaxCount}
+                              min="2"
+                              step="1"
+                              onChange={(event, {value}) => dispatch(actions.setStringArrayWrappersParametersMaxCount(parseInt(value)))}
+                              disabled={
+                                !options.stringArray
+                                || !options.stringArrayWrappersCount
+                                || options.stringArrayWrappersType !== STRING_ARRAY_WRAPPERS_TYPE_FUNCTION
+                              }/>
+
+                            <Form.Checkbox
+                              label='String Array Wrappers Chained Calls'
+                              checked={options.stringArrayWrappersChainedCalls}
+                              disabled={!options.stringArray || !options.stringArrayWrappersCount}
+                              onChange={() => dispatch(actions.toggleOption(types.TOGGLE_STRING_ARRAY_WRAPPERS_CHAINED_CALLS))}/>
+
+                            <Divider/>
+
+                            <Form.Checkbox
+                              label='Split Strings'
+                              checked={options.splitStrings}
+                              onChange={() => dispatch(actions.toggleOption(types.TOGGLE_SPLIT_STRINGS))}/>
+
+                            <Form.Input
+                              type='number'
+                              label='Split Strings Chunk Length'
+                              value={options.splitStringsChunkLength}
+                              min="1"
+                              step="1"
+                              onChange={(event, {value}) => dispatch(actions.setSplitStringsChunkLength(parseInt(value)))}
+                              disabled={!options.splitStringsChunkLengthEnabled}/>
+
+                            <Divider/>
+
+                            <Form.Checkbox
+                              label='Unicode Escape Sequence'
+                              checked={options.unicodeEscapeSequence}
+                              onChange={() => dispatch(actions.toggleOption(types.TOGGLE_UNICODE_ESCAPE_SEQUENCE))}/>
+
+                            <Divider/>
+
+                            <EntryInputContainer
+                              label='Force Transform Strings'
+                              actionAddEntryToState={(string) => dispatch(actions.addForceTransformString(string))}
+                              actionRemoveEntryFromState={(string) => dispatch(actions.removeForceTransformString(string))}
+                              placeholder="^some *string *or RegExp"
+                              entries={options.forceTransformStrings}
+                              buttonIcon="plus"/>
+
+                            <EntryInputContainer
+                              label='Reserved Strings'
+                              actionAddEntryToState={(string) => dispatch(actions.addReservedString(string))}
+                              actionRemoveEntryFromState={(string) => dispatch(actions.removeReservedString(string))}
+                              placeholder="^some *string *or RegExp"
+                              entries={options.reservedStrings}
+                              buttonIcon="plus"/>
                         </Segment>
                     </Grid.Column>
                 </Grid>
