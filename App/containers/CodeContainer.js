@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Adsense} from '@ctrl/react-adsense';
 
 import {connect} from 'react-redux';
 
@@ -172,15 +173,32 @@ class CodeContainer extends Component {
                 render: () => (
                     <Pane>
                         <EditorContainer onBlur={::this.onCodeChange} value={code}/>
+
                         <Segment basic>
-                            <Button
-                                loading={pending}
-                                disabled={pending}
-                                primary
-                                onClick={onObfuscateClick}
-                            >
-                                Obfuscate
-                            </Button>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center'
+                            }}>
+                                <Button
+                                  loading={pending}
+                                  disabled={pending}
+                                  primary
+                                  onClick={onObfuscateClick}
+                                >
+                                    Obfuscate
+                                </Button>
+
+                                <div style={{
+                                    flexGrow: 1,
+                                    marginLeft: '8px',
+                                }}>
+                                    <Adsense
+                                      client="ca-pub-5000712498982649"
+                                      slot="1666508371"
+                                      format="horizontal"
+                                    />
+                                </div>
+                            </div>
                         </Segment>
                     </Pane>
                 )
