@@ -174,23 +174,31 @@ class CodeContainer extends Component {
                     <Pane>
                         <EditorContainer onBlur={::this.onCodeChange} value={code}/>
 
-                        <div style={{ width: '100%', marginTop: '16px' }}>
-                            <Adsense
-                              client="ca-pub-5000712498982649"
-                              slot="1666508371"
-                              format="horizontal"
-                            />
-                        </div>
-
                         <Segment basic>
-                            <Button
-                                loading={pending}
-                                disabled={pending}
-                                primary
-                                onClick={onObfuscateClick}
-                            >
-                                Obfuscate
-                            </Button>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center'
+                            }}>
+                                <Button
+                                  loading={pending}
+                                  disabled={pending}
+                                  primary
+                                  onClick={onObfuscateClick}
+                                >
+                                    Obfuscate
+                                </Button>
+
+                                <div style={{
+                                    flexGrow: 1,
+                                    marginLeft: '8px',
+                                }}>
+                                    <Adsense
+                                      client="ca-pub-5000712498982649"
+                                      slot="1666508371"
+                                      format="horizontal"
+                                    />
+                                </div>
+                            </div>
                         </Segment>
                     </Pane>
                 )
