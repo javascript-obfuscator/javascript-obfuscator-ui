@@ -18,6 +18,8 @@ process.env.PWD = process.cwd();
     app.use('/static/images', express.static(__dirname + '/public/images'));
     app.use('/static/semantic', express.static(__dirname + '/public/semantic'));
     app.use('/ads.txt', express.static(__dirname + '/public/ads.txt'));
+    app.use('/docs/privacy-policy.docx', express.static(__dirname + '/public/docs/privacy-policy.docx'));
+    app.use('/docs/cookie-policy.docx', express.static(__dirname + '/public/docs/cookie-policy.docx'));
 
     app.get('/', function (req, res) {
         res.sendFile(__dirname + '/dist/index.html');
