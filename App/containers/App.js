@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Adsense} from '@ctrl/react-adsense';
-import { ConsentProvider, ConsentBanner } from 'react-hook-consent';
-import 'react-hook-consent/dist/styles/style.css';
-const dayjs = require('dayjs')
-const timezone = require('dayjs/plugin/timezone')
 
 import {connect} from 'react-redux';
 
@@ -14,14 +10,9 @@ import * as actions from '../actions';
 
 import CodeContainer from './CodeContainer';
 import OptionsContainer from './OptionsContainer';
-import { EUROPE_TIMEZONES } from '../constants/EuropeTimezones';
+import { ConsentHandler } from "./ConsentHandler";
 
 class App extends Component {
-
-    state = {
-        cookiesEnabled: false,
-        consentRequired: this.isConsentRequired()
-    }
 
     static propTypes = {
         dispatch: PropTypes.func,
@@ -34,18 +25,6 @@ class App extends Component {
         error: PropTypes.bool,
         options: PropTypes.object,
     };
-
-    constructor() {
-        super();
-
-        window.enableCookies = this.enableCookies.bind(this);
-    }
-
-    componentDidMount() {
-        if (!this.state.consentRequired) {
-            this.enableCookies()
-        }
-    }
 
     obfuscate() {
         const {dispatch} = this.props;
@@ -72,16 +51,6 @@ class App extends Component {
         };
 
         downloadFile(data);
-    }
-
-    isConsentRequired() {
-        dayjs.extend(timezone);
-
-        return EUROPE_TIMEZONES.includes(dayjs.tz.guess());
-    }
-
-    enableCookies() {
-        (adsbygoogle=window.adsbygoogle||[]).pauseAdRequests=0;
     }
 
     render() {
@@ -125,32 +94,7 @@ class App extends Component {
 
                 <OptionsContainer/>
 
-                {this.state.consentRequired && (
-                  <ConsentProvider
-                    options={{
-                        services: [
-                            {
-                                id: 'analytics_and_ads',
-                                name: 'Analytics & Ads',
-                                scripts: [
-                                    { id: 'enable-cookies', code: 'window.enableCookies()' },
-                                ],
-                                cookies: [],
-                                mandatory: false,
-                            },
-                        ],
-                        theme: 'light',
-                    }}
-                  >
-                      <ConsentBanner
-                        settings={{ hidden: false, label: 'More', modal: { title: 'Cookie settings' } }}
-                        decline={{ hidden: true }}
-                        approve={{ label: 'Accept' }}
-                      >
-                          obfuscator.io uses cookies according to the <a href="/docs/cookie-policy.docx">cookie policy</a>
-                      </ConsentBanner>
-                  </ConsentProvider>
-                )}
+                <ConsentHandler />
             </React.Fragment>
         );
     }
