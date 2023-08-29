@@ -14,42 +14,7 @@ import * as actions from '../actions';
 
 import CodeContainer from './CodeContainer';
 import OptionsContainer from './OptionsContainer';
-
-const EU_TIMEZONES = [
-    'Europe/Vienna',
-    'Europe/Brussels',
-    'Europe/Sofia',
-    'Europe/Zagreb',
-    'Asia/Famagusta',
-    'Asia/Nicosia',
-    'Europe/Prague',
-    'Europe/Copenhagen',
-    'Europe/Tallinn',
-    'Europe/Helsinki',
-    'Europe/Paris',
-    'Europe/Berlin',
-    'Europe/Busingen',
-    'Europe/Athens',
-    'Europe/Budapest',
-    'Europe/Dublin',
-    'Europe/Rome',
-    'Europe/Riga',
-    'Europe/Vilnius',
-    'Europe/Luxembourg',
-    'Europe/Malta',
-    'Europe/Amsterdam',
-    'Europe/Warsaw',
-    'Atlantic/Azores',
-    'Atlantic/Madeira',
-    'Europe/Lisbon',
-    'Europe/Bucharest',
-    'Europe/Bratislava',
-    'Europe/Ljubljana',
-    'Africa/Ceuta',
-    'Atlantic/Canary',
-    'Europe/Madrid',
-    'Europe/Stockholm'
-];
+import { EUROPE_TIMEZONES } from '../constants/EuropeTimezones';
 
 class App extends Component {
 
@@ -112,7 +77,7 @@ class App extends Component {
     isConsentRequired() {
         dayjs.extend(timezone);
 
-        return EU_TIMEZONES.includes(dayjs.tz.guess());
+        return EUROPE_TIMEZONES.includes(dayjs.tz.guess());
     }
 
     enableCookies() {

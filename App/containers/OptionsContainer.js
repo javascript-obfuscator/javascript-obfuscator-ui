@@ -13,8 +13,6 @@ import {getEmojiSupportRenderer} from '../util/get-emoji-support-renderer';
 
 import * as types from '../constants/ActionTypes';
 import * as actions from '../actions';
-import { ads } from "../constants/Ads";
-import { Adsense } from "@ctrl/react-adsense";
 
 export const OPTIONS_PRESET_DEFAULT = 'default';
 export const OPTIONS_PRESET_LOW_OBFUSCATION = 'low-obfuscation';
@@ -562,23 +560,7 @@ const Options = ({dispatch, options}) => {
                 <ReactMarkdown
                     source={getOptionsMarkdown()}
                     renderers={{
-                        heading: (props) => {
-                            const showAd = shouldShowAd(props.level, headingCounter.current)
-
-                            let ad = null
-
-                            if (showAd) {
-                                ad = ads[readmeAdCounter.current]
-                                readmeAdCounter.current++
-                            }
-                            
-                            headingCounter.current++
-
-                            return getHeadingRenderer({
-                                ...props,
-                                adData: showAd ? ad : null
-                            })
-                        },
+                        heading: getHeadingRenderer,
                         text: getEmojiSupportRenderer
                     }}
                 />
