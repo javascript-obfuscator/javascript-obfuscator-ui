@@ -2,8 +2,19 @@
 @import (inline) "~codemirror/lib/codemirror.css";
 @import url('~semantic-ui-less/themes/default/globals/site.variables');
 
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  & > h1 {
+    margin-right: 1rem;
+  }
+}
+
 #GithubBadges, #DonateBadges {
   display: flex;
+  margin-bottom: 1rem;
 
   & #donate {
     position: relative;
