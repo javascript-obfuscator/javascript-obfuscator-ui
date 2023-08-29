@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {Adsense} from '@ctrl/react-adsense';
 import { ConsentProvider, ConsentBanner } from 'react-hook-consent';
 import 'react-hook-consent/dist/styles/style.css';
-import {Helmet} from "react-helmet";
 
 import {connect} from 'react-redux';
 
@@ -66,7 +65,7 @@ class App extends Component {
     }
 
     enableCookies() {
-        this.setState({cookiesEnabled: true});
+        (adsbygoogle=window.adsbygoogle||[]).pauseAdRequests=0;
     }
 
     render() {
@@ -86,13 +85,6 @@ class App extends Component {
 
         return (
             <React.Fragment>
-                <Helmet>
-                    {this.state.cookiesEnabled && (
-                      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5000712498982649"
-                              crossOrigin="anonymous"></script>
-                    )}
-                </Helmet>
-
                 <CodeContainer
                     code={code}
                     obfuscatedCode={obfuscatedCode}
