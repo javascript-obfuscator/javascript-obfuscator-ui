@@ -4,7 +4,6 @@ import {Adsense} from '@ctrl/react-adsense';
 import { ConsentProvider, ConsentBanner } from 'react-hook-consent';
 import 'react-hook-consent/dist/styles/style.css';
 import {Helmet} from "react-helmet";
-import Cookies from 'js-cookie'
 
 import {connect} from 'react-redux';
 
@@ -18,7 +17,7 @@ import OptionsContainer from './OptionsContainer';
 class App extends Component {
 
     state = {
-        cookiesEnabled: Cookies.get('cookies-enabled'),
+        cookiesEnabled: false
     }
 
     static propTypes = {
