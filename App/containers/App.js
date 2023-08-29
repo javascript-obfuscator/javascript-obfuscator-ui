@@ -127,10 +127,10 @@ class App extends Component {
                 >
                     <ConsentBanner
                       settings={{ hidden: false, label: 'More', modal: { title: 'Cookie settings' } }}
-                      decline={{ show: true, label: 'Reject' }}
+                      decline={{ hidden: true }}
                       approve={{ label: 'Accept' }}
                     >
-                        Can we use cookies and external services according to our <a href="/docs/cookie-policy.docx">cookie policy</a>?
+                        obfuscator.io uses cookies according to the <a href="/docs/cookie-policy.docx">cookie policy</a>
                     </ConsentBanner>
                 </ConsentProvider>
             </React.Fragment>
