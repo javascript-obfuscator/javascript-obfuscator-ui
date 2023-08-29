@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Adsense} from '@ctrl/react-adsense';
+import { ConsentProvider, ConsentBanner } from 'react-hook-consent';
+import 'react-hook-consent/dist/styles/style.css';
+import {Helmet} from "react-helmet";
+import Cookies from 'js-cookie'
 
 import {connect} from 'react-redux';
 
@@ -13,6 +17,10 @@ import OptionsContainer from './OptionsContainer';
 
 class App extends Component {
 
+    state = {
+        cookiesEnabled: Cookies.get('cookies-enabled'),
+    }
+
     static propTypes = {
         dispatch: PropTypes.func,
         code: PropTypes.string,
@@ -24,6 +32,12 @@ class App extends Component {
         error: PropTypes.bool,
         options: PropTypes.object,
     };
+
+    constructor() {
+        super();
+
+        window.enableCookies = this.enableCookies.bind(this);
+    }
 
     obfuscate() {
         const {dispatch} = this.props;
@@ -52,6 +66,10 @@ class App extends Component {
         downloadFile(data);
     }
 
+    enableCookies() {
+        this.setState({cookiesEnabled: true});
+    }
+
     render() {
 
         const {dispatch} = this.props;
@@ -69,6 +87,13 @@ class App extends Component {
 
         return (
             <React.Fragment>
+                <Helmet>
+                    {this.state.cookiesEnabled && (
+                      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5000712498982649"
+                              crossOrigin="anonymous"></script>
+                    )}
+                </Helmet>
+
                 <CodeContainer
                     code={code}
                     obfuscatedCode={obfuscatedCode}
@@ -92,6 +117,31 @@ class App extends Component {
                 </div>
 
                 <OptionsContainer/>
+
+                <ConsentProvider
+                   options={{
+                      services: [
+                          {
+                              id: 'analytics_and_ads',
+                              name: 'Analytics & Ads',
+                              scripts: [
+                                  { id: 'enable-cookies', code: 'window.enableCookies()' },
+                              ],
+                              cookies: [],
+                              mandatory: false,
+                          },
+                      ],
+                      theme: 'light',
+                   }}
+                >
+                    <ConsentBanner
+                      settings={{ hidden: false, label: 'More', modal: { title: 'Cookie settings' } }}
+                      decline={{ show: true, label: 'Reject' }}
+                      approve={{ label: 'Accept' }}
+                    >
+                        Can we use cookies and external services according to our <a href="/docs/cookie-policy.docx">cookie policy</a>?
+                    </ConsentBanner>
+                </ConsentProvider>
             </React.Fragment>
         );
     }
