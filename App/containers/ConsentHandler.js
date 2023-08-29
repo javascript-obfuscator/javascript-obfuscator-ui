@@ -28,11 +28,12 @@ export const ConsentHandler = () => {
     window.enableCookies = enableCookies
 
     if (!consentRequiredRef.current) {
-      enableCookies()
+      // enableCookies()
     }
   }, [enableCookies]);
 
-  if (!consentRequiredRef.current) {
+  // if (!consentRequiredRef.current) {
+  if (true) {
     return null;
   }
 
