@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {Adsense} from '@ctrl/react-adsense';
 
 import {connect} from 'react-redux';
 
@@ -10,7 +11,6 @@ import * as actions from '../actions';
 import CodeContainer from './CodeContainer';
 import OptionsContainer from './OptionsContainer';
 import { ConsentHandler } from "./ConsentHandler";
-import { CarbonAd } from "./CarbonAd";
 
 class App extends Component {
 
@@ -69,31 +69,33 @@ class App extends Component {
         const hasObfuscatedCode = obfuscatedCode.length !== 0;
 
         return (
-            <ConsentHandler>
-                {({consentAccepted}) => (
-                    <>
-                        <CodeContainer
-                          code={code}
-                          obfuscatedCode={obfuscatedCode}
-                          pending={obfuscating}
-                          hasResults={obfuscated || error}
-                          onCodeChange={(code) => dispatch(actions.updateCode(code))}
-                          onOutputFileNameChange={(fileName) => dispatch(actions.updateOutputFileName(fileName))}
-                          onObfuscateClick={::this.obfuscate}
-                          onDownloadCodeClick={::this.downloadCode}
-                          onDownloadSourceMapClick={::this.downloadSourceMap}
-                          hasSourceMap={hasSourceMap}
-                          hasObfuscatedCode={hasObfuscatedCode}
-                        />
+            <React.Fragment>
+                <CodeContainer
+                    code={code}
+                    obfuscatedCode={obfuscatedCode}
+                    pending={obfuscating}
+                    hasResults={obfuscated || error}
+                    onCodeChange={(code) => dispatch(actions.updateCode(code))}
+                    onOutputFileNameChange={(fileName) => dispatch(actions.updateOutputFileName(fileName))}
+                    onObfuscateClick={::this.obfuscate}
+                    onDownloadCodeClick={::this.downloadCode}
+                    onDownloadSourceMapClick={::this.downloadSourceMap}
+                    hasSourceMap={hasSourceMap}
+                    hasObfuscatedCode={hasObfuscatedCode}
+                />
 
-                        {consentAccepted && (
-                          <CarbonAd />
-                        )}
+                <div style={{ width: '100%', marginTop: '8px', marginBottom: '8px' }}>
+                    <Adsense
+                      client="ca-pub-5000712498982649"
+                      slot="1666508371"
+                      format="auto"
+                    />
+                </div>
 
-                        <OptionsContainer/>
-                    </>
-                )}
-            </ConsentHandler>
+                <OptionsContainer/>
+
+                <ConsentHandler />
+            </React.Fragment>
         );
     }
 

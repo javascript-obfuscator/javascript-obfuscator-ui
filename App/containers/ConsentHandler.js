@@ -1,14 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { ConsentBanner, ConsentProvider } from "react-hook-consent";
 import 'react-hook-consent/dist/styles/style.css';
 const dayjs = require('dayjs')
 const timezone = require('dayjs/plugin/timezone')
 import { EUROPE_TIMEZONES } from "../constants/EuropeTimezones";
-import { ConsentOverlay } from "./ConsentOverlay";
 
-const consentId = 'analytics_and_ads'
-
-export const ConsentHandler = ({children}) => {
+export const ConsentHandler = () => {
   const isConsentRequired = useCallback(
     () => {
       dayjs.extend(timezone);
@@ -19,64 +16,51 @@ export const ConsentHandler = ({children}) => {
   )
 
   const consentRequiredRef = useRef(isConsentRequired());
-  const [consentAccepted, setConsentAccepted] = useState(false)
-  const [isInitialized, setIsInitialized] = useState(false)
 
-  const acceptConsent = useCallback(
+  const enableCookies = useCallback(
     () => {
-      setConsentAccepted(true)
+      (adsbygoogle=window.adsbygoogle||[]).pauseAdRequests=0;
     },
-    [setConsentAccepted]
+    []
   )
 
-  if (!window.acceptConsent) {
-    window.acceptConsent = acceptConsent
+  useEffect(() => {
+    window.enableCookies = enableCookies
+
+    if (!consentRequiredRef.current) {
+      // enableCookies()
+    }
+  }, [enableCookies]);
+
+  // if (!consentRequiredRef.current) {
+  if (true) {
+    return null;
   }
 
-  useEffect(() => {
-    if (!consentRequiredRef.current) {
-      acceptConsent()
-    }
-  }, [acceptConsent]);
-
-  useEffect(() => {
-    setIsInitialized(true)
-  }, [setIsInitialized]);
-
   return (
-    <>
-      {children({consentAccepted})}
-
-      {!!consentRequiredRef.current && (
-        <ConsentProvider
-          options={{
-            services: [
-              {
-                id: consentId,
-                name: 'Analytics & Ads',
-                scripts: [
-                  { id: 'enable-consent', code: 'window.acceptConsent()' },
-                ],
-                cookies: [],
-                mandatory: false,
-              },
-            ],
-            theme: 'light',
-          }}
+      <ConsentProvider
+        options={{
+          services: [
+            {
+              id: 'analytics_and_ads',
+              name: 'Analytics & Ads',
+              scripts: [
+                { id: 'enable-cookies', code: 'window.enableCookies()' },
+              ],
+              cookies: [],
+              mandatory: false,
+            },
+          ],
+          theme: 'light',
+        }}
+      >
+        <ConsentBanner
+          settings={{ hidden: false, label: 'More', modal: { title: 'Cookie settings' } }}
+          decline={{ hidden: true }}
+          approve={{ label: 'Accept' }}
         >
-          {isInitialized && !consentAccepted && (
-            <ConsentOverlay />
-          )}
-
-          <ConsentBanner
-            settings={{ hidden: true, label: 'More', modal: { title: 'Cookie settings' } }}
-            decline={{ hidden: true }}
-            approve={{ label: 'Accept' }}
-          >
-            obfuscator.io uses cookies according to the <a href="/docs/cookie-policy.docx">cookie policy</a>
-          </ConsentBanner>
-        </ConsentProvider>
-      )}
-    </>
-  );
+          obfuscator.io uses cookies according to the <a href="/docs/cookie-policy.docx">cookie policy</a>
+        </ConsentBanner>
+      </ConsentProvider>
+    );
 }
