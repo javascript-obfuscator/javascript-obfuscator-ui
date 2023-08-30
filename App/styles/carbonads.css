@@ -44,7 +44,7 @@
 
 #carbonads .carbon-wrap {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 1.5ex;
 }
 
@@ -57,6 +57,7 @@
 }
 
 #carbonads .carbon-text {
+    padding: 8px 0;
     display: flex;
     align-items: center;
     flex-grow: 1;
