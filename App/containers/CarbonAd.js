@@ -18,6 +18,6 @@ export const CarbonAd = () => {
   }, [targetRef.current]);
 
   return (
-    <div ref={targetRef} style={{ width: '100%', marginTop: '8px', marginBottom: '8px' }} />
+    <div ref={targetRef} style={{ width: '100%', marginTop: '24px', marginBottom: '24px' }} />
   )
 }
