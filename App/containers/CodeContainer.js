@@ -168,7 +168,11 @@ class CodeContainer extends Component {
 
         return [
             {
-                menuItem: 'Copy & Paste JavaScript Code',
+                menuItem: {
+                    as: 'a',
+                    content: 'Copy & Paste JavaScript Code',
+                    href: "#code",
+                },
                 render: () => (
                     <Pane>
                         <EditorContainer onBlur={::this.onCodeChange} value={code}/>
@@ -186,7 +190,11 @@ class CodeContainer extends Component {
                 )
             },
             {
-                menuItem: 'Upload JavaScript File',
+                menuItem: {
+                    as: 'a',
+                    content: 'Upload JavaScript File',
+                    href: "#upload",
+                },
                 render: () => (
                     <Pane>
                         <Dropzone
@@ -206,7 +214,11 @@ class CodeContainer extends Component {
                 )
             },
             {
-                menuItem: 'Output',
+                menuItem: {
+                    as: 'a',
+                    content: 'Output',
+                    href: "#output",
+                },
                 render: () => (
                     <Pane>
                         <Grid stackable columns={2} relaxed>
