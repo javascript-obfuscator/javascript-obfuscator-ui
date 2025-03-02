@@ -8,7 +8,7 @@
           content="JavaScript Obfuscator is a free online tool that obfuscates your source code, preventing it from being stolen and used without permission.">
     <meta name="Keywords" content="obfuscator, javascript obfuscator, javascript obfuscator tool, obfuscation js, obfuscate tool, обфускатор, code obfuscator, obfuscator online, uglify, minify, js obfuscator, obfuscator io, obfuscator.io, obfuscate, protection">
 
-    <link rel="stylesheet" href="/static/dist/bundle.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/bundle.css" media="screen" title="no title">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116652505-1"></script>
@@ -272,7 +272,7 @@
 </div>
 
 <% if(htmlWebpackPlugin.files.js) { %>
-    <script src="/static/dist/<%= htmlWebpackPlugin.files.js %>"></script>
+    <script src="/<%= htmlWebpackPlugin.files.js %>"></script>
 <% } %>
 
 </body>
