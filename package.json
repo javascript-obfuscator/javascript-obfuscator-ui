@@ -67,5 +67,8 @@
     "url-loader": "4.1.1",
     "webpack": "5.69.1",
     "webpack-cli": "4.4.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^13.0.0"
   }
 }
